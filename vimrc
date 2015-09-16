@@ -1,12 +1,4 @@
-"======================[ Runtime Bundles via Pathogen ]=========================
-runtime bundle/pathogen.vim/autoload/pathogen.vim
-call pathogen#infect()
-filetype off
-syntax on
-filetype plugin indent on
-
-"=================[ Toggle visibility of naughty characters ]===================
-
+" [ Toggle visibility of naughty characters ] {{{
 " Make naughty characters visible...
 " (uBB is right double angle, uB7 is middle dot)
 set lcs=tab:»»,trail:·,nbsp:~
@@ -22,7 +14,7 @@ augroup VisibleNaughtiness
 augroup END
 
 "refreshes to new vimrc
-"autocmd BufWritePost .vimrc source %
+autocmd BufWritePost .vimrc source %
 
 " This avoids wonky colours on sourcing vimrc.
 augroup source_vimrc
@@ -30,11 +22,13 @@ augroup source_vimrc
     autocmd BufWritePost .vimrc,_vimrc,vimrc
         \ source $MYVIMRC | AirlineRefresh
 augroup END
+" }}}
 
-"=================[ Set up smarter search behaviour ]===========================
+
+" [ Set up smarter search behaviour ] {{{
 set incsearch       "Lookahead as search pattern is specified
 set ignorecase      "Ignore case in all searches...
-set smartcase       "...unless uppercase letters used
+set smartcase       " ...unless uppercase letters used
 set hlsearch        "Highlight all matches
 set magic
 
@@ -71,9 +65,10 @@ noremap <C-p> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> t
 for id in synstack(line("."), col("."))
    echo synIDattr(id, "name")
 endfor
+" }}}
 
-"=============[ There can be only one (one Vim session per file) ]==============
 
+" [ There can be only one (one Vim session per file) ] {{{
 augroup NoSimultaneousEdits
     autocmd!
     autocmd SwapExists *  let v:swapchoice = 'o'
@@ -87,10 +82,9 @@ augroup END
 function! Make_session_finder (filename)
     exec 'nnoremap ss :!terminal_promote_vim_session ' . a:filename . '<CR>:q!<CR>'
 endfunction
+" }}}
 
-
-"===================[ Make Visual modes work better ]===========================
-
+" [ Make Visual modes work better ] {{{
 " Visual Block mode is far more useful that Visual mode (so swap the commands)...
 nnoremap v <C-V>
 nnoremap <C-V> v
@@ -139,9 +133,10 @@ endfunction
 "   call Toggle_CursorColumn(a:newstate)
 "  iunmap <ESC>
 "endfunction
+" }}}
 
 
-"=====================[ Toggle syntax highlighting ]============================
+" [ Toggle syntax highlighting ] {{{
 "syntax enable
 "Nmap <silent> y [Toggle syntax highlighting]
 "                 \ : if exists("syntax_on") <BAR>
@@ -149,9 +144,10 @@ endfunction
 "                 \ else <BAR>
 "                 \    syntax enable <BAR>
 "                 \ endif<CR>
+" }}}
 
 
-"===============[ Miscellaneous features (mainly options) ]=====================
+" [ Miscellaneous features (mainly options) ] {{{
 
 set title         "Show filename in titlebar of window
 set titleold=
@@ -171,9 +167,12 @@ autocmd InsertEnter * :set nu
 autocmd InsertLeave * :set relativenumber
 "set nocursorcolumn
 
+" sets the split bewteen windows to be grey
+hi VertSplit       ctermfg=244 ctermbg=232   cterm=none
+" }}}
 
-"==============[ Remap various keys to something more useful ]==================
 
+" [ Remap various keys to something more useful ] {{{
 "moving around in vim
 nnoremap X <PageDown>
 nnoremap ; :
@@ -192,7 +191,7 @@ set splitbelow
 set splitright
 
 "move around split screens windows
-let mapleader= "\<C-M>"
+let mapleader= "\<c-m>"
 map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>
 map <leader>k :wincmd k<CR>
@@ -236,10 +235,9 @@ noremap - $
 "nnoremap <CR> <Esc>
 "vnoremap <CR> <Esc>gV
 "onoremap <CR> <Esc>
+" }}}
 
-
-"================[ Set up Indentation with Spaces & Tabs ]======================
-
+" [ Set up Indentation with Spaces & Tabs ] {{{
 set ruler
 set tabstop=4      "Tab indentation levels every four columns
 set shiftwidth=4   "Indent/outdent by four columns
@@ -272,8 +270,8 @@ inoremap <c-s> <Esc><c-s>
 "set nu
 "set smartindent
 "filetype on
-filetype plugin indent on
 
+"colorscheme earthAndFire
 "au BufReadPost *.twig colorscheme koehler
 "au BufReadPost *.css colorscheme slate
 "au BufReadPost *.js colorscheme elflord
@@ -285,12 +283,13 @@ filetype plugin indent on
 "au BufReadPost *.java colorscheme slate   " this is okay
 "au BufReadPost *.java colorscheme zellner
 "au BufReadPost *.php colorscheme monokai
-au BufReadPost *.java colorscheme earthAndFire " this is mine
-au BufReadPost *.cc   colorscheme earthAndFire " this is mine
-au BufReadPost *.cpp  colorscheme earthAndFire " this is mine
+"au BufReadPost *.java colorscheme earthAndFire " this is mine
+"au BufReadPost *.cc   colorscheme earthAndFire " this is mine
+"au BufReadPost *.cpp  colorscheme earthAndFire " this is mine
+" }}}
 
 
-"==========[ Highlight cursor (plus row and column on request) ]================
+" [ Highlight cursor (plus row and column on request) ] {{{
 
 " Inverse highlighting for cursor...
 "highlight CursorInverse   term=inverse ctermfg=black ctermbg=cyan
@@ -323,9 +322,10 @@ endfunction
 
 " Show matching brackets when text indicator is over them
 " set showmatch
+" }}}
 
 
-"================[ Correct common mistypings on-the-fly ]=======================
+" [ Correct common mistypings on-the-fly ] {{{
 
 iab    retrun  return
 iab    reture  return
@@ -365,9 +365,10 @@ noremap <leader>ss :setlocal spell!<cr>
 " Toggle paste mode on and off
 imap <leader>pp <Esc>:setlocal paste!<cr>i
 noremap <leader>pp :setlocal paste!<cr>
+" }}}
 
-"======================[ Config Syntax Highlighting ]===========================
 
+" [ Config Syntax Highlighting ] {{{
 set bg=dark
 hi Comment    cterm=none ctermfg=238
 hi Type       cterm=bold ctermfg=123 " Type
@@ -389,13 +390,23 @@ augroup Over80Red
 "   autocmd BufEnter  *.java  match OverLength /\%81v.*/
 augroup END
 
+"for cSyntaxAfter
+"autocmd! FileType c,cc,cpp,java call CSyntaxAfter()
 
-"======================[ Config CursorLine & Background ]=======================
+" for operator_highlight.vim by Valloric
+"let g:ophigh_color = 226
+" }}}
 
+
+" [ Config CursorLine & Background ] {{{
 augroup Over80Grey
     autocmd!
     autocmd BufEnter  *.cc   execute "set colorcolumn=" . join(range(81,335), ',')
     autocmd BufEnter  *.cc   :highlight ColorColumn ctermbg=233 guibg=lightgrey
+    autocmd BufEnter  *.cpp  execute "set colorcolumn=" . join(range(81,335), ',')
+    autocmd BufEnter  *.cpp  :highlight ColorColumn ctermbg=233 guibg=lightgrey
+    autocmd BufEnter  *.c    execute "set colorcolumn=" . join(range(81,335), ',')
+    autocmd BufEnter  *.c    :highlight ColorColumn ctermbg=233 guibg=lightgrey
     autocmd BufEnter  *.java execute "set colorcolumn=" . join(range(81,335), ',')
     autocmd BufEnter  *.java :highlight ColorColumn ctermbg=233 guibg=lightgrey
 augroup END
@@ -408,33 +419,21 @@ hi CursorLine   cterm=NONE ctermbg=233 guibg=darkred guifg=white
 hi CursorColumn   cterm=NONE ctermbg=232 guibg=darkred guifg=white
 nnoremap <Leader>c :set cursorcolumn!<CR>
 "set colorcolumn=81
+" }}}
 
 
-"========================[ Status Line - Vim-Airline]===========================
-"
-set guifont=Andale\ Mono\ for\ Powerline
-" Always show status bar.
-let g:powerline_loaded = 1
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
+" [ Highlight cursor (plus row and column on request) ] {{{
+" Inverse highlighting for cursor...
+highlight CursorInverse   term=inverse ctermfg=black ctermbg=cyan
+call matchadd('CursorInverse', '\%#', 100)
 
-" this turns off powerline when saved
-let g:airline_powerline_fonts=1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-
-  " unicode symbols
-  let g:airline_left_sep = '▶'
-" let g:airline_left_sep = '◑'
-  let g:airline_right_sep = '◀'
-" let g:airline_right_sep = '◐'
-  let g:airline_symbols.linenr = '␤'
-  let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.paste = 'ρ'
-  let g:airline_symbols.whitespace = 'Ξ'
-" let g:airline_symbols.whitespace = '¤'
+" Need an invisible cursor column to make it update on every cursor move...
+highlight clear CursorColumn
+highlight CursorColumn term=none cterm=none
+set cursorcolumn
+" Show matching brackets when text indicator is over them
+" set showmatch
+" }}}
 
 "Adds completion help on commands
 set wildmenu
@@ -449,42 +448,7 @@ set wildmenu
 "set statusline+=/         " Separator
 "set statusline+=%L        " Total lines
 
-"" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
-
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-" Show buffers
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 0
-
-" enable/disable fugitive/lawrencium integration
-let g:airline#extensions#branch#enabled = 1
-
-" truncate long branch names to a fixed length >
-let g:airline#extensions#branch#displayed_head_limit = 10
-
-" change the text for when no branch is detected
-let g:airline#extensions#branch#empty_message = ''
-
-" enable/disable showing a summary of changed hunks under source control.
-let g:airline#extensions#hunks#enabled = 1
-
-" enable/disable showing only non-zero hunks.
-let g:airline#extensions#hunks#non_zero_only = 1
-
-" Pick one:
-" let g:airline#extensions#ctrlp#color_template = 'insert' " (default)
-" let g:airline#extensions#ctrlp#color_template = 'normal'
-" let g:airline#extensions#ctrlp#color_template = 'visual'
-" let g:airline#extensions#ctrlp#color_template = 'replace'
-
-
-
-"=============================[ File Editing ]==================================
-
+" [ File Editing ] {{{
 " Return to last edit position when opening files.
 " autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -507,6 +471,7 @@ endfunc
 :
 :   autocmd BufWrite *.s :call DeleteTrailingWS()
 :   autocmd BufWrite *.cc :call DeleteTrailingWS()
+:   autocmd BufWrite *.c :call DeleteTrailingWS()
 :   autocmd BufWrite *.cpp :call DeleteTrailingWS()
 :   autocmd BufWrite *.java :call DeleteTrailingWS()
 :   autocmd BufWrite *.vim :call DeleteTrailingWS()
@@ -534,16 +499,16 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+" }}}
 
-"============================[ University Stuff ]===============================
 
+" [ University Stuff ] {{{
 " Assignment header
 nnoremap <leader>aa ggOBenj Hingston<cr>11152686<cr>bvh895<cr>
+" }}}
 
 
-
-
-" Open keys:
+" [ Open keys ]: {{{
 " U
 " \
 " |
@@ -552,4 +517,5 @@ nnoremap <leader>aa ggOBenj Hingston<cr>11152686<cr>bvh895<cr>
 " %
 " & ?? no idea
 " M goes to the middle
+" }}}
 :set encoding=utf-8
