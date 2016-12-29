@@ -1,9 +1,22 @@
 " [ Runtime Bundles via Pathogen ] {{{
-runtime bundle/pathogen.vim/autoload/pathogen.vim
-call pathogen#infect()
-filetype off
-syntax on
-filetype plugin indent on
+"runtime bundle/pathogen.vim/autoload/pathogen.vim
+"call pathogen#infect()
+"filetype off
+"syntax on
+"filetype plugin indent on
+" }}}
+
+" [ Vim-Plug ] {{{
+call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/bundle')
+Plug 'bling/vim-bufferline'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'powerline/powerline'
+Plug 'gerw/vim-HiLinkTrace'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+call plug#end()
 " }}}
 
 " [ Toggle visibility of naughty characters ] {{{
@@ -281,7 +294,7 @@ inoremap <c-s> <Esc><c-s>
 "set nu
 "set smartindent
 "filetype on
-filetype plugin indent on
+"filetype plugin indent on
 
 "colorscheme earthAndFire
 "au BufReadPost *.twig colorscheme koehler
@@ -488,7 +501,7 @@ let g:airline_powerline_fonts=1
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
-  endif
+endif
 
   " unicode symbols
   let g:airline_left_sep = '▶'
