@@ -54,6 +54,8 @@ function parse_git_dirty {
 
 #export SvnRepos=~/214asn3/svn_repository;
 #export SvnURL=file://$SvnRepos;
+export VIMINIT='source $MYVIMRC'
+export MYVIMRC='~/dotfiles/.vimrc'
 export EDITOR=vim
 export SCPSSH="scp bvh895@tuxworld.usask.ca:/student/bvh895/"
 export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0;36m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]$ "

@@ -7,7 +7,7 @@
 " }}}
 
 " [ Vim-Plug ] {{{
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/dotfiles/.vim/plugged')
 "call plug#begin('~/.vim/bundle')
 Plug 'bling/vim-bufferline'
 Plug 'bling/vim-airline'
