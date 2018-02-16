@@ -52,19 +52,27 @@ function parse_git_dirty {
 	fi
 }
 
-#export SvnRepos=~/214asn3/svn_repository;
-#export SvnURL=file://$SvnRepos;
+# custom path for vendasta box
+PATH=$PATH:$HOME/google-cloud-sdk/bin
+PATH=$PATH:/usr/local/mysql/bin
+# Add Visual Studio Code (code)
+PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$GOBIN:$PATH
+
 export VIMINIT='source $MYVIMRC'
 export MYVIMRC='~/dotfiles/.vimrc'
 export EDITOR=vim
 export SCPSSH="scp bvh895@tuxworld.usask.ca:/student/bvh895/"
-export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0;36m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]$ "
+export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0;36m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n\[\e[31m\]♥\[\e[m\] "
 #export SvnPrj=$SvnURL/time_calc;
 
-# run tmux
-if [[ -z "$TMUX" ]]; then
-	tmux
-fi
+# run tmux at start of each window
+#if [[ -z "$TMUX" ]]; then
+#	tmux
+#fi
 
 echo "hello Benj, welcome to the Matrix"
 
@@ -72,8 +80,42 @@ echo "hello Benj, welcome to the Matrix"
 # Personnal Aliases
 #===================
 alias ls="ls -pG"
+alias hs="history | grep"
 alias sshusask="ssh bvh895@tuxworld.usask.ca"
+alias gc="gcloud"
+alias bashrc="~/.bash_profile"
+eval $(thefuck --alias)
+# You can use whatever you want as an alias, like for Mondays:
+eval $(thefuck --alias fuck)
 
+#===================
+# Vendasta Aliases
+#===================
+#alias wspctl="docker run --rm -it -v ~/.config/gcloud:/.config/gcloud -v /var/run/docker.sock:/var/run/docker.sock -v ~/Projects/website-pro:/website-pro gcr.io/repcore-prod/website-pro/wspctl"
+#alias invfuck="inv pylint -f pylint_test -f test"
+invfuck() {
+	if [ $# -eq 0 ]; then
+		inv pylint -f
+		inv pylint_test -f
+		inv test
+	fi
+}
 
+# Get current weather, with option of giving town as arg
+#alias weather="curl wttr.in"
+weather() {
+	if [ $# -eq 0 ]; then
+		curl wttr.in
+	else
+		curl wttr.in/~$1
+	fi
+}
 
+mkpdf() {
+	if [ $# -eq 1 ]; then
+		filename=$1
+		pdflatex $filename
+		open "${filename%.*}.pdf"
+	fi
+}
 

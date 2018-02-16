@@ -1,18 +1,7 @@
-" [ Runtime Bundles via Pathogen ] {{{
-"runtime bundle/pathogen.vim/autoload/pathogen.vim
-"call pathogen#infect()
-"filetype off
-"syntax on
-"filetype plugin indent on
-" }}}
-
 " [ Vim-Plug ] {{{
 call plug#begin('~/dotfiles/.vim/plugged')
-"call plug#begin('~/.vim/bundle')
-Plug 'bling/vim-bufferline'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'powerline/powerline'
 Plug 'gerw/vim-HiLinkTrace'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -33,16 +22,17 @@ augroup VisibleNaughtiness
     autocmd BufEnter  *           set nolist
     autocmd BufEnter  *       endif
 augroup END
+hi SpecialKey cterm=NONE ctermfg=darkgray gui=NONE guifg=#696969
 
 "refreshes to new vimrc
 "autocmd BufWritePost .vimrc source %
 
 " This avoids wonky colours on sourcing vimrc.
-augroup source_vimrc
-    autocmd!
-    autocmd BufWritePost .vimrc,_vimrc,vimrc
-        \ source $MYVIMRC | AirlineRefresh
-augroup END
+"augroup source_vimrc
+"    autocmd!
+"    autocmd BufWritePost .vimrc,_vimrc,vimrc
+"        \ source $MYVIMRC | AirlineRefresh
+"augroup END
 " }}}
 
 
@@ -269,6 +259,18 @@ set smarttab       "Use shiftwidths at left margin, tabstops everywhere else
 set autoindent     "Auto indents next line to the prevous line
 "set expandtab
 
+augroup TabWidth
+    autocmd!
+    autocmd BufEnter *.scss set tabstop=2
+    autocmd BufEnter *.scss set shiftwidth=2
+    autocmd BufEnter *.css set tabstop=2
+    autocmd BufEnter *.css set shiftwidth=2
+    autocmd BufEnter *.html set tabstop=2
+    autocmd BufEnter *.html set shiftwidth=2
+    autocmd BufEnter *.tex set tabstop=2
+    autocmd BufEnter *.tex set shiftwidth=2
+augroup END
+
 augroup TabExpandage
     autocmd!
     autocmd BufEnter  *.cpp   ret
@@ -281,6 +283,8 @@ augroup TabExpandage
     autocmd BufEnter  *.c     set expandtab
     autocmd BufEnter  *.java  set expandtab
     autocmd BufEnter  *.sh    set expandtab
+    autocmd BufEnter  *.html  set expandtab
+    autocmd BufEnter  *.tex   set expandtab
 augroup END
 
 "The following three lines map Ctrl+s to save in vi.  You can comment
@@ -298,10 +302,10 @@ inoremap <c-s> <Esc><c-s>
 
 "colorscheme earthAndFire
 "au BufReadPost *.twig colorscheme koehler
-"au BufReadPost *.css colorscheme slate
-"au BufReadPost *.js colorscheme elflord
-"au BufReadPost *.py colorscheme molokai
-"au BufReadPost *.html colorscheme monokai
+au BufReadPost *.css colorscheme slate
+au BufReadPost *.js colorscheme elflord
+au BufReadPost *.py colorscheme earthAndFire
+au BufReadPost *.html colorscheme monokai
 "au BufReadPost *.java colorscheme monokai
 "au BufReadPost *.java colorscheme koehler " really like this one
 "au BufReadPost *.java colorscheme peachpuff
@@ -383,8 +387,8 @@ iab      cout  cout <<
 iab      cin.  cin.getline(
 iab      cinn  cin >>
 "brakets
-iab         (  ()<Esc>i
-iab         { {<Esc>o}jkO
+"iab         (  ()<Esc>i
+"iab         { {<Esc>o}jkO
 " Pressing <leader>ss will toggle and untoggle spell checking
 noremap <leader>ss :setlocal spell!<cr>
 " Toggle paste mode on and off
@@ -462,10 +466,14 @@ augroup Over80Grey
     autocmd BufEnter  *.java :highlight ColorColumn ctermbg=233 guibg=lightgrey
     autocmd BufEnter  *.hs   execute "set colorcolumn=" . join(range(81,335), ',')
     autocmd BufEnter  *.hs   :highlight ColorColumn ctermbg=233 guibg=lightgrey
+    autocmd BufEnter  *.py   execute "set colorcolumn=" . join(range(81,335), ',')
+    autocmd BufEnter  *.py   :highlight ColorColumn ctermbg=233 guibg=lightgrey
+    autocmd BufEnter  *.go   execute "set colorcolumn=" . join(range(81,335), ',')
+    autocmd BufEnter  *.go   :highlight ColorColumn ctermbg=233 guibg=lightgrey
 augroup END
 
-execute "set colorcolumn=" . join(range(81,335), ',')
-:highlight ColorColumn ctermbg=233 guibg=lightgrey
+"execute "set colorcolumn=" . join(range(81,335), ',')
+":highlight ColorColumn ctermbg=233 guibg=lightgrey
 
 set cursorline
 hi CursorLine   cterm=NONE ctermbg=233 guibg=darkred guifg=white
@@ -490,11 +498,11 @@ set cursorcolumn
 
 
 " [ Status Line - Vim-Airline] {{{
-set guifont=Andale\ Mono\ for\ Powerline
-" Always show status bar.
-let g:powerline_loaded = 1
-set laststatus=2
-let g:Powerline_symbols = 'fancy'
+"set guifont=Andale\ Mono\ for\ Powerline
+"" Always show status bar.
+"let g:powerline_loaded = 1
+"set laststatus=2
+"let g:Powerline_symbols = 'fancy'
 
 " this turns off powerline when saved
 let g:airline_powerline_fonts=1
@@ -504,15 +512,23 @@ if !exists('g:airline_symbols')
 endif
 
   " unicode symbols
-  let g:airline_left_sep = '▶'
-" let g:airline_left_sep = '◑'
-  let g:airline_right_sep = '◀'
-" let g:airline_right_sep = '◐'
-  let g:airline_symbols.linenr = '␤'
-  let g:airline_symbols.branch = '⎇'
-  let g:airline_symbols.paste = 'ρ'
-  let g:airline_symbols.whitespace = 'Ξ'
-" let g:airline_symbols.whitespace = '¤'
+"  let g:airline_left_sep = '▶'
+"" let g:airline_left_sep = '◑'
+"  let g:airline_right_sep = '◀'
+"" let g:airline_right_sep = '◐'
+"  let g:airline_symbols.linenr = '␤'
+"  let g:airline_symbols.branch = '⎇'
+"  let g:airline_symbols.paste = 'ρ'
+"  let g:airline_symbols.whitespace = 'Ξ'
+"" let g:airline_symbols.whitespace = '¤'
+
+function! AirlineInit()
+    let g:airline_section_a = airline#section#create(['mode',' ','branch'])
+    let g:airline_section_b = airline#section#create_left(['ffenc','%f'])
+    let g:airline_section_x = airline#section#create(['filetype'])
+    let g:airline_section_y = airline#section#create(['%P', ' ', '%l'])
+endfunction
+autocmd VimEnter * call AirlineInit()
 
 "Adds completion help on commands
 set wildmenu
@@ -529,14 +545,14 @@ set wildmenu
 
 "" Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
+"let g:airline#extensions#tabline#show_buffers = 1
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Show buffers
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 0
+"let g:airline#extensions#bufferline#enabled = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 0
 
 " enable/disable fugitive/lawrencium integration
 let g:airline#extensions#branch#enabled = 1
@@ -548,10 +564,10 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline#extensions#branch#empty_message = ''
 
 " enable/disable showing a summary of changed hunks under source control.
-let g:airline#extensions#hunks#enabled = 1
+"let g:airline#extensions#hunks#enabled = 1
 
 " enable/disable showing only non-zero hunks.
-let g:airline#extensions#hunks#non_zero_only = 1
+"let g:airline#extensions#hunks#non_zero_only = 1
 
 " Pick one:
  let g:airline#extensions#ctrlp#color_template = 'insert' " (default)
@@ -592,6 +608,8 @@ endfunc
 :   autocmd BufWrite *.txt :call DeleteTrailingWS()
 :   autocmd BufWrite *.md :call DeleteTrailingWS()
 :   autocmd BufWrite *.py :call DeleteTrailingWS()
+:   autocmd BufWrite *.tex :call DeleteTrailingWS()
+:   autocmd BufWrite *.go :call DeleteTrailingWS()
 :augroup END
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
@@ -633,3 +651,4 @@ nnoremap <leader>aa ggOBenj Hingston<cr>11152686<cr>bvh895<cr>
 " M goes to the middle
 " }}}
 :set encoding=utf-8
+:set nornu " for pycharm only so realtive is off
