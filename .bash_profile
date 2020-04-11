@@ -61,6 +61,7 @@ PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$GOBIN:$PATH
+export GO111MODULE=auto
 
 export VIMINIT='source $MYVIMRC'
 export MYVIMRC='~/dotfiles/.vimrc'
@@ -119,3 +120,6 @@ mkpdf() {
 	fi
 }
 
+export PATH="/usr/local/opt/ant@1.9/bin:$PATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"
