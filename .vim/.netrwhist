@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/Users/bhingston/Projects/developer-central/artifacts'
+let g:netrw_dirhist_2='/Users/bhingston/Projects/website-pro-portal/.git/hooks'
+let g:netrw_dirhist_3='/Users/bhingston/Projects/BS/.git/hooks'
+let g:netrw_dirhist_4='/Users/bhingston/Projects/partner-center-client'
+let g:netrw_dirhist_5='/Users/bhingston/go/src/github.com/vendasta/billing/.git/hooks'
