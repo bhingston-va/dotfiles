@@ -1,12 +1,12 @@
 " [ Vim-Plug ] {{{
-call plug#begin('~/dotfiles/.vim/plugged')
+call plug#begin('~/dotfiles/vimide/.vim/plugged')
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'gerw/vim-HiLinkTrace'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 " }}}
+
 
 " [ Toggle visibility of naughty characters ] {{{
 " Make naughty characters visible...
@@ -16,23 +16,11 @@ set lcs=tab:»»,trail:·,nbsp:~
 augroup VisibleNaughtiness
     autocmd!
     autocmd BufEnter  *       set list
-"   autocmd BufEnter  *.txt   set nolist
-"   autocmd BufEnter  *.vp*   set nolist
     autocmd BufEnter  *       if !&modifiable
     autocmd BufEnter  *           set nolist
     autocmd BufEnter  *       endif
 augroup END
 hi SpecialKey cterm=NONE ctermfg=darkgray gui=NONE guifg=#696969
-
-"refreshes to new vimrc
-"autocmd BufWritePost .vimrc source %
-
-" This avoids wonky colours on sourcing vimrc.
-"augroup source_vimrc
-"    autocmd!
-"    autocmd BufWritePost .vimrc,_vimrc,vimrc
-"        \ source $MYVIMRC | AirlineRefresh
-"augroup END
 " }}}
 
 
@@ -43,19 +31,8 @@ set smartcase       " ...unless uppercase letters used
 set hlsearch        "Highlight all matches
 set magic
 
-"Delete in normal mode to switch off highlighting till next search and clear messages...
-nmap <silent> <BS> [Cancel highlighting]  :nohlsearch <BAR> call Toggle_CursorColumn('off')<CR>
-syntax on
-
-"Double-delete to remove search highlighting *and* trailing whitespace...
-nmap <silent> <BS><BS>  [Cancel highlighting and remove trailing whitespace]
-\             mz:%s/\s\+$//g<CR>`z:nohlsearch<CR>
-hi Search cterm=NONE ctermbg=0 ctermfg=165
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
 " Disable highlight with <tab>
 nnoremap <silent> <tab> :nohl<cr>
-
 " Center found words on screen
 nnoremap N Nzz
 nnoremap n nzz
@@ -95,6 +72,7 @@ function! Make_session_finder (filename)
 endfunction
 " }}}
 
+
 " [ Make Visual modes work better ] {{{
 " Visual Block mode is far more useful that Visual mode (so swap the commands)...
 nnoremap v <C-V>
@@ -114,55 +92,12 @@ set virtualedit=block
 
 " Make BS/DEL work as expected in visual modes (i.e. delete the selected text)...
 vnoremap <BS> x
-
-"When shifting, retain selection over multiple shifts...
-vmap <expr> > KeepVisualSelection(">")
-vmap <expr> < KeepVisualSelection("<")
-
-function! KeepVisualSelection(cmd)
-    set nosmartindent
-    if mode() ==# "V"
-        return a:cmd . ":set smartindent\<CR>gv"
-    else
-        return a:cmd . ":set smartindent\<CR>"
-    endif
-endfunction
-
-" Temporarily add a column indicator when inserting or appending in visual mode...
-" (Should use <C-O> instead, but it doesn't seem to work)
-"vnoremap <silent>  I  I<C-R>=TemporaryColumnMarkerOn()<CR>
-"vnoremap <silent>  A  A<C-R>=TemporaryColumnMarkerOn()<CR>
-"
-"function! TemporaryColumnMarkerOn ()
-"    let g:prev_cursorcolumn_state = g:cursorcolumn_visible ? 'on' : 'off'
-"  call Toggle_CursorColumn('on')
-"   inoremap <silent>  <ESC>  <ESC>:call TemporaryColumnMarkerOff(g:prev_cursorcolumn_state)<CR>
-"   return ""
-"endfunction
-"
-"function! TemporaryColumnMarkerOff (newstate)
-"   call Toggle_CursorColumn(a:newstate)
-"  iunmap <ESC>
-"endfunction
-" }}}
-
-
-" [ Toggle syntax highlighting ] {{{
-"syntax enable
-"Nmap <silent> y [Toggle syntax highlighting]
-"                 \ : if exists("syntax_on") <BAR>
-"                 \    syntax off <BAR>
-"                 \ else <BAR>
-"                 \    syntax enable <BAR>
-"                 \ endif<CR>
 " }}}
 
 
 " [ Miscellaneous features (mainly options) ] {{{
-
 set title         "Show filename in titlebar of window
 set titleold=
-"set textwidth=100 "Wrap at column #
 set scrolloff=5   "Scroll when 5 lines from top/bottom
 
 " Toggles between relative number and numbered line
@@ -176,10 +111,15 @@ endfunc
 "nnoremap <C-n> :call NumberToggle()<cr>
 autocmd InsertEnter * :set nu
 autocmd InsertLeave * :set relativenumber
-"set nocursorcolumn
 
 " sets the split bewteen windows to be grey
 hi VertSplit       ctermfg=244 ctermbg=232   cterm=none
+
+" Pressing <leader>ss will toggle and untoggle spell checking
+noremap <leader>ss :setlocal spell!<cr>
+" Toggle paste mode on and off
+imap <leader>pp <Esc>:setlocal paste!<cr>i
+noremap <leader>pp :setlocal paste!<cr>
 " }}}
 
 
@@ -202,7 +142,6 @@ set splitbelow
 set splitright
 
 "move around split screens windows
-"let mapleader= "\<c-m>"
 nnoremap <Space> <nop>
 let mapleader= " "
 map <leader>h :wincmd h<CR>
@@ -232,32 +171,14 @@ imap <ESC>OD <ESC>hi
 nnoremap 0 ^
 " Remap - to end of line
 noremap - $
-
-"function! ToggleEnterMapping()
-"  if empty(mapcheck('<CR>', 'i'))
-"   inoremap <CR> <Esc>
-"   return "\<Esc>"
-" else
-"   iunmap <CR>
-"   return "\<CR>"
-" endif
-"endfunction
-"call ToggleEnterMapping()
-"inoremap <expr> <S-CR> ToggleEnterMapping()
-"" Optional (so <CR> cancels prefix, selection, operator).
-"nnoremap <CR> <Esc>
-"vnoremap <CR> <Esc>gV
-"onoremap <CR> <Esc>
 " }}}
 
 " [ Set up Indentation with Spaces & Tabs ] {{{
 set ruler
 set tabstop=4      "Tab indentation levels every four columns
 set shiftwidth=4   "Indent/outdent by four columns
-"set shiftround    "Always indent/outdent to nearest tabstop
 set smarttab       "Use shiftwidths at left margin, tabstops everywhere else
 set autoindent     "Auto indents next line to the prevous line
-"set expandtab
 
 augroup TabWidth
     autocmd!
@@ -274,7 +195,6 @@ augroup END
 augroup TabExpandage
     autocmd!
     autocmd BufEnter  *.cpp   ret
-"   autocmd BufEnter  *.txt   ret
     autocmd BufEnter  *.c     ret
     autocmd BufEnter  *.java  ret
     autocmd BufEnter  *.hs    ret
@@ -287,23 +207,11 @@ augroup TabExpandage
     autocmd BufEnter  *.tex   set expandtab
 augroup END
 
-"The following three lines map Ctrl+s to save in vi.  You can comment
-"these out, it has nothing to do with syntax highlighting or colors
-nnoremap <c-s> :w<CR>
-inoremap <c-s> <Esc>:w<CR>a
-inoremap <c-s> <Esc><c-s>
-
-"set background=dark
-"set hlsearch
-"set nu
-"set smartindent
-"filetype on
-"filetype plugin indent on
-
 "colorscheme earthAndFire
 "au BufReadPost *.twig colorscheme koehler
 au BufReadPost *.css colorscheme slate
 au BufReadPost *.js colorscheme elflord
+au BufReadPost *.ts colorscheme elflord
 au BufReadPost *.py colorscheme earthAndFire
 au BufReadPost *.html colorscheme monokai
 "au BufReadPost *.java colorscheme monokai
@@ -315,27 +223,14 @@ au BufReadPost *.html colorscheme monokai
 au BufReadPost *.java colorscheme earthAndFire " this is mine
 au BufReadPost *.cc   colorscheme earthAndFire " this is mine
 au BufReadPost *.cpp  colorscheme earthAndFire " this is mine
+au BufReadPost *.go  colorscheme earthAndFire " this is mine
 " }}}
 
-
 " [ Highlight cursor (plus row and column on request) ] {{{
-
-" Inverse highlighting for cursor...
-"highlight CursorInverse   term=inverse ctermfg=black ctermbg=cyan
-"call matchadd('CursorInverse', '\%#', 100)
-"
-"" Need an invisible cursor column to make it update on every cursor move...
-"highlight clear CursorColumn
-"highlight CursorColumn term=none cterm=none
-"set cursorcolumn
-
 " Toggle cursor row highlighting on request...
-
 nmap <silent> :r [Toggle cursor line highlighting] :set cursorline!<CR>
-
 " Toggle cursor column highlighting on request...
 nmap <silent> :c [Toggle cursor row highlighting] :silent call Toggle_CursorColumn('flip')<CR>
-
 " Implement cursor toggle...
 let g:cursorcolumn_visible = 0
 function! Toggle_CursorColumn (requested_state)
@@ -349,51 +244,14 @@ function! Toggle_CursorColumn (requested_state)
     endif
 endfunction
 
-" Show matching brackets when text indicator is over them
-" set showmatch
-" }}}
+" Inverse highlighting for cursor...
+highlight CursorInverse   term=inverse ctermfg=black ctermbg=cyan
+call matchadd('CursorInverse', '\%#', 100)
 
-
-" [ Correct common mistypings on-the-fly ] {{{
-
-iab    retrun  return
-iab    reture  return
-iab    rertun  return
-iab     pritn  print
-iab       teh  the
-iab      liek  like
-iab  liekwise  likewise
-iab      Pelr  Perl
-iab      pelr  perl
-iab        ;t  't
-iab    Jarrko  Jarkko
-iab    jarrko  jarkko
-iab      moer  more
-iab  previosu  previous
-iab      ture  true
-"sudo code
-iab       rti  refToInteger
-iab       aoi  ArrayOfIntegers
-iab       rtc  refToChar
-iab       aoc  ArrayOfChars
-iab       rtf  refToFloat
-iab       aof  ArrayOfFloats
-"for loops
-iab     foriL  for(int i = 0; i < n; i++) {
-iab     forjL  for(int j = 0; j < n; j++) {
-iab     forkL  for(int k = 0; k < n; k++) {
-" c++ lines
-iab      cout  cout <<
-iab      cin.  cin.getline(
-iab      cinn  cin >>
-"brakets
-"iab         (  ()<Esc>i
-"iab         { {<Esc>o}jkO
-" Pressing <leader>ss will toggle and untoggle spell checking
-noremap <leader>ss :setlocal spell!<cr>
-" Toggle paste mode on and off
-imap <leader>pp <Esc>:setlocal paste!<cr>i
-noremap <leader>pp :setlocal paste!<cr>
+" Need an invisible cursor column to make it update on every cursor move...
+highlight clear CursorColumn
+highlight CursorColumn term=none cterm=none ctermbg=232
+set cursorcolumn
 " }}}
 
 
@@ -445,9 +303,6 @@ augroup TextTerm
     autocmd BufReadPost *.txt match TextTerm /\<\u\{2,}\>/
 augroup END
 
-"for cSyntaxAfter
-"autocmd! FileType c,cc,cpp,java call CSyntaxAfter()
-
 " for operator_highlight.vim by Valloric
 let g:ophigh_color = 226
 " }}}
@@ -470,39 +325,116 @@ augroup Over80Grey
     autocmd BufEnter  *.py   :highlight ColorColumn ctermbg=233 guibg=lightgrey
     autocmd BufEnter  *.go   execute "set colorcolumn=" . join(range(81,335), ',')
     autocmd BufEnter  *.go   :highlight ColorColumn ctermbg=233 guibg=lightgrey
+    autocmd BufEnter  *.ts   execute "set colorcolumn=" . join(range(81,335), ',')
+    autocmd BufEnter  *.ts   :highlight ColorColumn ctermbg=233 guibg=lightgrey
 augroup END
-
-"execute "set colorcolumn=" . join(range(81,335), ',')
-":highlight ColorColumn ctermbg=233 guibg=lightgrey
 
 set cursorline
 hi CursorLine   cterm=NONE ctermbg=233 guibg=darkred guifg=white
 hi CursorColumn   cterm=NONE ctermbg=232 guibg=darkred guifg=white
 nnoremap <Leader>c :set cursorcolumn!<CR>
-"set colorcolumn=81
 " }}}
 
 
-" [ Highlight cursor (plus row and column on request) ] {{{
-" Inverse highlighting for cursor...
-highlight CursorInverse   term=inverse ctermfg=black ctermbg=cyan
-call matchadd('CursorInverse', '\%#', 100)
+" [ File Editing ] {{{
+" Return to last edit position when opening files.
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
 
-" Need an invisible cursor column to make it update on every cursor move...
-highlight clear CursorColumn
-highlight CursorColumn term=none cterm=none ctermbg=232
-set cursorcolumn
-" Show matching brackets when text indicator is over them
-" set showmatch
+" Move block
+vnoremap J xp`[V`]
+vnoremap K xkP`[V`]
+
+" Delete trailing white space on save, useful for Python and others
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+"  exe "normal `z"
+endfunc
+
+:augroup deleteWhitespace
+:   autocmd!
+:
+:   autocmd BufWrite *.sh :call DeleteTrailingWS()
+:   autocmd BufWrite *.hs :call DeleteTrailingWS()
+:   autocmd BufWrite *.cc :call DeleteTrailingWS()
+:   autocmd BufWrite *.c :call DeleteTrailingWS()
+:   autocmd BufWrite *.cpp :call DeleteTrailingWS()
+:   autocmd BufWrite *.java :call DeleteTrailingWS()
+:   autocmd BufWrite *.vim :call DeleteTrailingWS()
+:   autocmd BufWrite *.txt :call DeleteTrailingWS()
+:   autocmd BufWrite *.md :call DeleteTrailingWS()
+:   autocmd BufWrite *.py :call DeleteTrailingWS()
+:   autocmd BufWrite *.tex :call DeleteTrailingWS()
+:   autocmd BufWrite *.go :call DeleteTrailingWS()
+:augroup END
+" Don't close window, when deleting a buffer
+command! Bclose call <SID>BufcloseCloseIt()
+function! <SID>BufcloseCloseIt()
+   let l:currentBufNum = bufnr("%")
+   let l:alternateBufNum = bufnr("#")
+
+   if buflisted(l:alternateBufNum)
+     buffer #
+   else
+     bnext
+   endif
+
+   if bufnr("%") == l:currentBufNum
+     new
+   endif
+
+   if buflisted(l:currentBufNum)
+     execute("bdelete! ".l:currentBufNum)
+   endif
+endfunction
+" }}}
+
+
+" [ Open keys ]: {{{
+" U
+" \
+" |
+" +
+" ^
+" %
+" & ?? no idea
+" M goes to the middle
+" }}}
+:set encoding=utf-8
+
+
+" IDE Features below
+" - definition and usage location
+" - file and project search
+" - tree directory
+" - debugger
+" - run tests
+" - multi file edit
+" - autocomplte
+" - line edits
+
+
+" [ File tree - NERDTree ] {{{
+" easy open nerd tree with Ctrl+n
+nnoremap <C-n> :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"let g:NERDTreeDirArrowExpandable = 'ᗒ'
+"let g:NERDTreeDirArrowCollapsible = 'ᗐ'
+"let g:NERDTreeDirArrowExpandable = '⍄'
+"let g:NERDTreeDirArrowCollapsible = '⍌'
+let g:NERDTreeDirArrowExpandable = 'ᐅ'
+let g:NERDTreeDirArrowCollapsible = 'ᐁ'
+"let g:NERDTreeDirArrowExpandable = 'ᐳ'
+"let g:NERDTreeDirArrowCollapsible = 'ᐯ'
 " }}}
 
 
 " [ Status Line - Vim-Airline] {{{
-"set guifont=Andale\ Mono\ for\ Powerline
-"" Always show status bar.
-"let g:powerline_loaded = 1
-"set laststatus=2
-"let g:Powerline_symbols = 'fancy'
 
 " this turns off powerline when saved
 let g:airline_powerline_fonts=1
@@ -575,80 +507,3 @@ let g:airline#extensions#branch#empty_message = ''
 " let g:airline#extensions#ctrlp#color_template = 'visual'
 " let g:airline#extensions#ctrlp#color_template = 'replace'
 " }}}
-
-
-" [ File Editing ] {{{
-" Return to last edit position when opening files.
-" autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
-" Move block
-vnoremap J xp`[V`]
-vnoremap K xkP`[V`]
-
-" Delete trailing white space on save, useful for Python and others
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-"  exe "normal `z"
-endfunc
-
-:augroup deleteWhitespace
-:   autocmd!
-:
-:   autocmd BufWrite *.sh :call DeleteTrailingWS()
-:   autocmd BufWrite *.hs :call DeleteTrailingWS()
-:   autocmd BufWrite *.cc :call DeleteTrailingWS()
-:   autocmd BufWrite *.c :call DeleteTrailingWS()
-:   autocmd BufWrite *.cpp :call DeleteTrailingWS()
-:   autocmd BufWrite *.java :call DeleteTrailingWS()
-:   autocmd BufWrite *.vim :call DeleteTrailingWS()
-:   autocmd BufWrite *.txt :call DeleteTrailingWS()
-:   autocmd BufWrite *.md :call DeleteTrailingWS()
-:   autocmd BufWrite *.py :call DeleteTrailingWS()
-:   autocmd BufWrite *.tex :call DeleteTrailingWS()
-:   autocmd BufWrite *.go :call DeleteTrailingWS()
-:augroup END
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
-" }}}
-
-
-" [ University Stuff ] {{{
-" Assignment header
-nnoremap <leader>aa ggOBenj Hingston<cr>11152686<cr>bvh895<cr>
-" }}}
-
-
-" [ Open keys ]: {{{
-" U
-" \
-" |
-" +
-" ^
-" %
-" & ?? no idea
-" M goes to the middle
-" }}}
-:set encoding=utf-8
-:set nornu " for pycharm only so realtive is off
