@@ -100,6 +100,9 @@ set title         "Show filename in titlebar of window
 set titleold=
 set scrolloff=5   "Scroll when 5 lines from top/bottom
 
+nnoremap <Space> <nop>
+let mapleader= " "
+
 " Toggles between relative number and numbered line
 function! NumberToggle()
     if(&relativenumber == 1)
@@ -142,8 +145,6 @@ set splitbelow
 set splitright
 
 "move around split screens windows
-nnoremap <Space> <nop>
-let mapleader= " "
 map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>
 map <leader>k :wincmd k<CR>
@@ -407,14 +408,17 @@ endfunction
 
 
 " IDE Features below
+" NEEDS
 " - definition and usage location
 " - file and project search
 " - tree directory
 " - debugger
 " - run tests
 " - multi file edit
-" - autocomplte
+" - autocomplte 
 " - line edits
+" WANTS
+" - spell check with suggestions
 
 
 " [ File tree - NERDTree ] {{{
