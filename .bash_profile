@@ -62,6 +62,7 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export PATH=$GOBIN:$PATH
 export GO111MODULE=auto
+export GOPRIVATE="github.com/vendasta"
 
 export VIMINIT='source $MYVIMRC'
 export MYVIMRC='~/dotfiles/vimide/.vimrc'

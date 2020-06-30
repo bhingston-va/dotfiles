@@ -4,6 +4,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'craigemery/vim-autotag'
 call plug#end()
 " }}}
 
@@ -208,23 +210,23 @@ augroup TabExpandage
     autocmd BufEnter  *.tex   set expandtab
 augroup END
 
-"colorscheme earthAndFire
+"colorscheme FireCode
 "au BufReadPost *.twig colorscheme koehler
-au BufReadPost *.css colorscheme slate
-au BufReadPost *.js colorscheme elflord
-au BufReadPost *.ts colorscheme elflord
-au BufReadPost *.py colorscheme earthAndFire
-au BufReadPost *.html colorscheme monokai
+"au BufReadPost *.css colorscheme slate
+"au BufReadPost *.js colorscheme elflord
+"au BufReadPost *.ts colorscheme elflord
+"au BufReadPost *.py colorscheme earthAndFire
+"au BufReadPost *.html colorscheme monokai
 "au BufReadPost *.java colorscheme monokai
 "au BufReadPost *.java colorscheme koehler " really like this one
 "au BufReadPost *.java colorscheme peachpuff
 "au BufReadPost *.java colorscheme slate   " this is okay
 "au BufReadPost *.java colorscheme zellner
 "au BufReadPost *.php colorscheme monokai
-au BufReadPost *.java colorscheme earthAndFire " this is mine
-au BufReadPost *.cc   colorscheme earthAndFire " this is mine
-au BufReadPost *.cpp  colorscheme earthAndFire " this is mine
-au BufReadPost *.go  colorscheme earthAndFire " this is mine
+"au BufReadPost *.java colorscheme earthAndFire " this is mine
+"au BufReadPost *.cc   colorscheme earthAndFire " this is mine
+"au BufReadPost *.cpp  colorscheme earthAndFire " this is mine
+"au BufReadPost *.go  colorscheme earthAndFire " this is mine
 " }}}
 
 " [ Highlight cursor (plus row and column on request) ] {{{
@@ -306,6 +308,15 @@ augroup END
 
 " for operator_highlight.vim by Valloric
 let g:ophigh_color = 226
+
+" go sytax colours (vim-go)
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_functions_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
 " }}}
 
 
@@ -371,7 +382,10 @@ endfunc
 :   autocmd BufWrite *.tex :call DeleteTrailingWS()
 :   autocmd BufWrite *.go :call DeleteTrailingWS()
 :augroup END
+
 " Don't close window, when deleting a buffer
+nnoremap \d :bp<cr>:bd #<cr>
+noremap <leader>d :bp<cr>:bd #<cr>
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
    let l:currentBufNum = bufnr("%")
@@ -409,16 +423,18 @@ endfunction
 
 " IDE Features below
 " NEEDS
-" - definition and usage location
-" - file and project search
-" - tree directory
-" - debugger
-" - run tests
-" - multi file edit
-" - autocomplte 
-" - line edits
+" - definition and usage location (maybe ctags?)
+" - file and project text search (function, class, text, filename)
+" - sub project text search (example gmail extension, frontend/angular/projects)
+" - tree directory [NERDTree]
+" - debugger (breakpoints, play, stepper, evaluate)
+" - run/debug tests
+" - multi file edit [native buffers + Vim-Airline]
+" - autocomplete
+" - uncommitted line edits (deletions, insertions, updated)
+" - git blame with indication of newest changes and time
 " WANTS
-" - spell check with suggestions
+" - spell check with suggestions (spell check with vimrc opts, suggestions with ?)
 
 
 " [ File tree - NERDTree ] {{{
