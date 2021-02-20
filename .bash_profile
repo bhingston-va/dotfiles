@@ -95,6 +95,9 @@ eval $(thefuck --alias fuck)
 #===================
 #alias wspctl="docker run --rm -it -v ~/.config/gcloud:/.config/gcloud -v /var/run/docker.sock:/var/run/docker.sock -v ~/Projects/website-pro:/website-pro gcr.io/repcore-prod/website-pro/wspctl"
 #alias invfuck="inv pylint -f pylint_test -f test"
+
+alias rmap="repository-mapper"
+
 invfuck() {
 	if [ $# -eq 0 ]; then
 		inv pylint -f
@@ -121,6 +124,15 @@ mkpdf() {
 	fi
 }
 
-export PATH="/usr/local/opt/ant@1.9/bin:$PATH"
+chrome-beta() {
+	/Applications/Google\ Chrome\ Beta.app/Contents/MacOS/Google\ Chrome\ Beta --auto-open-devtools-for-tabs
+}
+
+export PATH=$PATH":$HOME/bin"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="usr/local/sbin:$PATH"
