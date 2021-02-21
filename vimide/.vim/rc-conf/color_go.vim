@@ -1,0 +1,14 @@
+" [ Config Syntax Highlighting ] {{{
+
+" for operator_highlight.vim by Valloric
+let g:ophigh_color = 226
+
+" go sytax colours (vim-go)
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_functions_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_build_constraints = 1
+" }}}

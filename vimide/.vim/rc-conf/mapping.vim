@@ -44,4 +44,15 @@ imap <ESC>OD <ESC>hi
 nnoremap 0 ^
 " Remap - to end of line
 noremap - $
+
+" [ Open keys ]
+" U
+" \
+" |
+" +
+" ^
+" %
+" & ?? no idea
+" M goes to the middle
+
 " }}}
