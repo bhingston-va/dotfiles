@@ -37,7 +37,7 @@ let g:NERDTreeDirArrowCollapsible = 'ᐁ'
 let g:airline_powerline_fonts=1
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
   " unicode symbols
@@ -52,10 +52,10 @@ endif
 "" let g:airline_symbols.whitespace = '¤'
 
 function! AirlineInit()
-    let g:airline_section_a = airline#section#create(['mode',' ','branch'])
-    let g:airline_section_b = airline#section#create_left(['ffenc','%f'])
-    let g:airline_section_x = airline#section#create(['filetype'])
-    let g:airline_section_y = airline#section#create(['%P', ' ', '%l'])
+  let g:airline_section_a = airline#section#create(['mode',' ','branch'])
+  let g:airline_section_b = airline#section#create_left(['ffenc','%f'])
+  let g:airline_section_x = airline#section#create(['filetype'])
+  let g:airline_section_y = airline#section#create(['%P', ' ', '%l'])
 endfunction
 autocmd VimEnter * call AirlineInit()
 
