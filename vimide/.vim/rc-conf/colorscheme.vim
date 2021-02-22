@@ -20,17 +20,4 @@
 "au BufReadPost *.ts  colorscheme earthAndFire " this is mine
 " }}}
 
-
-" [ Config Syntax Highlighting ] {{{
-set bg=dark
-hi Comment    cterm=none ctermfg=238
-hi Type       cterm=bold ctermfg=123 " Type
-hi PreProc    cterm=none ctermfg=088 " bold
-hi Special    cterm=none ctermfg=124 " <ESC>
-hi Statement  cterm=none ctermfg=228 " hi 172,166,214,195,230,145,124
-hi Identifier cterm=bold ctermfg=075 " a:newstate
-hi Constant   cterm=none ctermfg=039 " 039
-hi Underlined cterm=none ctermfg=100
-hi LineNr ctermfg=006 ctermbg=0 cterm=none
-" }}}
-
+colorscheme fireCoder

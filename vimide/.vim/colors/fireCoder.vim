@@ -1,16 +1,16 @@
-"hi clear
-"if exists("syntax_on")
-"  syntax reset
-"endif
-"
-"set bg=dark
-"
+hi clear
+if exists("syntax_on")
+  syntax reset
+endif
+
+set bg=dark
+
 "set g:colors_name="fire-coder"
 
 " :help syntax.txt
 
 " invoke: call Coloring('Comment', '0', '1', '2')
-function! Coloring(group, ctermbg, ctermfg, cterm)
+function! Coloring(group, cterm, ctermbg, ctermfg)
   let highlightstr = 'highlight ' . a:group . ' '
   let highlightstr .= 'ctermbg=' . a:ctermbg . ' '
   let highlightstr .= 'ctermfg=' . a:ctermfg . ' '
@@ -18,6 +18,22 @@ function! Coloring(group, ctermbg, ctermfg, cterm)
 
   execute histring
 endfunction
+
+" vimrc config highlighting
+so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim
+so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim
+so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
+so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim
+
+hi Comment    cterm=none ctermfg=238
+hi Type       cterm=bold ctermfg=123 " Type
+hi PreProc    cterm=none ctermfg=088 " bold
+hi Special    cterm=none ctermfg=124 " <ESC>
+hi Statement  cterm=none ctermfg=228 " hi 172,166,214,195,230,145,124
+hi Identifier cterm=bold ctermfg=075 " a:newstate
+hi Constant   cterm=none ctermfg=039 " 039
+hi Underlined cterm=none ctermfg=100
+hi LineNr ctermfg=006 ctermbg=0 cterm=none
 
 " to link groups: hi link x y
 

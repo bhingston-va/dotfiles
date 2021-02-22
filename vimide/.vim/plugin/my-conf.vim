@@ -13,17 +13,17 @@ so ~/dotfiles/vimide/.vim/rc-conf/mapping.vim
 " Make naughty characters visible
 " Miscellaneous features (mainly options)
 " Set up Indentation with Spaces & Tabs
-so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
+"so ~/dotfiles/vimide/.vim/rc-conf/editor.vim <- sourced from color
 
 " Config CursorLine & Background
 " Highlight cursor (plus row and column on request)
-so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim
+"so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim <- sourced from color
 " Config Syntax Highlighting
 so ~/dotfiles/vimide/.vim/rc-conf/color_go.vim
-so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim
-so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim
+"so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim <- sourced from color
+"so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim <- sourced from color
 " Colourschemes
-"so ~/dotfiles/vimide/.vim/rc-conf/colorscheme.vim
+so ~/dotfiles/vimide/.vim/rc-conf/colorscheme.vim
 
 " Return to last edit position when opening files.
 " Move block of code

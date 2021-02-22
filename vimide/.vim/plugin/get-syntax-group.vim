@@ -1,5 +1,5 @@
 " Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
+nmap <CS-P> :call <SID>SynStack()<CR>
 function! <SID>SynStack()
   if !exists("*synstack")
     return
@@ -8,10 +8,10 @@ function! <SID>SynStack()
 endfunc
 
 " alternative
-"noremap <C-p> :echo 'hi<' . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-"\ . synIDattr(synID(line("."),col("."),0),"name") . '> lo<'
-"\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . '>'<CR>
-"
-"for id in synstack(line("."), col("."))
-"  echo synIDattr(id, 'name')
-"endfor
+noremap <C-p> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . '>'<CR>
+
+for id in synstack(line("."), col("."))
+  echo synIDattr(id, 'name')
+endfor
