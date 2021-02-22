@@ -21,3 +21,6 @@
 " }}}
 
 colorscheme fireCoder
+
+" Use new regular expression engine so syntax highlighting in typescript works
+set re=0
