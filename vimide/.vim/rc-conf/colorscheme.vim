@@ -20,6 +20,8 @@
 "au BufReadPost *.ts  colorscheme earthAndFire " this is mine
 " }}}
 
+" set termguicolors
+
 colorscheme fireCoder
 
 " Use new regular expression engine so syntax highlighting in typescript works

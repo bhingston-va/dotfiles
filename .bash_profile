@@ -86,6 +86,7 @@ alias hs="history | grep"
 alias sshusask="ssh bvh895@tuxworld.usask.ca"
 alias gc="gcloud"
 alias bashrc="~/.bash_profile"
+alias vim='command nvim' vio='command vim'
 eval $(thefuck --alias)
 # You can use whatever you want as an alias, like for Mondays:
 eval $(thefuck --alias fuck)
