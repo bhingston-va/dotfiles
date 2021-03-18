@@ -1,6 +1,7 @@
 #this is to set up a new bash rc file
 
 source $HOME/dotfiles/bin/session-sauce.plugin.zsh
+export SESS_PROJECT_ROOT=$HOME/Projects
 
 function nonzero_return() {
 	RETVAL=$?

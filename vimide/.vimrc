@@ -3,6 +3,8 @@ call plug#begin('~/dotfiles/vimide/.vim/plugged')
 
 " Git integration
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tommcdo/vim-fugitive-blame-ext'
 
 " Status/tabline
 Plug 'vim-airline/vim-airline'

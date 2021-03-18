@@ -52,11 +52,22 @@ endif
 "" let g:airline_symbols.whitespace = '¤'
 
 function! AirlineInit()
-  let g:airline_section_a = airline#section#create(['mode',' ','branch'])
-  let g:airline_section_b = airline#section#create_left(['Buf [%n]','filetype'])
+  let g:airline_section_a = airline#section#create_left(['mode','%a'])
+  let g:airline_section_b = airline#section#create_left(['branch','%n'])
   let g:airline_section_y = airline#section#create(['%P'])
+  let g:airline_section_z = '%2l/%L☰ %2v'
 endfunction
 autocmd VimEnter * call AirlineInit()
+
+" disable auto truncation of section A,B,C and Z
+"let g:airline#extensions#section_trucate_width = {
+"  \ 'a': 20,
+"  \ 'z': 80,
+"  \ 'warning': 80,
+"  \ 'error': 80
+"  \ }
+" get rid of elipses
+let g:airline_mode_map = {'c': 'C', 'n': 'N', 'V': 'V', 'i': 'I'}
 
 "Adds completion help on commands
 set wildmenu
@@ -71,12 +82,12 @@ set wildmenu
 "set statusline+=/         " Separator
 "set statusline+=%L        " Total lines
 
-"" Enable the list of buffers
+" Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#show_buffers = 1
-
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+"let g:airline#extesions#tabline#formatter = 'unique_tail'
 
 " Show buffers
 "let g:airline#extensions#bufferline#enabled = 1
@@ -86,7 +97,7 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#branch#enabled = 1
 
 " truncate long branch names to a fixed length >
-let g:airline#extensions#branch#displayed_head_limit = 10
+"let g:airline#extensions#branch#displayed_head_limit = 10
 
 " change the text for when no branch is detected
 let g:airline#extensions#branch#empty_message = ''
