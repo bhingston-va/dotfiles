@@ -5,7 +5,7 @@ endif
 
 set bg=dark
 
-"set g:colors_name="fire-coder"
+let g:colors_name = "fire-coder"
 
 " :help syntax.txt
 
@@ -26,15 +26,62 @@ so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
 so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim
 
 hi Comment    cterm=none ctermfg=238
-hi Type       cterm=bold ctermfg=123 " Type
-hi PreProc    cterm=none ctermfg=088 " bold
-hi Special    cterm=none ctermfg=124 " <ESC>
-hi Statement  cterm=none ctermfg=228 " hi 172,166,214,195,230,145,124
-hi Identifier cterm=bold ctermfg=075 " a:newstate
-hi Constant   cterm=none ctermfg=039 " 039
+hi Type       cterm=bold ctermfg=123
+hi PreProc    cterm=none ctermfg=088
+hi Special    cterm=none ctermfg=124
+hi Statement  cterm=none ctermfg=228 " hi 172,166,214,195(cyan),230,145,124
+hi Identifier cterm=bold ctermfg=075
+hi Constant   cterm=none ctermfg=039
 hi Underlined cterm=none ctermfg=100
-hi LineNr ctermfg=006 ctermbg=0 cterm=none
+hi LineNr     cterm=none ctermfg=006 ctermbg=0
 
+" All from :help syntax.txt
+"*Comment	any comment
+"
+"*Constant	any constant
+" String		a string constant: "this is a string"
+" Character	a character constant: 'c', '\n'
+" Number		a number constant: 234, 0xff
+" Boolean	a boolean constant: TRUE, false
+" Float		a floating point constant: 2.3e10
+"
+"*Identifier	any variable name
+" Function	function name (also: methods for classes)
+"
+"*Statement	any statement
+" Conditional	if, then, else, endif, switch, etc.
+" Repeat		for, do, while, etc.
+" Label		case, default, etc.
+" Operator	"sizeof", "+", "*", etc.
+" Keyword	any other keyword
+" Exception	try, catch, throw
+"
+"*PreProc	generic Preprocessor
+" Include	preprocessor #include
+" Define		preprocessor #define
+" Macro		same as Define
+" PreCondit	preprocessor #if, #else, #endif, etc.
+"
+"*Type		int, long, char, etc.
+" StorageClass	static, register, volatile, etc.
+" Structure	struct, union, enum, etc.
+" Typedef	A typedef
+"
+"*Special	any special symbol
+" SpecialChar	special character in a constant
+" Tag		you can use CTRL-] on this
+" Delimiter	character that needs attention
+" SpecialComment	special things inside a comment
+" Debug		debugging statements
+"
+"*Underlined	text that stands out, HTML links
+"
+"*Ignore		left blank, hidden  |hl-Ignore|
+"
+"*Error		any erroneous construct
+"
+"*Todo		anything that needs extra attention; mostly the
+"			keywords TODO FIXME and XXX
 " to link groups: hi link x y
 
 " comment 238 (gray)

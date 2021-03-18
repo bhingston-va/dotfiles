@@ -53,9 +53,8 @@ endif
 
 function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode',' ','branch'])
-  let g:airline_section_b = airline#section#create_left(['ffenc','%f'])
-  let g:airline_section_x = airline#section#create(['filetype'])
-  let g:airline_section_y = airline#section#create(['%P', ' ', '%l'])
+  let g:airline_section_b = airline#section#create_left(['Buf [%n]','filetype'])
+  let g:airline_section_y = airline#section#create(['%P'])
 endfunction
 autocmd VimEnter * call AirlineInit()
 

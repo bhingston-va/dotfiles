@@ -1,5 +1,7 @@
 #this is to set up a new bash rc file
 
+source $HOME/dotfiles/bin/session-sauce.plugin.zsh
+
 function nonzero_return() {
 	RETVAL=$?
 	[ $RETVAL -ne 0 ] && echo "[$RETVAL] "
