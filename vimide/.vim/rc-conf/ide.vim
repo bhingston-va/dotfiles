@@ -51,8 +51,14 @@ endif
 "  let g:airline_symbols.whitespace = 'Ξ'
 "" let g:airline_symbols.whitespace = '¤'
 
+
+function! DayOfTheWeek()
+  return strftime("%a")
+endfunction
+call airline#parts#define_function('today', 'DayOfTheWeek')
+
 function! AirlineInit()
-  let g:airline_section_a = airline#section#create_left(['mode','%a'])
+  let g:airline_section_a = airline#section#create_left(['mode','today'])
   let g:airline_section_b = airline#section#create_left(['branch','%n'])
   let g:airline_section_y = airline#section#create(['%P'])
   let g:airline_section_z = '%2l/%L☰ %2v'
