@@ -22,6 +22,7 @@ Plug 'craigemery/vim-autotag'
 " Search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
 
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

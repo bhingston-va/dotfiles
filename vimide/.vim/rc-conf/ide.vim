@@ -30,6 +30,10 @@ let g:NERDTreeDirArrowCollapsible = 'ᐁ'
 "let g:NERDTreeDirArrowCollapsible = 'ᐯ'
 " }}}
 
+" [ Git - Gutter ] {{{
+" update gutter on post write
+autocmd BufWritePost * GitGutter
+" }}}
 
 " [ Status Line - Vim-Airline] {{{
 
@@ -57,9 +61,18 @@ function! DayOfTheWeek()
 endfunction
 call airline#parts#define_function('today', 'DayOfTheWeek')
 
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  if (a == 0 && m == 0 && r == 0)
+    return ''
+  endif
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+call airline#parts#define_function('gitstats', 'GitStatus')
+
 function! AirlineInit()
   let g:airline_section_a = airline#section#create_left(['mode','today'])
-  let g:airline_section_b = airline#section#create_left(['branch','%n'])
+  let g:airline_section_b = airline#section#create_left(['branch','gitstats'])
   let g:airline_section_y = airline#section#create(['%P'])
   let g:airline_section_z = '%2l/%L☰ %2v'
 endfunction
@@ -121,8 +134,15 @@ let g:airline#extensions#branch#empty_message = ''
 " let g:airline#extensions#ctrlp#color_template = 'replace'
 " }}}
 
+" [ FzF ] {{{
+"nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>g :GFiles?<CR>
+nnoremap <silent> <leader>f :FZFMru<CR>
+" Jump to the existing buffer if possible
+let g:fzf_buffers_jump = 1
+" }}}
 
-" [ Congure of Completion ] {{{
+" [ Conquer of Completion ] {{{
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -206,8 +226,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>l  <Plug>(coc-format-selected)
+nmap <leader>l  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!

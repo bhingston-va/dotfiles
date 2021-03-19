@@ -55,6 +55,11 @@ function parse_git_dirty {
 	fi
 }
 
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND="rg --files-with-matches --hidden '.' --glob '!.git'"
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
 # custom path for vendasta box
 PATH=$PATH:$HOME/google-cloud-sdk/bin
 PATH=$PATH:/usr/local/mysql/bin
