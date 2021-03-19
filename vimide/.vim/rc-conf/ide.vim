@@ -156,6 +156,10 @@ nnoremap <silent> <leader>h :History<CR>
 let g:fzf_buffers_jump = 1
 " }}}
 
+" [ Sneak ] {{{
+let g:sneak#label = 1
+" }}}
+
 " [ Conquer of Completion ] {{{
 " TextEdit might fail if hidden is not set.
 set hidden
