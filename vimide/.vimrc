@@ -5,6 +5,7 @@ call plug#begin('~/dotfiles/vimide/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fugitive-blame-ext'
+Plug 'christoomey/vim-conflicted'
 
 " Status/tabline
 Plug 'vim-airline/vim-airline'
