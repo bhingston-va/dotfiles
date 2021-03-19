@@ -66,7 +66,20 @@ function! GitStatus()
   if (a == 0 && m == 0 && r == 0)
     return ''
   endif
-  return printf('+%d ~%d -%d', a, m, r)
+  let s = []
+  if a > 0
+    let astr = printf('+%d', a)
+    call add(s, astr)
+  endif
+  if m > 0
+    let mstr = printf('~%d', m)
+    call add(s, mstr)
+  endif
+  if r > 0
+    let rstr = printf('-%d', r)
+    call add(s, rstr)
+  endif
+  return join(s, ' ')
 endfunction
 call airline#parts#define_function('gitstats', 'GitStatus')
 
@@ -136,8 +149,9 @@ let g:airline#extensions#branch#empty_message = ''
 
 " [ FzF ] {{{
 "nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>g :GFiles?<CR>
+nnoremap <silent> <leader>j :GFiles?<CR>
 nnoremap <silent> <leader>f :FZFMru<CR>
+nnoremap <silent> <leader>h :History<CR>
 " Jump to the existing buffer if possible
 let g:fzf_buffers_jump = 1
 " }}}
