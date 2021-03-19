@@ -33,6 +33,8 @@ let g:NERDTreeDirArrowCollapsible = 'ᐁ'
 " [ Git - Gutter ] {{{
 " update gutter on post write
 autocmd BufWritePost * GitGutter
+nnoremap <silent> <leader>b :Git blame --date=relative --color-by-age<CR>
+let g:fugitive_dynamic_colors = 1
 " }}}
 
 " [ Status Line - Vim-Airline] {{{
