@@ -23,6 +23,14 @@
 " set termguicolors
 
 colorscheme fireCoder
+" vimrc config highlighting
+so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim
+so ~/dotfiles/vimide/.vim/rc-conf/color_gutter.vim
+so ~/dotfiles/vimide/.vim/rc-conf/color_box.vim
+so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim
+so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
+so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim
+
 
 " Use new regular expression engine so syntax highlighting in typescript works
 set re=0

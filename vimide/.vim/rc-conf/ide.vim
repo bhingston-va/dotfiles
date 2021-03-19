@@ -148,10 +148,14 @@ let g:airline#extensions#branch#empty_message = ''
 " }}}
 
 " [ FzF ] {{{
-"nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>j :GFiles?<CR>
-nnoremap <silent> <leader>f :FZFMru<CR>
-nnoremap <silent> <leader>h :History<CR>
+" recent files?
+nnoremap <silent> <leader><space>r :FZFMru<CR>
+" files in git repo with changes
+nnoremap <silent> <leader><space>j :GFiles?<CR>
+" files in git repo
+nnoremap <silent> <leader><space>f :GFiles<CR>
+" files in history
+nnoremap <silent> <leader><space>h :History<CR>
 " Jump to the existing buffer if possible
 let g:fzf_buffers_jump = 1
 " }}}

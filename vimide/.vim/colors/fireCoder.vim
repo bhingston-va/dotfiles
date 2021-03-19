@@ -19,13 +19,6 @@ function! Coloring(group, cterm, ctermbg, ctermfg)
   execute histring
 endfunction
 
-" vimrc config highlighting
-so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim
-so ~/dotfiles/vimide/.vim/rc-conf/color_gutter.vim
-so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim
-so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
-so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim
-
 hi Comment    cterm=none ctermfg=238
 hi Type       cterm=bold ctermfg=123
 hi PreProc    cterm=none ctermfg=088
