@@ -27,6 +27,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'jremmen/vim-ripgrep'
 
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

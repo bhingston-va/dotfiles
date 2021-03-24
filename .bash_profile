@@ -59,6 +59,10 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_COMMAND="rg --files-with-matches --hidden '.' --glob '!.git'"
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
+# Use ~~ as the trigger sequence instead of the default **
+#export FZF_COMPLETION_TRIGGER='~~'
+# Options to fzf command
+#export FZF_COMPLETION_OPTS='--border --info=inline'
 
 # custom path for vendasta box
 PATH=$PATH:$HOME/google-cloud-sdk/bin

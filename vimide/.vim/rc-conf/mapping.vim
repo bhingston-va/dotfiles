@@ -1,12 +1,9 @@
 " [ Remap various keys to something more useful ] {{{
 "moving around in vim
-nnoremap X <PageDown>
 nnoremap ; :
 nnoremap : ;
 inoremap jk <Esc>
 inoremap kj <Esc>
-inoremap <Esc> <Esc>`^
-nnoremap # <PageUp>
 inoremap <cr> <cr>
 " Treat long lines as break lines (useful when moving around in them)
 nnoremap j gj
@@ -24,14 +21,20 @@ map <leader>l :wincmd l<CR>
 "to move split screen around
 nnoremap m <c-w>
 
-"   CONTROLS TO KNOW
-":bd to quit a buffer"
-":vert sb 'N' to slit a buffer"
-":vsp | b'N' to slit a buffer"
-":b MyFile
-"to move between buffers::
+"to move between buffers
 nnoremap <C-H> :bprevious<CR>
 nnoremap <C-L> :bnext<CR>
+
+"" yank/put uses clipboards
+"" PRIMARY - This is copy-on-select, and can be pasted with the middle mouse button.
+"" CLIPBOARD - This is copied with (usually) ^C, and pasted with ^V (It's like MS Windows).
+"noremap <Leader>y "*y
+"noremap <Leader>p "*p
+"" note OS-X uses single clipboard so + and * are the same so don't need the following
+""noremap <Leader>Y "+y
+""noremap <Leader>P "+p
+"" Nvim has built in support
+set clipboard+=unnamedplus
 
 "enable mouse and arrow keys in insert mode
 set mouse=a
