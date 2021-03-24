@@ -150,7 +150,7 @@ let g:airline#extensions#branch#empty_message = ''
 " let g:airline#extensions#ctrlp#color_template = 'replace'
 " }}}
 
-" [ FzF ] {{{
+" [ FzF & vim-ripgrep ] {{{
 " recent files?
 nnoremap <silent> <leader><space>r :FZFMru<CR>
 " files in git repo with changes
@@ -161,6 +161,9 @@ nnoremap <silent> <leader><space>f :GFiles<CR>
 nnoremap <silent> <leader><space>h :History<CR>
 " Jump to the existing buffer if possible
 let g:fzf_buffers_jump = 1
+
+" matches highlighted
+let g:rg_highlight = 1
 " }}}
 
 " [ Sneak ] {{{
