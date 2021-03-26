@@ -2,6 +2,7 @@
 
 source $HOME/dotfiles/bin/session-sauce.plugin.zsh
 export SESS_PROJECT_ROOT=$HOME/Projects
+export SESS_PROJECT_ROOT=$SESS_PROJECT_ROOT":$HOME/go/src/github.com/vendasta"
 
 function nonzero_return() {
 	RETVAL=$?
