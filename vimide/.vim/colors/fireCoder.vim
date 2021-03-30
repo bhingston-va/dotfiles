@@ -9,26 +9,62 @@ let g:colors_name = "fire-coder"
 
 " :help syntax.txt
 
-" invoke: call Coloring('Comment', '0', '1', '2')
-function! Coloring(group, cterm, ctermbg, ctermfg)
-  let highlightstr = 'highlight ' . a:group . ' '
-  let highlightstr .= 'ctermbg=' . a:ctermbg . ' '
-  let highlightstr .= 'ctermfg=' . a:ctermfg . ' '
-  let highlightstr .= 'cterm=' . a:cterm . ' '
+" invoke: call Coloring('Comment', 'None', '1', '2', '#4', '#5')
+function! Coloring(group, cterm, ctermfg, ctermbg, guifg, guibg)
+  let histr  = 'hi ' . a:group . ' '
+  let histr .= 'ctermfg=' . a:ctermfg . ' '
+  let histr .= 'ctermbg=' . a:ctermbg . ' '
+  let histr .= 'cterm=' . a:cterm . ' '
+  let histr .= 'guifg=' . a:guifg . ' '
+  let histr .= 'guibg=' . a:guibg . ' '
+  let histr .= 'gui=' . a:cterm . ' '
 
-  execute histring
+  execute histr
 endfunction
 
-hi Comment    cterm=none ctermfg=238
-hi Type       cterm=bold ctermfg=123
-hi PreProc    cterm=none ctermfg=088
-hi Special    cterm=none ctermfg=124
-hi Statement  cterm=none ctermfg=228 " hi 172,166,214,195(cyan),230,145,124
-hi Identifier cterm=bold ctermfg=075
-hi Constant   cterm=none ctermfg=039
-hi Underlined cterm=none ctermfg=100
-hi LineNr     cterm=none ctermfg=006 ctermbg=0
+" color pallette https://pintovim.dev/  vim-color-editor
+" grays
+let FireDarkGray  = '#444444'
+let FireGray      = '#808080'
+let FireLightGray = '#c0c0c0'
+let FireWhite     = '#d0d0d0'
+let FireBlack     = '#000000'
+" cyan|blue pair1
+let FireCyan       = '#008080'
+let FireCyanBright = '#00afd7'
+let FireDarkBlue   = '#0087d7'
+let FireLightBlue  = '#00afff'
+" cyan|blue pair2
+let FireCyanMed    = '#87d7d7'
+let FireCyan2      = '#87ffff'
+let FireBlue       = '#0087ff'
+let FireBlueBright = '#afd7ff'
+" yellow
+let FireOrange       = '#d78700'
+let FireYellow       = '#ffd75f'
+let FireYellowBright = '#ffff87'
+" red
+let FireDarkRed = '#870000'
+let FireRedMed  = '#af0000'
+let FireRed     = '#d70000'
+" slate cyan
+let FireSlateDarkCyan  = '#0087af'
+let FireSlateCyan      = '#00afaf'
+let FireSlateLightCyan = '#00d7d7'
+" slate blue
+let FireSlateDarkBlue  = '#5f8787'
+let FireSlateBlue      = '#5f87af'
+let FireSlateLightBlue = '#5f87d7'
 
+call Coloring('Comment',    'none', '238', 'none', FireDarkGray,     'none')
+call Coloring('Type',       'bold', '123', 'none', FireCyan2,        'none')
+call Coloring('PreProc',    'none', '088', 'none', FireDarkRed,      'none')
+call Coloring('Special',    'none', '124', 'none', FireRedMed,       'none')
+call Coloring('Statement',  'none', '228', 'none', FireYellowBright, 'none')
+call Coloring('Identifier', 'bold', '075', 'none', FireLightBlue,    'none')
+call Coloring('Constant',   'none', '039', 'none', FireDarkBlue,     'none')
+call Coloring('Underlined', 'none', '100', 'none', FireYellow,       'none')
+call Coloring('LineNr',     'none', '006', '000',  FireCyan,         FireBlack)
 " All from :help syntax.txt
 "*Comment	any comment
 "
