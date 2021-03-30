@@ -29,6 +29,9 @@ Plug 'pbogut/fzf-mru.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'jremmen/vim-ripgrep'
 
+" Comments
+Plug 'tpope/vim-commentary'
+
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 

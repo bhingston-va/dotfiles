@@ -1,15 +1,14 @@
 " IDE Features below
 " NEEDS
-" - definition and usage location (maybe ctags?)
-" - file and project text search (function, class, text, filename)
-" - sub project text search (example gmail extension, frontend/angular/projects)
+" - definition and usage location (maybe ctags?) [Coc + LSP]
+" - file and project text search (function, class, text, filename) [Rg + fzf]
 " - tree directory [NERDTree]
 " - debugger (breakpoints, play, stepper, evaluate)
 " - run/debug tests
 " - multi file edit [native buffers + Vim-Airline]
-" - autocomplete
-" - uncommitted line edits (deletions, insertions, updated)
-" - git blame with indication of newest changes and time
+" - autocomplete [CoC plus LSP]
+" - uncommitted line edits (deletions, insertions, updated) [GitGutter]
+" - git blame with indication of newest changes and time [Fugitive]
 " WANTS
 " - spell check with suggestions (spell check with vimrc opts, suggestions with ?)
 
