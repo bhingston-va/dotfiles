@@ -143,6 +143,17 @@ let g:airline#extensions#branch#empty_message = ''
 " enable/disable showing only non-zero hunks.
 "let g:airline#extensions#hunks#non_zero_only = 1
 
+" enable coc integration
+let g:airline#extensions#coc#enabled = 1
+" Change error symbol:
+"let airline#extensions#coc#error_symbol = 'Error:'
+"Change warning symbol:
+"let airline#extensions#coc#warning_symbol = 'Warning:'
+"Change error format:
+"let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+"Change warning format:
+"let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+
 " Pick one:
  let g:airline#extensions#ctrlp#color_template = 'insert' " (default)
 " let g:airline#extensions#ctrlp#color_template = 'normal'
@@ -162,12 +173,47 @@ nnoremap <silent> <leader><space>h :History<CR>
 " Jump to the existing buffer if possible
 let g:fzf_buffers_jump = 1
 
+" popups
+let g:fzf_layout = {'window': { 'width': 0.9, 'height': 0.7, 'highlight': 'Comment'} }
+
 " matches highlighted
 let g:rg_highlight = 1
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+"let g:fzf_colors =
+"\ { 'fg':      ['fg', 'Normal'],
+"  \ 'bg':      ['bg', 'Normal'],
+"  \ 'hl':      ['fg', 'Comment'],
+"  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+"  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+"  \ 'hl+':     ['fg', 'Statement'],
+"  \ 'info':    ['fg', 'PreProc'],
+"  \ 'border':  ['fg', 'Ignore'],
+"  \ 'prompt':  ['fg', 'Conditional'],
+"  \ 'pointer': ['fg', 'Exception'],
+"  \ 'marker':  ['fg', 'Keyword'],
+"  \ 'spinner': ['fg', 'Label'],
+"  \ 'header':  ['fg', 'Comment'] }
 " }}}
 
 " [ Sneak ] {{{
 let g:sneak#label = 1
+" }}}
+
+" [ vim-go ] {{{
+" auto lint on save but timeout after 5 seconds
+let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck']
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_deadline = "5s"
+
+" info on hover
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+let g:go_auto_type_info = 1
+
+" highlight cursor match
+"let g:go_auto_sameids = 1
 " }}}
 
 " [ Conquer of Completion ] {{{
