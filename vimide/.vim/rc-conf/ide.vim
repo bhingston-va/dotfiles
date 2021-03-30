@@ -213,7 +213,7 @@ autocmd FileType go nmap <Leader>i <Plug>(go-info)
 let g:go_auto_type_info = 1
 
 " highlight cursor match
-"let g:go_auto_sameids = 1
+let g:go_auto_sameids = 1
 " }}}
 
 " [ Conquer of Completion ] {{{

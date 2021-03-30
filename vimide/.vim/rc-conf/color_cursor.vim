@@ -1,3 +1,6 @@
+" Search
+hi Search cterm=bold ctermbg=none ctermfg=167
+
 " [ Highlight cursor (plus row and column on request) ] {{{
 
 " Toggle cursor row highlighting on request...
