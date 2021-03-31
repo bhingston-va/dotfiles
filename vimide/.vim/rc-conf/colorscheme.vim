@@ -20,7 +20,7 @@
 "au BufReadPost *.ts  colorscheme earthAndFire " this is mine
 " }}}
 
-" set termguicolors
+set termguicolors
 
 colorscheme fireCoder
 " vimrc config highlighting

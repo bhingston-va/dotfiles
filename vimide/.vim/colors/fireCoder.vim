@@ -25,9 +25,11 @@ endfunction
 " color pallette https://pintovim.dev/  vim-color-editor
 " grays
 let FireDarkGray  = '#444444'
+let FireGrayMed   = '#6c6c6c'
 let FireGray      = '#808080'
 let FireLightGray = '#c0c0c0'
 let FireWhite     = '#d0d0d0'
+let FireOffBlack  = '#080808'
 let FireBlack     = '#000000'
 " cyan|blue pair1
 let FireCyan       = '#008080'
@@ -56,15 +58,27 @@ let FireSlateDarkBlue  = '#5f8787'
 let FireSlateBlue      = '#5f87af'
 let FireSlateLightBlue = '#5f87d7'
 
-call Coloring('Comment',    'none', '238', 'none', FireDarkGray,     'none')
-call Coloring('Type',       'bold', '123', 'none', FireCyan2,        'none')
-call Coloring('PreProc',    'none', '088', 'none', FireDarkRed,      'none')
-call Coloring('Special',    'none', '124', 'none', FireRedMed,       'none')
-call Coloring('Statement',  'none', '228', 'none', FireYellowBright, 'none')
-call Coloring('Identifier', 'bold', '075', 'none', FireLightBlue,    'none')
-call Coloring('Constant',   'none', '039', 'none', FireDarkBlue,     'none')
-call Coloring('Underlined', 'none', '100', 'none', FireYellow,       'none')
-call Coloring('LineNr',     'none', '006', '000',  FireCyan,         FireBlack)
+call Coloring('Comment',    'none', '238',  'none', FireDarkGray,     'none')
+call Coloring('Type',       'bold', '123',  'none', FireCyan2,        'none')
+call Coloring('PreProc',    'none', '088',  'none', FireDarkRed,      'none')
+call Coloring('Special',    'none', '124',  'none', FireRedMed,       'none')
+call Coloring('Statement',  'none', '228',  'none', FireYellowBright, 'none')
+call Coloring('Identifier', 'bold', '075',  'none', FireLightBlue,    'none')
+call Coloring('Constant',   'none', '039',  'none', FireDarkBlue,     'none')
+call Coloring('Underlined', 'none', '100',  'none', FireYellow,       'none')
+call Coloring('LineNr',     'none', '006',  '000',  FireCyan,         FireBlack)
+call Coloring('Title',      'bold', '252',  'none', FireWhite,        'none')
+call Coloring('Visual',     'bold', 'none', '238',  'none',           FireDarkGray)
+" menu
+" defaults: ctermfg=0 ctermbg=13 guibg=Magenta
+call Coloring('Pmenu', 'none', '242', '232', FireGrayMed, FireOffBlack)
+" defaults: ctermfg=242 ctermbg=0 guibg=DarkGrey
+call Coloring('PmenuSel', 'reverse', 'none', 'none', 'none', 'none')
+" defaults: ctermbg=248 guibg=DarkGrey
+call Coloring('PmenuSbar', 'none', 'none', '238', 'none', FireDarkGray)
+" defaults: ctermfg=15 guibg=White
+call Coloring('PmenuThumb', 'none', 'none', '006', 'none', FireBlack)
+
 " All from :help syntax.txt
 "*Comment	any comment
 "

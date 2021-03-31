@@ -10,7 +10,7 @@ augroup VisibleNaughtiness
   autocmd BufEnter  *   set nolist
   autocmd BufEnter  * endif
 augroup END
-hi SpecialKey cterm=NONE ctermfg=darkgray
+hi SpecialKey cterm=NONE ctermfg=darkgray gui=none guifg=#444444
 " }}}
 
 " [ Miscellaneous features (mainly options) ] {{{
@@ -34,7 +34,7 @@ autocmd InsertEnter * :set nu
 autocmd InsertLeave * :set relativenumber
 
 " sets the split bewteen windows to be grey
-hi VertSplit ctermfg=244 ctermbg=232 cterm=none
+hi VertSplit ctermfg=244 ctermbg=232 cterm=none guifg=#808080 guibg=#080808 gui=none
 
 " Pressing <leader>ss will toggle and untoggle spell checking
 noremap <leader>ss :setlocal spell!<cr>
