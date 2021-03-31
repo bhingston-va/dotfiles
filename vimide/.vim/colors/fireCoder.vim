@@ -24,13 +24,14 @@ endfunction
 
 " color pallette https://pintovim.dev/  vim-color-editor
 " grays
-let FireDarkGray  = '#444444'
-let FireGrayMed   = '#6c6c6c'
-let FireGray      = '#808080'
-let FireLightGray = '#c0c0c0'
-let FireWhite     = '#d0d0d0'
-let FireOffBlack  = '#080808'
-let FireBlack     = '#000000'
+let FireDarkerGray = '#222222'
+let FireDarkGray   = '#444444'
+let FireGrayMed    = '#6c6c6c'
+let FireGray       = '#808080'
+let FireLightGray  = '#c0c0c0'
+let FireWhite      = '#d0d0d0'
+let FireOffBlack   = '#080808'
+let FireBlack      = '#000000'
 " cyan|blue pair1
 let FireCyan       = '#008080'
 let FireCyanBright = '#00afd7'
@@ -68,7 +69,7 @@ call Coloring('Constant',   'none', '039',  'none', FireDarkBlue,     'none')
 call Coloring('Underlined', 'none', '100',  'none', FireYellow,       'none')
 call Coloring('LineNr',     'none', '006',  '000',  FireCyan,         FireBlack)
 call Coloring('Title',      'bold', '252',  'none', FireWhite,        'none')
-call Coloring('Visual',     'bold', 'none', '238',  'none',           FireDarkGray)
+call Coloring('Visual',     'bold', 'none', '238',  'none',           FireDarkerGray)
 " menu
 " defaults: ctermfg=0 ctermbg=13 guibg=Magenta
 call Coloring('Pmenu', 'none', '242', '232', FireGrayMed, FireOffBlack)
@@ -78,6 +79,7 @@ call Coloring('PmenuSel', 'reverse', 'none', 'none', 'none', 'none')
 call Coloring('PmenuSbar', 'none', 'none', '238', 'none', FireDarkGray)
 " defaults: ctermfg=15 guibg=White
 call Coloring('PmenuThumb', 'none', 'none', '006', 'none', FireBlack)
+hi! link TabLine PmenuSbar
 
 " All from :help syntax.txt
 "*Comment	any comment

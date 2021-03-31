@@ -10,7 +10,7 @@ augroup VisibleNaughtiness
   autocmd BufEnter  *   set nolist
   autocmd BufEnter  * endif
 augroup END
-hi SpecialKey cterm=NONE ctermfg=darkgray gui=none guifg=#444444
+hi Whitespace cterm=NONE ctermfg=darkgray gui=none guifg=#252525
 " }}}
 
 " [ Miscellaneous features (mainly options) ] {{{
