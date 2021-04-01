@@ -16,6 +16,9 @@ Plug 'vim-airline/vim-airline-themes'
 " File navigation
 Plug 'scrooloose/nerdtree'
 
+" Buffer navigation
+Plug 'szw/vim-maximizer'
+
 " General go support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
