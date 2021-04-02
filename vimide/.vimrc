@@ -7,7 +7,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fugitive-blame-ext'
 " csapprox is a peer dep of fugitive Git blame
 Plug 'godlygeek/csapprox'
-Plug 'christoomey/vim-conflicted'
+Plug 'christoomey/vim-conflicted' " has a 'tpope/vim-fugitive' as peer dep
 
 " Status/tabline
 Plug 'vim-airline/vim-airline'

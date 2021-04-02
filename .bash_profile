@@ -69,7 +69,7 @@ fi
 PATH=$PATH:$HOME/google-cloud-sdk/bin
 PATH=$PATH:/usr/local/mysql/bin
 # Add Visual Studio Code (code)
-PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+#PATH=$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin

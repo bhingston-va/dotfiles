@@ -3,10 +3,10 @@
 " - definition and usage location (maybe ctags?) [Coc + LSP]
 " - file and project text search (function, class, text, filename) [Rg + fzf]
 " - tree directory [NERDTree]
-" - debugger (breakpoints, play, stepper, evaluate)
-" - run/debug tests
+" - debugger (breakpoints, play, stepper, evaluate) [vim-go for go, ? for typescript]
+" - run/debug tests [vim-go for go, ? for typescript]
 " - multi file edit [native buffers + Vim-Airline]
-" - autocomplete [CoC plus LSP]
+" - autocomplete [CoC + LSP]
 " - uncommitted line edits (deletions, insertions, updated) [GitGutter]
 " - git blame with indication of newest changes and time [Fugitive]
 " WANTS
@@ -196,8 +196,12 @@ let g:rg_highlight = 1
 "  \ 'header':  ['fg', 'Comment'] }
 " }}}
 
-" [ Sneak ] {{{
+" [ in file navigation: Sneak ] {{{
 let g:sneak#label = 1
+" }}}
+"
+" [ buffer navigation: vim-maximizer] {{{
+nnoremap <silent> <leader><C-m> :MaximizerToggle<CR>
 " }}}
 
 " [ vim-go ] {{{
