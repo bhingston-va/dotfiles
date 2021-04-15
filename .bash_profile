@@ -65,6 +65,9 @@ fi
 # Options to fzf command
 #export FZF_COMPLETION_OPTS='--border --info=inline'
 
+# https://github.com/garabik/grc: To set aliases for supported commands
+[[ -s "/etc/grc.sh" ]] && source /etc/grc.sh
+
 # custom path for vendasta box
 PATH=$PATH:$HOME/google-cloud-sdk/bin
 PATH=$PATH:/usr/local/mysql/bin
@@ -94,6 +97,7 @@ echo "hello Benj, welcome to the Matrix"
 #===================
 # Personnal Aliases
 #===================
+alias go="grc go"
 alias ls="ls -pG"
 alias hs="history | grep"
 alias sshusask="ssh bvh895@tuxworld.usask.ca"

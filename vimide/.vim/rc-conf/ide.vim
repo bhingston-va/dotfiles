@@ -85,6 +85,8 @@ function! GitStatus()
 endfunction
 call airline#parts#define_function('gitstats', 'GitStatus')
 
+"call airline#parts#define_function('gitconflicted', 'GitConflictedVersion')
+
 function! AirlineInit()
   let g:airline_section_a = airline#section#create_left(['mode','today'])
   let g:airline_section_b = airline#section#create_left(['branch','gitstats'])

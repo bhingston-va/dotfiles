@@ -25,6 +25,9 @@ nnoremap m <c-w>
 nnoremap <C-H> :bprevious<CR>
 nnoremap <C-L> :bnext<CR>
 
+" print path to current buffer (this doesn't quite work)
+nnoremap <leader><space>p :!ls %:p<CR>
+
 "" yank/put uses clipboards
 "" PRIMARY - This is copy-on-select, and can be pasted with the middle mouse button.
 "" CLIPBOARD - This is copied with (usually) ^C, and pasted with ^V (It's like MS Windows).

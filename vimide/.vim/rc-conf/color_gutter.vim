@@ -5,8 +5,9 @@ hi GitGutterAdd    guifg=#009900 ctermfg=2
 hi GitGutterChange guifg=#bbbb00 ctermfg=3
 hi GitGutterDelete guifg=#ff2222 ctermfg=1
 
-hi DiffText cterm=bold ctermfg=003 ctermbg=002 gui=bold guibg=#008000 guifg=#bbbb00
-hi DiffChange ctermbg=3 ctermfg=000 guifg=#000000 guibg=#005f00
+hi DiffText cterm=bold ctermfg=003 ctermbg=002 gui=bold guibg=#117496 guifg=#bbbb00
+hi DiffAdd ctermbg=4 guibg=DarkBlue
+hi DiffChange ctermbg=3 ctermfg=000 guifg=#000000 guibg=#77dffb
 hi DiffDelete ctermfg=0 ctermbg=052 guifg=#000000 guibg=#5f0000
 
 hi! link Folded VertSplit
