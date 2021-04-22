@@ -35,6 +35,9 @@ let g:NERDTreeDirArrowCollapsible = 'ᐁ'
 autocmd BufWritePost * GitGutter
 nnoremap <silent> <leader>b :Git blame --date=relative --color-by-age<CR>
 let g:fugitive_dynamic_colors = 1
+
+" better git diff aliasses
+nnoremap <leader>gd :Gvdiff!<CR>
 " }}}
 
 " [ Status Line - Vim-Airline] {{{
@@ -84,8 +87,6 @@ function! GitStatus()
   return join(s, ' ')
 endfunction
 call airline#parts#define_function('gitstats', 'GitStatus')
-
-"call airline#parts#define_function('gitconflicted', 'GitConflictedVersion')
 
 function! AirlineInit()
   let g:airline_section_a = airline#section#create_left(['mode','today'])

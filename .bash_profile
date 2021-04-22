@@ -65,6 +65,11 @@ fi
 # Options to fzf command
 #export FZF_COMPLETION_OPTS='--border --info=inline'
 
+if type nvm &> /dev/null; then
+  nvm alias default 12 &> /dev/null
+  nvm use default &> /dev/null
+fi
+
 # https://github.com/garabik/grc: To set aliases for supported commands
 [[ -s "/etc/grc.sh" ]] && source /etc/grc.sh
 
