@@ -163,7 +163,12 @@ let g:airline#extensions#coc#enabled = 1
 " let g:airline#extensions#ctrlp#color_template = 'replace'
 " }}}
 
+
 " [ FzF & vim-ripgrep ] {{{
+" Custom search commands
+" unmerged files: `vim $(git diff --name-only --diff-filter=U)` in commandline
+command! GFilesConflicted call fzf#run(fzf#wrap({'source': 'git diff --name-only --diff-filter=U'}))
+nnoremap <silent> <leader><space>g :GFilesConflicted<CR>
 " recent files?
 nnoremap <silent> <leader><space>r :FZFMru<CR>
 " files in git repo with changes
