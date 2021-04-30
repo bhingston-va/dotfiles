@@ -5,6 +5,7 @@ call plug#begin('~/dotfiles/vimide/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fugitive-blame-ext'
+Plug 'tpope/vim-rhubarb'
 " csapprox is a peer dep of fugitive Git blame
 Plug 'godlygeek/csapprox'
 
