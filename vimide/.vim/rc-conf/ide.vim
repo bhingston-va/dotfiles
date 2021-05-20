@@ -38,6 +38,11 @@ let g:fugitive_dynamic_colors = 1
 
 " better git diff aliasses
 nnoremap <leader>gd :Gvdiff!<CR>
+" merge conflicts
+" get from target
+nnoremap <leader>dgt :diffget //2<CR>
+" get from merge
+nnoremap <leader>dgm :diffget //3<CR>
 " }}}
 
 " [ Status Line - Vim-Airline] {{{
@@ -89,8 +94,8 @@ endfunction
 call airline#parts#define_function('gitstats', 'GitStatus')
 
 function! AirlineInit()
-  let g:airline_section_a = airline#section#create_left(['mode','today'])
-  let g:airline_section_b = airline#section#create_left(['branch','gitstats'])
+  let g:airline_section_a = airline#section#create_left(['mode','%n'])
+  let g:airline_section_b = airline#section#create_left(['today','gitstats'])
   let g:airline_section_y = airline#section#create(['%P'])
   let g:airline_section_z = '%2l/%L☰ %2v'
 endfunction
