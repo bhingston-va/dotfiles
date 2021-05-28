@@ -129,6 +129,21 @@ invfuck() {
 	fi
 }
 
+lintit() {
+	npx nx affected:lint --base=origin/master --parallel
+}
+
+testit() {
+	npx nx affected:test --base=origin/master --ci --maxWorkers=4 --parallel --silent
+}
+
+fuckit() {
+	npx nx affected:lint --base=origin/master --parallel
+	npx nx affected:test --base=origin/master --ci --maxWorkers=4 --parallel --silent
+	npm run affected:lint:styles
+	npx nx affected:build --base=origin/master --with-deps --prod --parallel --maxParallel=5
+}
+
 # Get current weather, with option of giving town as arg
 #alias weather="curl wttr.in"
 weather() {
