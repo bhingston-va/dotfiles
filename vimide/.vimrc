@@ -38,6 +38,9 @@ Plug 'tpope/vim-commentary'
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Code time tracking
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
 " }}}
 
