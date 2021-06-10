@@ -16,7 +16,7 @@
 " [ File tree - NERDTree ] {{{
 " easy open nerd tree with Ctrl+n
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
+nnoremap <silent> <leader><leader>f :NERDTreeFind<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -37,12 +37,16 @@ nnoremap <silent> <leader>b :Git blame --date=relative --color-by-age<CR>
 let g:fugitive_dynamic_colors = 1
 
 " better git diff aliasses
-nnoremap <leader>gd :Gvdiff!<CR>
+" `-` for horizontal 3way split
+" `\` for vertical 3way split
+nnoremap <leader>gd- :Gdiff!<CR>
+nnoremap <leader>gd\ :Gvdiff!<CR>
+nnoremap <leader>gd :Gdiff<CR>
 " merge conflicts
 " get from target
-nnoremap <leader>dgt :diffget //2<CR>
+nnoremap <leader>gt :diffget //2<CR>
 " get from merge
-nnoremap <leader>dgm :diffget //3<CR>
+nnoremap <leader>gm :diffget //3<CR>
 " }}}
 
 " [ Status Line - Vim-Airline] {{{
@@ -173,15 +177,15 @@ let g:airline#extensions#coc#enabled = 1
 " Custom search commands
 " unmerged files: `vim $(git diff --name-only --diff-filter=U)` in commandline
 command! GFilesConflicted call fzf#run(fzf#wrap({'source': 'git diff --name-only --diff-filter=U'}))
-nnoremap <silent> <leader><space>g :GFilesConflicted<CR>
+nnoremap <silent> <leader>g :GFilesConflicted<CR>
 " recent files?
-nnoremap <silent> <leader><space>r :FZFMru<CR>
+nnoremap <silent> <leader>r :FZFMru<CR>
 " files in git repo with changes
-nnoremap <silent> <leader><space>j :GFiles?<CR>
+nnoremap <silent> <leader>j :GFiles?<CR>
 " files in git repo
-nnoremap <silent> <leader><space>f :GFiles<CR>
+nnoremap <silent> <leader>f :GFiles<CR>
 " files in history
-nnoremap <silent> <leader><space>h :History<CR>
+nnoremap <silent> <leader>h :History<CR>
 " Jump to the existing buffer if possible
 let g:fzf_buffers_jump = 1
 
@@ -379,19 +383,19 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <leader>e  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>c  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <leader><space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader><space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>p  :<C-u>CocListResume<CR>
 " }}}

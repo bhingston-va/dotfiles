@@ -90,6 +90,10 @@ export MYVIMRC='~/dotfiles/vimide/.vimrc'
 export EDITOR=vim
 export SCPSSH="scp bvh895@tuxworld.usask.ca:/student/bvh895/"
 export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0;36m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n\[\e[31m\]♥\[\e[m\] "
+
+export SALES_SSL_ROOT=$HOME/Projects/keys/sales-psql
+# TODO: only set if it is unset
+export SALES_PASSWD=$(kubectl -n sales-demo get secret postgresql-user -o jsonpath="{.data.password}" | base64 --decode);
 #export SvnPrj=$SvnURL/time_calc;
 
 # run tmux at start of each window

@@ -16,7 +16,7 @@ hi Whitespace cterm=NONE ctermfg=darkgray gui=none guifg=#252525
 " [ Miscellaneous features (mainly options) ] {{{
 set title         "Show filename in titlebar of window
 set titleold=
-set scrolloff=5   "Scroll when 5 lines from top/bottom
+set scrolloff=100 "Scroll when 5 lines from top/bottom
 
 nnoremap <Space> <nop>
 let mapleader= " "
@@ -29,7 +29,8 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
-"nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <C-r> :call NumberToggle()<cr>
+set nu
 autocmd InsertEnter * :set nu
 autocmd InsertLeave * :set relativenumber
 
