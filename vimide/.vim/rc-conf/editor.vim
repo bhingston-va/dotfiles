@@ -29,7 +29,7 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
-nnoremap <C-r> :call NumberToggle()<cr>
+"nnoremap <C-n> :call NumberToggle()<cr>
 set nu
 autocmd InsertEnter * :set nu
 autocmd InsertLeave * :set relativenumber
