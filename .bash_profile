@@ -66,7 +66,7 @@ fi
 #export FZF_COMPLETION_OPTS='--border --info=inline'
 
 if type nvm &> /dev/null; then
-  nvm alias default 12 &> /dev/null
+  nvm alias default 14 &> /dev/null
   nvm use default &> /dev/null
 fi
 
@@ -99,6 +99,8 @@ then
 	export SALES_PASSWD=$(kubectl -n sales-demo get secret postgresql-user -o jsonpath="{.data.password}" | base64 --decode);
 	echo "sales psql password set"
 fi
+# for galaxy OOM javascript heap errors
+export NODE_OPTIONS=--max_old_space_size=8192
 #export SvnPrj=$SvnURL/time_calc;
 
 # run tmux at start of each window
