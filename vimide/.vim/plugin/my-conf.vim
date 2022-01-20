@@ -20,6 +20,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/mapping.vim
 "so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim <- sourced from color
 " Config Syntax Highlighting
 so ~/dotfiles/vimide/.vim/rc-conf/color_go.vim
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-go.vim
 "so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim <- sourced from color
 "so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim <- sourced from color
 " Colourschemes

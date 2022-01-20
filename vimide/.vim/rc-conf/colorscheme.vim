@@ -26,7 +26,7 @@ colorscheme fireCoder
 " vimrc config highlighting
 so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim
 so ~/dotfiles/vimide/.vim/rc-conf/color_gutter.vim
-so ~/dotfiles/vimide/.vim/rc-conf/color_box.vim
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/coc/color_box.vim
 so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim
 so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
 so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim
