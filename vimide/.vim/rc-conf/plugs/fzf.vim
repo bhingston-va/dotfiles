@@ -9,7 +9,7 @@ nnoremap <silent> <leader>j :GFiles?<CR>
 " files in git repo
 nnoremap <silent> <leader>f :GFiles<CR>
 " files in history
-nnoremap <silent> <leader>h :History<CR>
+nnoremap <silent> <leader><space>h :History<CR>
 " Jump to the existing buffer if possible
 let g:fzf_buffers_jump = 1
 

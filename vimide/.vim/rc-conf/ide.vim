@@ -44,6 +44,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-sneak.vim
 
 " [ buffer navigation: vim-maximizer] {{{
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-maximizer.vim
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/harpoon.vim
 " }}}
 
 " [ vim-go ] {{{
