@@ -15,6 +15,23 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "5s"
 
+" set up debugging windows preferences
+let g:go_debug_windows = {
+  \ 'vars':  'botright 30new',
+  \ 'stack': 'botright 10new',
+  \ 'out':   'botright 5new',
+\ }
+
+
+" debugging commands (while debugging)
+let g:go_debug_mappings = {
+  \ '(go-debug-continue)': {'key': 'c', 'arguments': '<nowait>'},
+  \ '(go-debug-stop)': {'key': 'q'},
+  \ '(go-debug-next)': {'key': 'n', 'arguments': '<nowait>'},
+  \ '(go-debug-step)': {'key': 's'},
+\}
+
+
 " info on hover
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 let g:go_auto_type_info = 1
