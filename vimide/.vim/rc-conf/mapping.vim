@@ -16,6 +16,8 @@ set splitright
 " mark it
 nnoremap <C-m> m
 
+nnoremap <CR> <CR>
+
 "move around split screens windows
 map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>

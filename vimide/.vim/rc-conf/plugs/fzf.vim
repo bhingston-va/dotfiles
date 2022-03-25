@@ -13,6 +13,8 @@ nnoremap <silent> <leader><space>h :History<CR>
 " Jump to the existing buffer if possible
 let g:fzf_buffers_jump = 1
 
+set rtp+=/usr/local/opt/fzf
+
 " popups
 let g:fzf_layout = {'window': { 'width': 0.9, 'height': 0.7, 'highlight': 'Comment'} }
 
