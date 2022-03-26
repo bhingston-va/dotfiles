@@ -16,6 +16,8 @@ set splitright
 " mark it
 nnoremap <C-m> m
 
+" see commit message, was seeing issues around when going to references in quick lists.
+" Looked like enter was mapped to something else.
 nnoremap <CR> <CR>
 
 "move around split screens windows
