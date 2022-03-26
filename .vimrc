@@ -173,7 +173,7 @@ function! NumberToggle()
         set relativenumber
     endif
 endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+"nnoremap <C-n> :call NumberToggle()<cr>
 autocmd InsertEnter * :set nu
 autocmd InsertLeave * :set relativenumber
 "set nocursorcolumn
