@@ -1,6 +1,6 @@
 " Vim color file
 "
-" Author: Benj Hingston <bvhingston@yahoo.ca>
+" Author: Benj Hingston <benjhingston@gmail.com>
 "
 " Note: Based on the molokai theme for textmate
 
