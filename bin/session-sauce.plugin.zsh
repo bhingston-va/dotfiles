@@ -209,7 +209,7 @@ case "$1" in
 
     # version
     v*)
-        echo "1.3.0"
+        echo "1.3.2"
         ;;
 
     # Quick switch back to last session
