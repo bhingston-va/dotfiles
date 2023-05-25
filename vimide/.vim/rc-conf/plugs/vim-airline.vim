@@ -77,7 +77,7 @@ set wildmenu
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#show_buffers = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline#extesions#tabline#formatter = 'unique_tail'

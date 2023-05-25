@@ -17,6 +17,8 @@ hi Whitespace cterm=NONE ctermfg=darkgray gui=none guifg=#252525
 set title         "Show filename in titlebar of window
 set titleold=
 set scrolloff=100 "Scroll when 5 lines from top/bottom
+" Save and restore open buffers when closing and opening vim (not working)
+set hidden
 
 nnoremap <Space> <nop>
 let mapleader= " "
