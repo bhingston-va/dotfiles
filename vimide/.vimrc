@@ -38,8 +38,9 @@ Plug 'jremmen/vim-ripgrep'
 " Comments
 Plug 'tpope/vim-commentary'
 
-" Autocomplete
+" Autocomplete/LSP installer/AI helper
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
 
 " Code time tracking
 Plug 'wakatime/vim-wakatime'
