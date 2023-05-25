@@ -41,7 +41,8 @@ Plug 'tpope/vim-commentary'
 " Autocomplete/LSP installer/AI helper
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
-Plug 'gelguy/wilder.nvim'
+" wilder breaks copiolet (doesn't show at all) and coc auto complete (can't arrow down to select and on enter breaks)
+"Plug 'gelguy/wilder.nvim'
 
 " Code time tracking
 Plug 'wakatime/vim-wakatime'
@@ -52,7 +53,8 @@ call plug#end()
 :set encoding=utf-8
 
 " [ WildMenu - wilder.nvim ] {{{
-so ~/dotfiles/vimide/.vim/rc-conf/plugs/wilder.vim
+" wilder breaks copiolet (doesn't show at all) and coc auto complete (can't arrow down to select and on enter breaks)
+"so ~/dotfiles/vimide/.vim/rc-conf/plugs/wilder.vim
 " }}}
 
 " see .vim/plugin/my-conf.vim for configuration
