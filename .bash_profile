@@ -69,10 +69,6 @@ fi
 # Options to fzf command
 #export FZF_COMPLETION_OPTS='--border --info=inline'
 
-if type nvm &> /dev/null; then
-  nvm alias default 14 &> /dev/null
-  nvm use default &> /dev/null
-fi
 
 # https://github.com/garabik/grc: To set aliases for supported commands
 [[ -s "/etc/grc.sh" ]] && source /etc/grc.sh
@@ -105,7 +101,7 @@ export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0
 #fi
 
 # for galaxy OOM javascript heap errors
-export NODE_OPTIONS=--max_old_space_size=8192
+export NODE_OPTIONS=--max_old_space_size=12000
 #export SvnPrj=$SvnURL/time_calc;
 
 # run tmux at start of each window
@@ -190,5 +186,14 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="usr/local/sbin:$PATH"
+
+if type nvm &> /dev/null; then
+  nvm alias default 18 &> /dev/null
+  nvm use default &> /dev/null
+  echo "nvm using default"
+else
+  echo "nvm not using default"
+fi
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"
