@@ -159,3 +159,9 @@ nnoremap <silent><nowait> <leader><space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <leader><space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>p  :<C-u>CocListResume<CR>
+
+" sets boarers for auto complete
+call coc#config('suggest.floatConfig', {
+    \ 'border': v:true,
+    \ 'rounded': v:true,
+    \ })
