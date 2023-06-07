@@ -34,3 +34,4 @@ let g:fzf_layout = {'window': { 'width': 0.9, 'height': 0.7, 'highlight': 'Comme
 "  \ 'marker':  ['fg', 'Keyword'],
 "  \ 'spinner': ['fg', 'Label'],
 "  \ 'header':  ['fg', 'Comment'] }
+let g:fzf_colors = { 'border': ['fg', 'Constant'] }
