@@ -166,3 +166,8 @@ call coc#config('suggest.floatConfig', {
     \ 'rounded': v:true,
     \ 'borderhighlight': 'FireBoarderBlue',
     \ })
+call coc#config('diagnostic.floatConfig', {
+    \ 'border': v:true,
+    \ 'rounded': v:true,
+    \ 'borderhighlight': 'PreProc',
+    \ })
