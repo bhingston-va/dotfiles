@@ -164,4 +164,5 @@ nnoremap <silent><nowait> <leader>p  :<C-u>CocListResume<CR>
 call coc#config('suggest.floatConfig', {
     \ 'border': v:true,
     \ 'rounded': v:true,
+    \ 'borderhighlight': 'FireBoarderBlue',
     \ })

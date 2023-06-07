@@ -83,6 +83,8 @@ call Coloring('PmenuSbar', 'none', 'none', '238', 'none', FireDarkGray)
 call Coloring('PmenuThumb', 'none', 'none', '006', 'none', FireBlack)
 hi! link TabLine PmenuSbar
 
+hi FireBoarderBlue ctermfg=4 guifg=Blue
+
 " All from :help syntax.txt
 "*Comment	any comment
 "
