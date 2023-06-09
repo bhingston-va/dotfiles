@@ -54,9 +54,9 @@ imap <ESC>OC <ESC>li
 imap <ESC>OD <ESC>hi
 
 " Remap VIM 0 to first non-blank character
-nnoremap 0 ^
+nnoremap <C-A> ^
 " Remap - to end of line
-noremap - $
+noremap <C-E> $
 
 " [ Open keys ]
 " U

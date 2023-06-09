@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " File navigation
 Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-vinegar'
 
 " Buffer navigation
 Plug 'szw/vim-maximizer'
