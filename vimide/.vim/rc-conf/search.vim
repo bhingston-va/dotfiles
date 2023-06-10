@@ -6,7 +6,7 @@ set hlsearch    "Highlight all matches
 set magic
 
 " Disable highlight
-nnoremap <silent> <c-e> :nohl<cr>
+nnoremap <silent> <C-0> :nohl<CR>
 " Center found words on screen
 nnoremap N Nzz
 nnoremap n nzz
