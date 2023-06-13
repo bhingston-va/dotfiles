@@ -47,7 +47,7 @@ call airline#parts#define_function('gitstats', 'GitStatus')
 function! AirlineInit()
   let g:airline_section_a = airline#section#create_left(['mode','%n'])
   let g:airline_section_b = airline#section#create_left(['today','gitstats'])
-  let g:airline_section_y = airline#section#create(['%P'])
+  let g:airline_section_y = airline#section#create_right(['%{ObsessionStatus(''〇'', ''〓'')}','%P'])
   let g:airline_section_z = '%2l/%L☰ %2v'
 endfunction
 autocmd VimEnter * call AirlineInit()
