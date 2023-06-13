@@ -9,7 +9,7 @@ Plug 'tpope/vim-rhubarb'
 " csapprox is a peer dep of fugitive Git blame
 Plug 'godlygeek/csapprox'
 
-" Status/tabline
+" Status | tabline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -17,7 +17,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
 
-" Buffer navigation
+" Buffer navigation | Session management
 Plug 'szw/vim-maximizer'
 Plug 'ThePrimeagen/harpoon'
 " plenary is a peer dep of harpoon
@@ -39,7 +39,7 @@ Plug 'jremmen/vim-ripgrep'
 " Comments
 Plug 'tpope/vim-commentary'
 
-" Autocomplete/LSP installer/AI helper
+" Autocomplete | LSP installer | AI helper
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
 " wilder breaks copiolet (doesn't show at all) and coc auto complete (can't arrow down to select and on enter breaks)

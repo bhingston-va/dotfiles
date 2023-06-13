@@ -53,7 +53,7 @@ imap <ESC>OB <ESC>ji
 imap <ESC>OC <ESC>li
 imap <ESC>OD <ESC>hi
 
-" Remap VIM 0 to first non-blank character
+" Remap - to first non-blank character
 nnoremap <C-A> ^
 " Remap - to end of line
 noremap <C-E> $
