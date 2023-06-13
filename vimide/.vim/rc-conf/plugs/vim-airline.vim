@@ -89,6 +89,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " enable/disable fugitive/lawrencium integration
 let g:airline#extensions#branch#enabled = 1
 
+" enable/disable vim-obsession integration >
+let g:airline#extensions#obsession#enabled = 1
+
 " truncate long branch names to a fixed length >
 "let g:airline#extensions#branch#displayed_head_limit = 10
 

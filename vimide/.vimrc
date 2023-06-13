@@ -22,6 +22,7 @@ Plug 'szw/vim-maximizer'
 Plug 'ThePrimeagen/harpoon'
 " plenary is a peer dep of harpoon
 Plug 'nvim-lua/plenary.nvim'
+Plug 'tpope/vim-obsession'
 
 " General go support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
