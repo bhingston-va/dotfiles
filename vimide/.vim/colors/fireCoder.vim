@@ -60,6 +60,7 @@ let FireSlateDarkBlue  = '#5f8787'
 let FireSlateBlue      = '#5f87af'
 let FireSlateLightBlue = '#5f87d7'
 
+" error after updating OS -- "E254: Cannot allocate color none"
 call Coloring('Comment',      'none', '238',  'none', FireDarkGray,     'none')
 call Coloring('Type',         'bold', '123',  'none', FireCyan2,        'none')
 call Coloring('PreProc',      'none', '088',  'none', FireDarkRed,      'none')

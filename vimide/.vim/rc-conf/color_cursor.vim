@@ -1,4 +1,5 @@
 " Search
+" error after updating OS -- "E254: Cannot allocate color none"
 hi Search cterm=bold ctermbg=none ctermfg=167 gui=bold guibg=none guifg=#d75f5f
 hi IncSearch cterm=bold ctermbg=233 gui=bold guibg=#121212
 
