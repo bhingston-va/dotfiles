@@ -15,3 +15,7 @@ let g:NERDTreeDirArrowExpandable = 'ᐅ'
 let g:NERDTreeDirArrowCollapsible = 'ᐁ'
 "let g:NERDTreeDirArrowExpandable = 'ᐳ'
 "let g:NERDTreeDirArrowCollapsible = 'ᐯ'
+
+let g:NERDTreeWinPos = 'top'
+let g:NERDTreeWinSize = 15
+
