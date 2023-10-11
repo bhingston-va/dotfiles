@@ -50,7 +50,11 @@ function! AirlineInit()
   let g:airline_section_y = airline#section#create_right(['%{ObsessionStatus(''〇'', ''〓'')}','%P'])
   let g:airline_section_z = '%2l/%L☰ %2v'
 endfunction
-autocmd VimEnter * call AirlineInit()
+if v:vim_did_enter
+  call AirlineInit()
+else
+  autocmd VimEnter * call AirlineInit()
+endif
 
 " disable auto truncation of section A,B,C and Z
 "let g:airline#extensions#section_trucate_width = {
@@ -60,7 +64,7 @@ autocmd VimEnter * call AirlineInit()
 "  \ 'error': 80
 "  \ }
 " get rid of elipses
-let g:airline_mode_map = {'c': 'C', 'n': 'N', 'V': 'V', 'i': 'I'}
+let g:airline_mode_map = {'c': 'C', 'n': 'N', 'V': 'L', '': 'B', 'i': 'I'}
 
 "Adds completion help on commands
 set wildmenu
@@ -77,7 +81,7 @@ set wildmenu
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 1
+"let g:airline#extensions#tabline#show_buffers = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 "let g:airline#extesions#tabline#formatter = 'unique_tail'
@@ -87,16 +91,16 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " enable/disable fugitive/lawrencium integration
-let g:airline#extensions#branch#enabled = 1
+"let g:airline#extensions#branch#enabled = 1
 
 " enable/disable vim-obsession integration >
-let g:airline#extensions#obsession#enabled = 1
+"let g:airline#extensions#obsession#enabled = 1
 
 " truncate long branch names to a fixed length >
 "let g:airline#extensions#branch#displayed_head_limit = 10
 
 " change the text for when no branch is detected
-let g:airline#extensions#branch#empty_message = ''
+"let g:airline#extensions#branch#empty_message = ''
 
 " enable/disable showing a summary of changed hunks under source control.
 "let g:airline#extensions#hunks#enabled = 1
@@ -105,7 +109,7 @@ let g:airline#extensions#branch#empty_message = ''
 "let g:airline#extensions#hunks#non_zero_only = 1
 
 " enable coc integration
-let g:airline#extensions#coc#enabled = 1
+"let g:airline#extensions#coc#enabled = 1
 " Change error symbol:
 "let airline#extensions#coc#error_symbol = 'Error:'
 "Change warning symbol:
