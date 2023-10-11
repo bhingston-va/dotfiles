@@ -45,4 +45,5 @@ so ~/dotfiles/vimide/.vim/rc-conf/buffer.vim
 " LOCATION
 " - file text search (word, caps sensitive options)
 " - project text search (word, caps sensitive options)
+" DEBUGGING
 so ~/dotfiles/vimide/.vim/rc-conf/ide.vim

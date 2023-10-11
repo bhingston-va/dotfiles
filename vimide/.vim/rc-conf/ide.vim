@@ -55,3 +55,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/harpoon.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/coc/coc.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/coc/coc-jest.vim
 " }}}
+
+" [ vimspector ] {{{
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/vimspector.vim
+" }}}

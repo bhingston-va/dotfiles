@@ -46,6 +46,9 @@ Plug 'github/copilot.vim'
 " wilder breaks copiolet (doesn't show at all) and coc auto complete (can't arrow down to select and on enter breaks)
 "Plug 'gelguy/wilder.nvim'
 
+" Debugging
+Plug 'puremourning/vimspector'
+
 " Code time tracking
 Plug 'wakatime/vim-wakatime'
 
