@@ -53,6 +53,10 @@ Plug 'puremourning/vimspector'
 " Code time tracking
 Plug 'wakatime/vim-wakatime'
 
+" Welcome splash screen | key bindings
+Plug 'mhinz/vim-startify'
+Plug 'liuchengxu/vim-which-key'
+
 call plug#end()
 " }}}
 

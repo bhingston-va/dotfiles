@@ -59,3 +59,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/coc/coc-jest.vim
 " [ vimspector ] {{{
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vimspector.vim
 " }}}
+
+" [ Splash Screen ] {{{
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-startify.vim
+" }}}
