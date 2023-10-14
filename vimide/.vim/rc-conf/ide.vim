@@ -20,6 +20,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/nerdtree.vim
 " [ Git - Gutter ] {{{
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-gitgutter.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-fugitive.vim
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/git-messenger.vim
 
 " merge conflicts
 " get from target

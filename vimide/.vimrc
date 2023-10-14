@@ -8,6 +8,7 @@ Plug 'tommcdo/vim-fugitive-blame-ext'
 Plug 'tpope/vim-rhubarb'
 " csapprox is a peer dep of fugitive Git blame
 Plug 'godlygeek/csapprox'
+Plug 'rhysd/git-messenger.vim'
 
 " Status | tabline
 Plug 'vim-airline/vim-airline'
