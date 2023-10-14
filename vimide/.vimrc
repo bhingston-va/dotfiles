@@ -30,12 +30,13 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Tag support
 Plug 'craigemery/vim-autotag'
 
-" Search
+" Search | Code highlight
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'pbogut/fzf-mru.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/limelight.vim'
 
 " Comments
 Plug 'tpope/vim-commentary'
