@@ -10,12 +10,12 @@ let g:minimap_git_colors = 1
 hi MinimapGitAdd ctermbg=0 ctermfg=022 guibg=#000000 guifg=#005f00
 hi MinimapGitDel ctermbg=0 ctermfg=052 guibg=#000000 guifg=#5f0000
 hi MinimapGitEdt ctermbg=0 ctermfg=100 guibg=#000000 guifg=#6f6f00
-hi MinimapGitAddRg ctermbg=0 ctermfg=02 guibg=#000000 guifg=#009900
-hi MinimapGitDelRg ctermbg=0 ctermfg=88 guibg=#000000 guifg=#870000
-hi MinimapGitEdtRg ctermbg=0 ctermfg=03 guibg=#000000 guifg=#bbbb00
-hi MinimapGitAddLn cterm=bold ctermbg=0 ctermfg=02 gui=bold guibg=#000000 guifg=#009900
-hi MinimapGitDelLn cterm=bold ctermbg=0 ctermfg=88 gui=bold guibg=#000000 guifg=#870000
-hi MinimapGitEdtLn cterm=bold ctermbg=0 ctermfg=03 gui=bold guibg=#000000 guifg=#bbbb00
+hi MinimapGitAddRg ctermbg=0 ctermfg=028 guibg=#000000 guifg=#008700
+hi MinimapGitDelRg ctermbg=0 ctermfg=088 guibg=#000000 guifg=#870000
+hi MinimapGitEdtRg ctermbg=0 ctermfg=142 guibg=#000000 guifg=#999900
+hi MinimapGitAddLn ctermbg=0 ctermfg=010 guibg=#000000 guifg=#00d700
+hi MinimapGitDelLn ctermbg=0 ctermfg=160 guibg=#000000 guifg=#d70000
+hi MinimapGitEdtLn ctermbg=0 ctermfg=011 guibg=#000000 guifg=#ffff00
 let g:minimap_diffadd_color = 'MinimapGitAdd'
 let g:minimap_diffremove_color = 'MinimapGitDel'
 let g:minimap_diff_color = 'MinimapGitEdt'
