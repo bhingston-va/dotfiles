@@ -16,6 +16,8 @@ Plug 'vim-airline/vim-airline-themes'
 " File navigation
 Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-vinegar'
+" requires code-minimap `brew install code-minimap`
+Plug 'wfxr/minimap.vim'
 
 " Buffer navigation | Session management
 Plug 'szw/vim-maximizer'
