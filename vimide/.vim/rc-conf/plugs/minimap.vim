@@ -1,3 +1,5 @@
+nnoremap <silent> `` :nohl<CR>:call minimap#vim#ClearColorSearch()<CR>
+
 let g:minimap_base_highlight = 'Comment'
 
 let g:minimap_highlight_search = 1
