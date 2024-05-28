@@ -93,6 +93,7 @@ call Coloring('DiagnosticUnderlineError', 'underline', '0', '0', FireRed, 'none'
 call Coloring('DiagnosticWarn', 'none', '0', '0', FireOrange, 'none')
 call Coloring('DiagnosticUnderlineWarn', 'underline', '0', '0', FireOrange, 'none')
 call Coloring('String', 'none', '0', '0', FireDarkBlue, 'none')
+call Coloring('Todo', 'bold', '0', '0', FireOffBlack, FireOrange)
 
 " menu
 " defaults: ctermfg=0 ctermbg=13 guibg=Magenta
@@ -106,6 +107,7 @@ call Coloring('PmenuThumb', 'none', 'none', '006', 'none', FireBlack)
 hi! link TabLine PmenuSbar
 
 hi FireBoarderBlue ctermfg=4 guifg=Blue
+hi! link NonText FireBoarderBlue " ensure my tildes at the bottom mare deep blue
 
 " All from :help syntax.txt
 "*Comment	any comment
