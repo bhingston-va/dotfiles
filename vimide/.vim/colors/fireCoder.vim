@@ -37,6 +37,7 @@ let FireBlack      = '#000000'
 let FireCyan       = '#008080'
 let FireCyanBright = '#00afd7'
 let FireDarkBlue   = '#0087d7'
+let FireMedBlue    = '#0087c4' "'#009ee6'
 let FireLightBlue  = '#00afff'
 " cyan|blue pair2
 let FireCyanMed    = '#87d7d7'
@@ -69,7 +70,7 @@ call Coloring('Special',      'none', '124',  'none', FireRedMed,       'none')
 call Coloring('Statement',    'none', '228',  'none', FireYellowBright, 'none')
 call Coloring('Operator',     'none', '228',  'none', FireYellowBright, 'none')
 call Coloring('Identifier',   'bold', '075',  'none', FireLightBlue,    'none')
-call Coloring('Function',     'bold', '075',  'none', FireLightBlue,    'none')
+call Coloring('Function',     'bold', '075',  'none', FireMedBlue,      'none')
 call Coloring('Constant',     'none', '039',  'none', FireDarkBlue,     'none')
 call Coloring('Underlined',   'none', '100',  'none', FireYellow,       'none')
 call Coloring('LineNr',       'none', '006',  '000',  FireCyan,         FireBlack)
