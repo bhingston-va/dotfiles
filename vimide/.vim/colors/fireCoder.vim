@@ -76,6 +76,8 @@ call Coloring('LineNr',       'none', '006',  '000',  FireCyan,         FireBlac
 call Coloring('CursorLineNr', 'bold', '011',  '233',  '#FFFF00',        FireDarkerGray)
 call Coloring('Title',        'bold', '252',  'none', FireWhite,        'none')
 call Coloring('Visual',       'bold', 'none', '238',  'none',           FireDarkerGray)
+call Coloring('Error',        'bold', '232',  '160',  FireNotBlack,     FireRedMed)
+
 
 " skipped setting ctermxx for the following
 " original colors
