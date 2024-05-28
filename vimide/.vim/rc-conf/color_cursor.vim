@@ -1,7 +1,7 @@
 " Search
 " error after updating OS -- "E254: Cannot allocate color none"
 "hi Search cterm=bold ctermbg=none ctermfg=167 gui=bold guibg=none guifg=#d75f5f
-hi! link Search CursorLineNr
+hi Search cterm=bold ctermfg=011  guifg=#FFFF00
 hi CurSearch cterm=bold ctermbg=45 ctermfg=17 guifg=#00005f guibg=#00dfff
 hi IncSearch cterm=bold ctermbg=233 gui=bold guibg=#121212
 
