@@ -39,6 +39,7 @@ Plug 'pbogut/fzf-mru.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/limelight.vim'
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 " Comments
 Plug 'tpope/vim-commentary'
