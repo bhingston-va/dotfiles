@@ -40,7 +40,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-ripgrep.vim
 " }}}
 
 " [ in file navigation: Sneak ] {{{
-so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-sneak.vim
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-sneak/vim-sneak.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/minimap.vim
 " }}}
 

@@ -29,6 +29,7 @@ colorscheme fireCoder
 so ~/dotfiles/vimide/.vim/rc-conf/color_cursor.vim
 so ~/dotfiles/vimide/.vim/rc-conf/color_gutter.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/coc/color_box.vim
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-sneak/sneak-colors.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/limelight.vim
 so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim
 so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
