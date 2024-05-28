@@ -196,3 +196,6 @@ if type nvm &> /dev/null; then
 else
   echo "nvm not using default"
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
