@@ -61,18 +61,25 @@ let FireSlateBlue      = '#5f87af'
 let FireSlateLightBlue = '#5f87d7'
 
 " error after updating OS -- "E254: Cannot allocate color none"
+call Coloring('Normal',       'none', '242',  '232',  'none',      FireOffBlack)
 call Coloring('Comment',      'none', '238',  'none', FireDarkGray,     'none')
 call Coloring('Type',         'bold', '123',  'none', FireCyan2,        'none')
 call Coloring('PreProc',      'none', '088',  'none', FireDarkRed,      'none')
 call Coloring('Special',      'none', '124',  'none', FireRedMed,       'none')
 call Coloring('Statement',    'none', '228',  'none', FireYellowBright, 'none')
+call Coloring('Operator',     'none', '228',  'none', FireYellowBright, 'none')
 call Coloring('Identifier',   'bold', '075',  'none', FireLightBlue,    'none')
+call Coloring('Function',     'bold', '075',  'none', FireLightBlue,    'none')
 call Coloring('Constant',     'none', '039',  'none', FireDarkBlue,     'none')
 call Coloring('Underlined',   'none', '100',  'none', FireYellow,       'none')
 call Coloring('LineNr',       'none', '006',  '000',  FireCyan,         FireBlack)
 call Coloring('CursorLineNr', 'bold', '011',  '233',  '#FFFF00',        FireDarkerGray)
 call Coloring('Title',        'bold', '252',  'none', FireWhite,        'none')
 call Coloring('Visual',       'bold', 'none', '238',  'none',           FireDarkerGray)
+
+" skipped setting ctermxx
+call Coloring('String', 'none', '0', '0', FireDarkBlue, 'none')
+
 " menu
 " defaults: ctermfg=0 ctermbg=13 guibg=Magenta
 call Coloring('Pmenu', 'none', '242', '232', FireGrayMed, FireOffBlack)
