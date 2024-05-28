@@ -2,7 +2,7 @@
 " :h coc-hilights
 "hi CocFloating      cterm=none   ctermbg=233
 "hi CocHighlightText              ctermbg=234
-hi CocCodeLens ctermfg=0 guibg=#000000
+hi CocCodeLens ctermfg=0 guifg=#000000
 
 " Editor feedback
 "hi CoCErrorLine

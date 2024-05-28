@@ -21,8 +21,8 @@
 " }}}
 
 "https://stackoverflow.com/questions/78521945/neovim-0-10-colorscheme-changes-affecting-highlighting-in-terminal
-"set termguicolors
-set notermguicolors
+set termguicolors
+"set notermguicolors
 
 colorscheme fireCoder
 " vimrc config highlighting
