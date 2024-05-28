@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/bash_profile.pre.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.pre.bash"
 #this is to set up a new bash rc file
 
 source $HOME/dotfiles/bin/session-sauce.plugin.zsh
@@ -192,12 +190,9 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="usr/local/sbin:$PATH"
 
 if type nvm &> /dev/null; then
-  nvm alias default 18 &> /dev/null
+  nvm alias default 20 &> /dev/null
   nvm use default &> /dev/null
   echo "nvm using default"
 else
   echo "nvm not using default"
 fi
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/bash_profile.post.bash" ]] && builtin source "$HOME/.fig/shell/bash_profile.post.bash"
