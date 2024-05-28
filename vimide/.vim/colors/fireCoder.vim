@@ -77,7 +77,21 @@ call Coloring('CursorLineNr', 'bold', '011',  '233',  '#FFFF00',        FireDark
 call Coloring('Title',        'bold', '252',  'none', FireWhite,        'none')
 call Coloring('Visual',       'bold', 'none', '238',  'none',           FireDarkerGray)
 
-" skipped setting ctermxx
+" skipped setting ctermxx for the following
+" original colors
+"DiagnosticError xxx ctermfg=9 guifg=NvimLightRed
+"DiagnosticWarn xxx ctermfg=11 guifg=NvimLightYellow
+"ErrorMsg       xxx ctermfg=9 guifg=NvimLightRed
+"DiagnosticUnderlineError xxx cterm=underline gui=underline guisp=NvimLightRed
+"DiagnosticUnderlineWarn xxx cterm=underline gui=underline guisp=NvimLightYellow
+"DiagnosticUnderlineInfo xxx cterm=underline gui=underline guisp=NvimLightCyan
+"DiagnosticUnderlineHint xxx cterm=underline gui=underline guisp=NvimLightBlue
+"DiagnosticUnderlineOk xxx cterm=underline gui=underline guisp=NvimLightGreen
+call Coloring('ErrorMsg', 'none', '0', '0', FireRed, 'none')
+call Coloring('DiagnosticError', 'none', '0', '0', FireRed, 'none')
+call Coloring('DiagnosticUnderlineError', 'underline', '0', '0', FireRed, 'none')
+call Coloring('DiagnosticWarn', 'none', '0', '0', FireOrange, 'none')
+call Coloring('DiagnosticUnderlineWarn', 'underline', '0', '0', FireOrange, 'none')
 call Coloring('String', 'none', '0', '0', FireDarkBlue, 'none')
 
 " menu
