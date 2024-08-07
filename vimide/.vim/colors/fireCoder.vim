@@ -78,6 +78,8 @@ call Coloring('CursorLineNr', 'bold', '011',  '233',  '#FFFF00',        FireDark
 call Coloring('Title',        'bold', '252',  'none', FireWhite,        'none')
 call Coloring('Visual',       'bold', 'none', '238',  'none',           FireDarkerGray)
 call Coloring('Error',        'bold', '232',  '160',  FireNotBlack,     FireRedMed)
+call Coloring('StatusLine',   'bold', '235',  '032',  '#192224',        '#2e97e2') "FireDarkerGray, FireBlue touch brighter
+call Coloring('StatusLineNC', 'bold', '235',  '066',  '#192224',        '#5E6C70') "FireDarkerGray, FireGrayMed
 
 
 " skipped setting ctermxx for the following
