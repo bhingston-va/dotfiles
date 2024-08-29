@@ -24,9 +24,9 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/git-messenger.vim
 
 " merge conflicts
 " get from target
-nnoremap <leader>gt :diffget //2<CR>
+nnoremap <leader>gdt :diffget //2<CR>
 " get from merge
-nnoremap <leader>gm :diffget //3<CR>
+nnoremap <leader>gdm :diffget //3<CR>
 " }}}
 
 " [ Status Line - Vim-Airline] {{{

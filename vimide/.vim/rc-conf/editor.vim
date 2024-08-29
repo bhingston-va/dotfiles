@@ -41,6 +41,10 @@ hi VertSplit ctermfg=244 ctermbg=232 cterm=none guifg=#808080 guibg=#080808 gui=
 
 " Pressing <leader>ss will toggle and untoggle spell checking
 noremap <leader>ss :setlocal spell!<cr>
+set spelllang=en_ca
+set spell
+" Show nine spell checking candidates at most
+set spellsuggest=best,9
 " Toggle paste mode on and off
 imap <leader>pp <Esc>:setlocal paste!<cr>i
 noremap <leader>pp :setlocal paste!<cr>
