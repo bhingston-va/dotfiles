@@ -1,5 +1,4 @@
 vimide/.vim/plugged/*
-vimide/.vim/spell/*
 .DS_Store
 .vim/DS_Store
 Session.vim
