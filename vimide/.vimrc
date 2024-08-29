@@ -45,11 +45,13 @@ Plug 'mistricky/codesnap.nvim', { 'do': 'make' }
 " Comments
 Plug 'tpope/vim-commentary'
 
-" Autocomplete | LSP installer | AI helper
+" Autocomplete | LSP installer | AI helper | Spellcheck
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
 " wilder breaks copiolet (doesn't show at all) and coc auto complete (can't arrow down to select and on enter breaks)
 "Plug 'gelguy/wilder.nvim'
+" vim-spellcheck requires vim-ingo-library
+Plug 'inkarkat/vim-spellcheck' | Plug 'inkarkat/vim-ingo-library'
 
 " Debugging
 Plug 'puremourning/vimspector'
