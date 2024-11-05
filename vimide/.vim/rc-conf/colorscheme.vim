@@ -31,8 +31,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/color_gutter.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/coc/color_box.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-sneak/sneak-colors.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/limelight.vim
-so ~/dotfiles/vimide/.vim/rc-conf/color_txt.vim
-so ~/dotfiles/vimide/.vim/rc-conf/color_tf.vim
+so ~/dotfiles/vimide/.vim/rc-conf/color_syntax.vim
 so ~/dotfiles/vimide/.vim/rc-conf/editor.vim
 so ~/dotfiles/vimide/.vim/rc-conf/over_80.vim
 

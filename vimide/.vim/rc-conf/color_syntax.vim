@@ -1,4 +1,4 @@
-" [ Config Syntax Highlighting ] {{{
+" [ Text Config Syntax Highlighting ] {{{
 augroup TextTitles
   autocmd!
   autocmd BufEnter    *.txt highlight TextTitles cterm=none ctermfg=124 gui=none guifg=#af0000
@@ -15,7 +15,6 @@ augroup TextNumbers
   autocmd BufReadPost *.txt match TextNumbers /\d\+/
 augroup END
 
-
 augroup TextTerm
   autocmd!
   autocmd BufEnter    *.txt highlight TextTerm cterm=none ctermfg=039 gui=none guifg=#00afff
@@ -24,3 +23,7 @@ augroup TextTerm
   autocmd BufReadPost *.txt match TextTerm /\<\u\{2,}\>/
 augroup END
 " }}}
+
+" [ Terraform Config Syntax Highlighting ] {{{
+autocmd BufNewFile,BufRead *.tf set syntax=tf
+"}}}
