@@ -43,6 +43,8 @@ hi VertSplit ctermfg=244 ctermbg=232 cterm=none guifg=#808080 guibg=#080808 gui=
 noremap <leader>ss :setlocal spell!<cr>
 set spelllang=en_ca
 set spell
+set spellcapcheck=
+set spelloptions=camel
 " Show nine spell checking candidates at most
 set spellsuggest=best,9
 " Toggle paste mode on and off
