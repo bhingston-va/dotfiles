@@ -63,6 +63,9 @@ Plug 'wakatime/vim-wakatime'
 Plug 'mhinz/vim-startify'
 Plug 'liuchengxu/vim-which-key'
 
+" cURL | REST | HTTP
+Plug 'diepm/vim-rest-console'
+
 call plug#end()
 " }}}
 

@@ -46,4 +46,5 @@ so ~/dotfiles/vimide/.vim/rc-conf/buffer.vim
 " - file text search (word, caps sensitive options)
 " - project text search (word, caps sensitive options)
 " DEBUGGING
+" HTTP CLIENT
 so ~/dotfiles/vimide/.vim/rc-conf/ide.vim

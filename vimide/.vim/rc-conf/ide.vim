@@ -65,3 +65,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/vimspector.vim
 " [ Splash Screen ] {{{
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-startify.vim
 " }}}
+
+" [ http client ] {{{
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-rest-console.vim
+" }}}
