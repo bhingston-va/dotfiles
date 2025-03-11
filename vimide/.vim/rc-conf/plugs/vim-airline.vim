@@ -119,6 +119,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 "Change warning format:
 "let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
+" enable/disable codeium.vim interface
+let g:airline#extensions#codeium#enabled = 1
+
 " Pick one:
  let g:airline#extensions#ctrlp#color_template = 'insert' " (default)
 " let g:airline#extensions#ctrlp#color_template = 'normal'
