@@ -13,8 +13,9 @@ nnoremap k gk
 set splitbelow
 set splitright
 
-" mark it
-nnoremap <C-m> m
+" mark it (doesn't work because it is a prefix key)
+" see https://chatgpt.com/share/682cec4b-58b8-8000-a07c-a49a2c61186c for more details
+"nnoremap <C-m> m
 
 " see commit message, was seeing issues around when going to references in quick lists.
 " Looked like enter was mapped to something else.
@@ -26,7 +27,9 @@ map <leader>j :wincmd j<CR>
 map <leader>k :wincmd k<CR>
 map <leader>l :wincmd l<CR>
 "to move split screen around
-nnoremap m <c-w>
+"see "mark it" above where we can't remap mark so going to leave m
+"also no good letter left for moving between windows
+"nnoremap m <c-w>
 
 "to move between buffers
 nnoremap <C-H> :bprevious<CR>
