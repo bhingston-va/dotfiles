@@ -22,13 +22,6 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-gitgutter.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-fugitive.vim
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/git-messenger.vim
 
-" merge conflicts
-" get from target
-nnoremap <leader>gdt :diffget //2<CR>
-" get from merge
-nnoremap <leader>gdm :diffget //3<CR>
-" }}}
-
 " [ Status Line - Vim-Airline] {{{
 so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-airline.vim
 " }}}
