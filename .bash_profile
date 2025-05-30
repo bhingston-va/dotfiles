@@ -192,13 +192,21 @@ export PATH="usr/local/sbin:$PATH"
 start_spinner() {
   local pid=$1
   local delay=0.1
-  local spinstr='|/-\'
+
+  # Pick a spinner style: dots, waves, etc.
+  # local spinner_frames=("⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏")  # Braille dots
+  # local spinner_frames=("▖" "▘" "▝" "▗")  # Quarter circles
+  # spinner_frames=("▁" "▃" "▄" "▅" "▆" "▇" "█" "▇" "▆" "▅" "▄" "▃")  # 🌊 Wave style spinner
+  local spinner_frames=("▁ " "▄▁" "▅▃" "▆▄" "█▅" "▇█" "▆▇" "▅▆" "▄▅" "▃▄" "▁▃")  # 🌊 Wave style spinner
+  # local spinner_frames=("←" "↖" "↑" "↗" "→" "↘" "↓" "↙")  # Arrows
+  # local spinner_frames=("-" "\\" "|" "/")  # Classic fallback
+
+  local i=0
   while ps -p "$pid" &>/dev/null; do
-    local temp=${spinstr#?}
-    printf " [%c]  " "$spinstr"
-    local spinstr=$temp${spinstr%"$temp"}
+    printf " [%s]  " "${spinner_frames[$i]}"
+    i=$(( (i + 1) % ${#spinner_frames[@]} ))
     sleep $delay
-    printf "\b\b\b\b\b\b"
+    printf "\b\b\b\b\b\b\b"  # 6 \b for single char and 7 for double char
   done
   printf "    \b\b\b\b"
 }
