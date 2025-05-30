@@ -1,5 +1,7 @@
 #this is to set up a new bash rc file
 
+echo "hello Benj, welcome to the Matrix"
+
 source $HOME/dotfiles/bin/session-sauce.plugin.zsh
 export SESS_PROJECT_ROOT=$HOME/Projects
 export SESS_PROJECT_ROOT=$SESS_PROJECT_ROOT":$HOME/go/src/github.com/vendasta"
@@ -112,8 +114,6 @@ export NODE_OPTIONS=--max_old_space_size=12000
 #	tmux
 #fi
 
-echo "hello Benj, welcome to the Matrix"
-
 #===================
 # Personnal Aliases
 #===================
@@ -189,12 +189,33 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="usr/local/sbin:$PATH"
 
+start_spinner() {
+  local pid=$1
+  local delay=0.1
+  local spinstr='|/-\'
+  while ps -p "$pid" &>/dev/null; do
+    local temp=${spinstr#?}
+    printf " [%c]  " "$spinstr"
+    local spinstr=$temp${spinstr%"$temp"}
+    sleep $delay
+    printf "\b\b\b\b\b\b"
+  done
+  printf "    \b\b\b\b"
+}
+
+# nvm setup with spinner
 if type nvm &> /dev/null; then
-  nvm alias default 20 &> /dev/null
-  nvm use default &> /dev/null
-  echo "nvm using default"
+  echo -n "Setting up Node.js with nvm..."
+  (
+    nvm alias default 20 &> /dev/null
+    nvm use default &> /dev/null
+  ) &
+  spinner_pid=$!
+  start_spinner $spinner_pid
+  wait $spinner_pid
+  echo " Done!"
 else
-  echo "nvm not using default"
+  echo "nvm not found, skipping default Node.js setup."
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
