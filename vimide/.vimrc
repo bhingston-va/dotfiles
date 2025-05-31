@@ -84,7 +84,6 @@ require("CopilotChat").setup {
   answer_header = ' skynet ', -- Header to use for AI answers
   error_header = ' whoops! ', -- Header to use for errors
   separator = '───', -- Separator to use in chat -- https://github.com/copilotc-nvim/copilotchat.nvim?tab=readme-ov-file#configuration
-    -- default window options
 
   window = {
     layout = 'float', -- 'vertical', 'horizontal', 'float', 'replace', or a function that returns the layout
