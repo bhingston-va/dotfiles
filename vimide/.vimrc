@@ -21,9 +21,8 @@ Plug 'wfxr/minimap.vim'
 
 " Buffer navigation | Session management
 Plug 'szw/vim-maximizer'
-Plug 'ThePrimeagen/harpoon'
 " plenary is a peer dep of harpoon
-Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon' | Plug 'nvim-lua/plenary.nvim'
 Plug 'tpope/vim-obsession'
 
 " General go support
@@ -45,14 +44,16 @@ Plug 'mistricky/codesnap.nvim', { 'do': 'make' }
 " Comments
 Plug 'tpope/vim-commentary'
 
-" Autocomplete | LSP installer | AI helper | Spellcheck
+" Autocomplete | LSP installer | Spellcheck
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
-Plug 'github/copilot.vim'
 " wilder breaks copiolet (doesn't show at all) and coc auto complete (can't arrow down to select and on enter breaks)
 "Plug 'gelguy/wilder.nvim'
 " vim-spellcheck requires vim-ingo-library
 Plug 'inkarkat/vim-spellcheck' | Plug 'inkarkat/vim-ingo-library'
+
+" AI helpers
+" Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+Plug 'github/copilot.vim'
 
 " Debugging
 Plug 'puremourning/vimspector'
