@@ -54,6 +54,9 @@ Plug 'inkarkat/vim-spellcheck' | Plug 'inkarkat/vim-ingo-library'
 " AI helpers
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'github/copilot.vim'
+" plenary for curl, log and async functions
+Plug 'CopilotC-Nvim/CopilotChat.nvim' | Plug 'nvim-lua/plenary.nvim'
+
 
 " Debugging
 Plug 'puremourning/vimspector'
@@ -72,6 +75,33 @@ call plug#end()
 " }}}
 
 :set encoding=utf-8
+
+" [ CopilotChat ] {{{
+lua << EOF
+require("CopilotChat").setup {
+  -- See Configuration section for options
+  question_header = ' :benj: ', -- Header to use for user questions
+  answer_header = ' skynet ', -- Header to use for AI answers
+  error_header = ' whoops! ', -- Header to use for errors
+  separator = '───', -- Separator to use in chat -- https://github.com/copilotc-nvim/copilotchat.nvim?tab=readme-ov-file#configuration
+    -- default window options
+
+  window = {
+    --layout = 'vertical', -- 'vertical', 'horizontal', 'float', 'replace', or a function that returns the layout
+    width = 0.42, -- fractional width of parent, or absolute width in columns when > 1
+    --height = 0.5, -- fractional height of parent, or absolute height in rows when > 1
+    -- Options below only apply to floating windows
+    --relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
+    border = 'rounded', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
+    --row = nil, -- row position of the window, default is centered
+    --col = nil, -- column position of the window, default is centered
+    title = 'Lets talk...', -- title of chat window
+    --footer = nil, -- footer of chat window
+    --zindex = 1, -- determines if window is on top or below other floating windows
+  },
+}
+EOF
+" }}}
 
 " [ WildMenu - wilder.nvim ] {{{
 " wilder breaks copiolet (doesn't show at all) and coc auto complete (can't arrow down to select and on enter breaks)
