@@ -113,6 +113,7 @@ hi! link TabLine PmenuSbar
 
 hi FireBoarderBlue ctermfg=4 guifg=Blue
 hi! link NonText FireBoarderBlue " ensure my tildes at the bottom mare deep blue
+hi! link FloatBorder Constant " match fzf boarder color
 
 " All from :help syntax.txt
 "*Comment	any comment
