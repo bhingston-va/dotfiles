@@ -176,10 +176,6 @@ mkpdf() {
 	fi
 }
 
-chrome-beta() {
-	/Applications/Google\ Chrome\ Beta.app/Contents/MacOS/Google\ Chrome\ Beta --auto-open-devtools-for-tabs
-}
-
 export PATH=$PATH":$HOME/bin"
 
 export PATH="$HOME/.cargo/bin:$PATH"
