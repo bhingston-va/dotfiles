@@ -117,7 +117,7 @@ export NODE_OPTIONS=--max_old_space_size=12000
 #===================
 # Personnal Aliases
 #===================
-alias go="grc go"
+# alias go="grc go" # grc is broken for now; I messed up my python environment
 alias ls="ls -pG"
 alias hs="history | grep"
 alias sshusask="ssh bvh895@tuxworld.usask.ca"
