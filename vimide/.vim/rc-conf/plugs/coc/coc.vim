@@ -165,3 +165,8 @@ call coc#config('diagnostic.floatConfig', {
     \ 'rounded': v:true,
     \ 'borderhighlight': 'PreProc',
     \ })
+
+" Configure location list to open at bottom instead of top
+" This ensures the list of references shows at the bottom with preview,
+" rather than just a preview window at the top
+call coc#config('list.location.position', 'bottom')
