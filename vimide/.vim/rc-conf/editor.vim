@@ -73,6 +73,8 @@ augroup TabWidth
   autocmd BufEnter *.js   set shiftwidth=2
   autocmd BufEnter *.tex  set tabstop=2
   autocmd BufEnter *.tex  set shiftwidth=2
+  autocmd BufEnter *.rest set tabstop=2
+  autocmd BufEnter *.rest set shiftwidth=2
 augroup END
 
 augroup TabExpandage
@@ -86,5 +88,6 @@ augroup TabExpandage
   autocmd BufEnter  *.ts    set expandtab
   autocmd BufEnter  *.js    set expandtab
   autocmd BufEnter  *.tex   set expandtab
+  autocmd BufEnter  *.rest  set expandtab
 augroup END
 " }}}

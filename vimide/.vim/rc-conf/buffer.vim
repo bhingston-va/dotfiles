@@ -19,17 +19,18 @@ endfunc
 :augroup deleteWhitespace
 :  autocmd!
 :
-:  autocmd BufWrite *.sh  :call DeleteTrailingWS()
-:  autocmd BufWrite *.hs  :call DeleteTrailingWS()
-:  autocmd BufWrite *.cc  :call DeleteTrailingWS()
-:  autocmd BufWrite *.c   :call DeleteTrailingWS()
-:  autocmd BufWrite *.cpp :call DeleteTrailingWS()
-:  autocmd BufWrite *.vim :call DeleteTrailingWS()
-:  autocmd BufWrite *.txt :call DeleteTrailingWS()
-:  autocmd BufWrite *.md  :call DeleteTrailingWS()
-:  autocmd BufWrite *.py  :call DeleteTrailingWS()
-:  autocmd BufWrite *.tex :call DeleteTrailingWS()
-:  autocmd BufWrite *.go  :call DeleteTrailingWS()
+:  autocmd BufWrite *.sh   :call DeleteTrailingWS()
+:  autocmd BufWrite *.hs   :call DeleteTrailingWS()
+:  autocmd BufWrite *.cc   :call DeleteTrailingWS()
+:  autocmd BufWrite *.c    :call DeleteTrailingWS()
+:  autocmd BufWrite *.cpp  :call DeleteTrailingWS()
+:  autocmd BufWrite *.vim  :call DeleteTrailingWS()
+:  autocmd BufWrite *.txt  :call DeleteTrailingWS()
+:  autocmd BufWrite *.md   :call DeleteTrailingWS()
+:  autocmd BufWrite *.py   :call DeleteTrailingWS()
+:  autocmd BufWrite *.tex  :call DeleteTrailingWS()
+:  autocmd BufWrite *.go   :call DeleteTrailingWS()
+:  autocmd BufWrite *.rest :call DeleteTrailingWS()
 :augroup END
 
 " Don't close window, when deleting a buffer
