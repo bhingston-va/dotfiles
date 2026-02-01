@@ -53,9 +53,9 @@ Plug 'inkarkat/vim-spellcheck' | Plug 'inkarkat/vim-ingo-library'
 
 " AI helpers
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
-Plug 'github/copilot.vim'
+"Plug 'github/copilot.vim'
 " plenary for curl, log and async functions
-Plug 'CopilotC-Nvim/CopilotChat.nvim' | Plug 'nvim-lua/plenary.nvim'
+"Plug 'CopilotC-Nvim/CopilotChat.nvim' | Plug 'nvim-lua/plenary.nvim'
 
 
 " Debugging
