@@ -77,29 +77,31 @@ call plug#end()
 :set encoding=utf-8
 
 " [ CopilotChat ] {{{
-lua << EOF
-require("CopilotChat").setup {
-  -- See Configuration section for options
-  question_header = ' :benj: ', -- Header to use for user questions
-  answer_header = ' skynet ', -- Header to use for AI answers
-  error_header = ' whoops! ', -- Header to use for errors
-  separator = '───', -- Separator to use in chat -- https://github.com/copilotc-nvim/copilotchat.nvim?tab=readme-ov-file#configuration
 
-  window = {
-    layout = 'float', -- 'vertical', 'horizontal', 'float', 'replace', or a function that returns the layout
-    width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
-    height = vim.o.lines - 6, -- fractional height of parent, or absolute height in rows when > 1
-    -- Options below only apply to floating windows
-    relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
-    border = 'rounded', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
-    row = 1, -- row position of the window, default is centered
-    col = math.floor(vim.o.columns / 2), -- column position of the window, default is centered
-    title = ' 󱜸 Lets talk... ', -- title of chat window
-    --footer = nil, -- footer of chat window
-    --zindex = 1, -- determines if window is on top or below other floating windows
-  },
-}
-EOF
+"lua << EOF
+"require("CopilotChat").setup {
+"  -- See Configuration section for options
+"  question_header = ' :benj: ', -- Header to use for user questions
+"  answer_header = ' skynet ', -- Header to use for AI answers
+"  error_header = ' whoops! ', -- Header to use for errors
+"  separator = '───', -- Separator to use in chat -- https://github.com/copilotc-nvim/copilotchat.nvim?tab=readme-ov-file#configuration
+"
+"  window = {
+"    layout = 'float', -- 'vertical', 'horizontal', 'float', 'replace', or a function that returns the layout
+"    width = 0.5, -- fractional width of parent, or absolute width in columns when > 1
+"    height = vim.o.lines - 6, -- fractional height of parent, or absolute height in rows when > 1
+"    -- Options below only apply to floating windows
+"    relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
+"    border = 'rounded', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
+"    row = 1, -- row position of the window, default is centered
+"    col = math.floor(vim.o.columns / 2), -- column position of the window, default is centered
+"    title = ' 󱜸 Lets talk... ', -- title of chat window
+"    --footer = nil, -- footer of chat window
+"    --zindex = 1, -- determines if window is on top or below other floating windows
+"  },
+"}
+"EOF
+
 " }}}
 
 " [ WildMenu - wilder.nvim ] {{{
