@@ -9,9 +9,9 @@ Use this skill when starting new work that should live in its own worktree and b
 
 ## Naming convention
 
-- **Worktree path (kebab-case):** `{repo}-{jira-ticket}-{work-description}`
+- **Worktree path (lowercase kebab):** `{repo}-{jira-ticket-lower}-{work-description}`
   - Example: `email-kat-1376-use-immutable-ids`
-- **Branch:** `{JIRA-TICKET}/{work-description}`
+- **Branch (slash, not hyphen):** `{JIRA-TICKET}/{work-description}` — use a **slash** between ticket and description (e.g. `KAT-1318/create-trkd-msg-evnt`). Do **not** use `KAT-1318-create-trkd-msg-evnt`; the slash form is required for the git commit prehook (XXX-0000/description shape).
   - Example: `KAT-1376/use-immutable-ids`
 - **Base:** Create the branch from `origin/master`.
 
@@ -28,14 +28,14 @@ Use this skill when starting new work that should live in its own worktree and b
 2. **Worktree path:** Build the worktree path as `{repo}-{ticket-lower}-{description}` and place it as a sibling of the main repo.
    - Example: repo at `/Users/you/Projects/email` → worktree at `/Users/you/Projects/email-kat-1376-use-immutable-ids`
 
-3. **Branch name:** `{TICKET}/{description}` (slash, same description in kebab-case).
-   - Example: `KAT-1376/use-immutable-ids`
+3. **Branch name:** Always `{TICKET}/{description}` with a **slash** (never hyphen). Matches prehook expectation XXX-0000/description.
+   - Example: `KAT-1376/use-immutable-ids`, `KAT-1318/create-trkd-msg-evnt`
 
-4. **Create worktree and branch:**
+4. **Create worktree and branch:** Use the slash-form branch name from the start.
    ```bash
    cd /path/to/repo
    git fetch origin
-   git worktree add ../{worktree-name} -b {branch-name} origin/master
+   git worktree add ../{worktree-name} -b {TICKET}/{description} origin/master
    ```
 
 5. **Confirm:** Tell the user the worktree path and branch so they can open it in Cursor or run commands there.
