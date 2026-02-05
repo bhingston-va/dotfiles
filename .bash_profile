@@ -96,6 +96,26 @@ export EDITOR=vim
 export SCPSSH="scp bvh895@tuxworld.usask.ca:/student/bvh895/"
 export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0;36m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n\[\e[31m\]♥\[\e[m\] "
 
+export NES_TOKEN=pat-nes-c23bddd4
+
+#==================
+# Yesware Env Vars
+#==================
+export YW_GIT_NAME="Benj Hingston"
+export YW_GIT_EMAIL="benjhingston@gmail.com"
+export GOOGLE_OAUTH2_ID=token-here
+export GOOGLE_OAUTH2_SECRET=token-here
+export YWSTART_REPO_DIR="$HOME/Projects"
+export FURY_TOKEN=token-here
+export RSPEC_S3_ACCESS_KEY=token-here
+export RSPEC_S3_PRIVATE_KEY=token-here
+export NEW_RELIC_API_KEY=token-here
+# As of Postgres 12, we've gotten crashes locally unless we set this flag:
+export PGGSSENCMODE="disable"
+export AWS_REGION="us-east-1"
+# To avoid facing a timeout whenever you open the localdev environment for the first time, you can disable Rack::Timeout by adding
+export RACK_TIMEOUT_SERVICE_TIMEOUT=0
+
 #export SALES_SSL_ROOT=$HOME/Projects/keys/sales-psql
 ## TODO: only set if it is unset
 #if [ -z "$SALES_PASSWD" ]
@@ -128,10 +148,26 @@ eval $(thefuck --alias)
 # You can use whatever you want as an alias, like for Mondays:
 eval $(thefuck --alias fuck)
 
-#===================
-# Vendasta Aliases
-#===================
+#=+++++++++==================
+# Vendasta & Yesware Aliases
+#=========+++++++++==========
 #alias invfuck="inv pylint -f pylint_test -f test"
+
+alias npx="npx --no-install"
+
+alias hsb="AWS_PROFILE=yesware-bmo helm secrets"
+alias hss="AWS_PROFILE=yesware-staging helm secrets"
+alias hsp="AWS_PROFILE=yesware-production helm secrets"
+
+alias webpack="npx webpack"
+alias gulp="npx gulp"
+alias lerna="npx lerna"
+
+alias nginx-start='sudo brew services start nginx'
+alias nginx-stop='sudo brew services stop nginx'
+
+alias docker-start="docker compose -f ~/Projects/dev-services/docker-compose.yml up -d"
+alias docker-stop="docker compose -f ~/Projects/dev-services/docker-compose.yml stop"
 
 alias rmap="repository-mapper"
 
@@ -177,6 +213,8 @@ mkpdf() {
 }
 
 export PATH=$PATH":$HOME/bin"
+
+export PATH="$HOME/.local/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -224,3 +262,8 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Added by `rbenv init` on Wed 24 Sep 2025 15:12:55 CST
+eval "$(rbenv init - --no-rehash bash)"
