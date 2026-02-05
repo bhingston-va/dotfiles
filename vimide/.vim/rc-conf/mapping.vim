@@ -13,6 +13,16 @@ nnoremap k gk
 set splitbelow
 set splitright
 
+" In terminal-mode: Ctrl-h/j/k/l exits terminal mode and moves windows
+tnoremap <silent> <C-h> <C-\><C-n><C-w>h
+tnoremap <silent> <C-j> <C-\><C-n><C-w>j
+tnoremap <silent> <C-k> <C-\><C-n><C-w>k
+tnoremap <silent> <C-l> <C-\><C-n><C-w>l
+
+" Terminal mode: make jk/kj  leave terminal-mode
+tnoremap jk <C-\><C-n>
+tnoremap kj <C-\><C-n>
+
 " mark it (doesn't work because it is a prefix key)
 " see https://chatgpt.com/share/682cec4b-58b8-8000-a07c-a49a2c61186c for more details
 "nnoremap <C-m> m
@@ -22,10 +32,16 @@ set splitright
 nnoremap <CR> <CR>
 
 "move around split screens windows
-map <leader>h :wincmd h<CR>
-map <leader>j :wincmd j<CR>
-map <leader>k :wincmd k<CR>
-map <leader>l :wincmd l<CR>
+"note :wincmd is good for scripts but can be slower (Ex command)
+":h wincmd to learn more or
+" - https://vimhelp.org/windows.txt.html#CTRL-W
+" - https://vimhelp.org/windows.txt.html#wincmd
+"<C-w> when: Mapping keys; Navigating interactively; Exiting terminal-mode
+":wincmd when: Writing Vimscript logic; Calling from : prompt; Building commands dynamically
+map <leader>h <C-w> h<CR>
+map <leader>j <C-w> j<CR>
+map <leader>k <C-w> k<CR>
+map <leader>l <C-w> l<CR>
 "to move split screen around
 "see "mark it" above where we can't remap mark so going to leave m
 "also no good letter left for moving between windows
