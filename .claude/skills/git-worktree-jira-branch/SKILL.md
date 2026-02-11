@@ -9,8 +9,9 @@ Use this skill when starting new work that should live in its own worktree and b
 
 ## Naming convention
 
-- **Worktree path (lowercase kebab):** `{repo}-{jira-ticket-lower}-{work-description}`
-  - Example: `email-kat-1376-use-immutable-ids`
+- **Worktree path (all lowercase kebab):** `{repo}-{jira-ticket-lower}-{work-description}` — the entire path must be **lowercase** (ticket id lower too).
+  - ✅ Correct: `email-kat-1376-use-immutable-ids`, `email-kat-1384-outlook-reply-is-contact`
+  - ❌ Wrong: `email-KAT-1376-use-immutable-ids`, `email-KAT-1384-outlook-reply-is-contact` (uppercase ticket in path)
 - **Branch (slash, not hyphen):** `{JIRA-TICKET}/{work-description}` — use a **slash** between ticket and description. Required for the git commit prehook (XXX-0000/description shape).
   - ✅ Correct: `KAT-1376/use-immutable-ids`, `KAT-1384/outlook-reply-is-contact`
   - ❌ Wrong: `KAT-1376-use-immutable-ids`, `KAT-1384-outlook-reply-is-contact` (hyphens instead of slash)
@@ -26,16 +27,18 @@ Use this skill when starting new work that should live in its own worktree and b
 
 1. **Resolve repo and ticket:** From context, get the repo name (e.g. `email`), the JIRA ticket (e.g. `KAT-1376`), and a short work description (e.g. `use-immutable-ids`). Use kebab-case for the description.
 
-2. **Worktree path:** Build the worktree path as `{repo}-{ticket-lower}-{description}` and place it as a sibling of the main repo.
+2. **Worktree path (all lowercase):** Build the worktree path as `{repo}-{ticket-lower}-{description}` and place it as a sibling of the main repo. Use **lowercase** for the ticket (e.g. `kat-1376`, not `KAT-1376`).
    - Example: repo at `/Users/you/Projects/email` → worktree at `/Users/you/Projects/email-kat-1376-use-immutable-ids`
+   - ❌ Wrong: `../email-KAT-1376-use-immutable-ids` (uppercase in path)
 
 3. **Branch name:** Always `{TICKET}/{description}` with a **slash** (never hyphen). Matches prehook expectation XXX-0000/description.
    - Example: `KAT-1376/use-immutable-ids`, `KAT-1318/create-trkd-msg-evnt`
 
-4. **Create worktree and branch:** Use the slash-form branch name from the start. Do **not** create the branch with a hyphenated name and rename later.
+4. **Create worktree and branch:** Use the slash-form branch name and a **lowercase** worktree path. Do **not** create the branch with a hyphenated name and rename later. Do **not** use uppercase in the worktree path (e.g. use `email-kat-1384-outlook-reply-is-contact`, not `email-KAT-1384-outlook-reply-is-contact`).
    ```bash
    cd /path/to/repo
    git fetch origin
+   # worktree-name must be all lowercase, e.g. email-kat-1384-outlook-reply-is-contact
    git worktree add ../{worktree-name} -b {TICKET}/{description} origin/master
    ```
    The new branch has no upstream yet. That is correct: the remote branch will be created on first push.
@@ -57,7 +60,7 @@ Use this skill when starting new work that should live in its own worktree and b
 
 ## Fixing an existing worktree
 
-If the worktree was created with the wrong branch name (e.g. hyphenated) or the branch is tracking `origin/master`:
+**Wrong branch name or tracking:** If the worktree was created with the wrong branch name (e.g. hyphenated) or the branch is tracking `origin/master`:
 
 1. **From the worktree directory:** Fetch latest, then rename the branch to the slash form and reset to `origin/master`:
    ```bash
@@ -67,6 +70,12 @@ If the worktree was created with the wrong branch name (e.g. hyphenated) or the 
    git reset --hard origin/master
    ```
 2. **First push:** Run `git push -u origin '{TICKET}/{description}'` to create the remote branch and set tracking. Do not set upstream before pushing (the remote branch does not exist yet).
+
+**Wrong worktree path case (e.g. uppercase):** If the worktree folder was created with uppercase (e.g. `email-KAT-1384-outlook-reply-is-contact`) and should be lowercase:
+
+1. From the main repo, remove the worktree (this deletes the worktree directory): `git worktree remove /path/to/email-KAT-1384-...`
+2. Add the worktree again at the **lowercase** path: `git worktree add ../email-kat-1384-outlook-reply-is-contact 'KAT-1384/outlook-reply-is-contact'`
+3. If you had uncommitted changes, they were lost when the worktree was removed; commit or stash before removing.
 
 ## References
 
