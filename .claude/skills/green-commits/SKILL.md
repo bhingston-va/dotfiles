@@ -22,7 +22,7 @@ If it's ambiguous whether the work is "done" or whether they want it committed (
 
 - **Never** run `git push origin master` (or equivalent main branch).
 - Only commit and push to **feature branches** (e.g. the branch the user is already on, or a branch they asked for).
-- If the current branch is `master` or `main`, switch to a feature branch first or ask which branch to use before pushing.
+- If the current branch is `master` or `main`, **always ask** which branch to use before pushing; do not switch branches without asking.
 
 ### 2. Small and green commits
 
