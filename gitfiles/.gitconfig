@@ -1,0 +1,45 @@
+[user]
+	name = Benj Hingston
+	email = benjhingston@gmail.com
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[alias]
+	st = status
+	ca = commit -a
+	cm = commit
+	cme = commit --allow-empty
+	redo = commit --amend
+	br = branch
+	co = checkout
+	newb = checkout -b
+	sco = sparse-checkout
+	df = diff --name-status origin/master
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	mfuck = merge --abort
+	log = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	conf = !vim $(git diff --name-only --diff-filter=U)
+	loc-br = "!git branch --format '%(refname:short) %(upstream:short)' | awk '{if (!$2) print $1;}'"
+[init]
+	templatedir = ~/.git-templates
+	defaultBranch = main
+[core]
+	hooksPath = /Users/bhingston/.githooks
+	excludesfile = /Users/bhingston/.global_ignore
+	ignorecase = true
+	editor = nvim
+[merge "npm-merge-driver"]
+	name = automatically merge npm lockfiles
+	driver = npx npm-merge-driver merge %A %O %B %P
+[push]
+	autoSetupRemote = true
+	default = simple
+[pull]
+	rebase = false
+	ff = only
+[http]
+	postBuffer = 524288000
+[credential]
+	helper = osxkeychain
+[merge]
+	ff = false

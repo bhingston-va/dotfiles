@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+import sys, re
+from subprocess import check_output
+
+BRANCH_REGEX = re.compile(r'([A-Z]+-[0-9]+|[0-9]{9})')
+COMMIT_MSG_FILEPATH = sys.argv[1]
+
+branchBytes = ''
+try:
+    branchBytes = check_output(['git', 'symbolic-ref', '-q', '--short', 'HEAD']).strip()
+except:
+    sys.exit()
+
+if branchBytes is None:
+    sys.exit()
+
+branch = branchBytes.decode('utf-8')
+search = BRANCH_REGEX.search(branch)
+if search:
+    ticket = search.group(1)
+    if ticket[0].isdigit():
+        ticket = '[#{}]'.format(ticket)
+    with open(COMMIT_MSG_FILEPATH, 'r+') as fh:
+        commit_msg = fh.read()
+        fh.seek(0, 0)
+        fh.write('%s\n%s' % (commit_msg, ticket))
+
+# grab the name of the branch
+#NAME=$(git branch | grep ^* | sed 's/* //g')
+# for black ops only
+#echo "[$NAME]" >> "$1"
