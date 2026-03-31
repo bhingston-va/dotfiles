@@ -1,1 +1,25 @@
-/Users/bhingston/Projects/yw-tools/githooks/prepare-commit-msg
+#!/bin/sh
+
+### Add global hooks here
+
+# Get branch name
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+# Extract JIRA key pattern (e.g. ABC-1234)
+JIRA_ID=$(echo "$BRANCH_NAME" | grep -oE '[A-Z]+-[0-9]+')
+# If a JIRA ID was found and not already in message, append it
+if [ -n "$JIRA_ID" ]; then
+  # Arguments:
+  # $1 = path to the commit message file
+  # $2 = type of commit (message, merge, squash, etc.)
+  # Skip special cases like merges or squash commits
+  if [[ "$2" != "merge" && "$2" != "squash" ]]; then
+    echo "\n$JIRA_ID" >> "$1"
+  fi
+fi
+
+### When global hooks processing is done, run the repo local hook if it exists
+if [ -e ./.git/hooks/pre-commit ]; then
+  ./.git/hooks/pre-commit "$@"
+else
+  exit 0
+fi

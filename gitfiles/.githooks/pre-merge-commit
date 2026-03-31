@@ -1,1 +1,10 @@
-/Users/bhingston/Projects/yw-tools/githooks/pre-merge-commit
+#!/bin/sh
+
+### Add global hooks here
+
+### When global hooks processing is done, run the repo local hook if it exists
+if [ -e ./.git/hooks/pre-commit ]; then
+  ./.git/hooks/pre-commit "$@"
+else
+  exit 0
+fi
