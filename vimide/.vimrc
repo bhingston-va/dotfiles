@@ -72,6 +72,10 @@ Plug 'liuchengxu/vim-which-key'
 " cURL | REST | HTTP
 Plug 'diepm/vim-rest-console'
 
+" Slideshows | Markdown
+Plug 'dhruvasagar/vim-marp'
+Plug 'OXY2DEV/markview.nvim'
+
 call plug#end()
 " }}}
 
