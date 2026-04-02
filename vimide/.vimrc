@@ -169,7 +169,7 @@ call plug#end()
 " [ ClaudeCode ] {{{
 
 lua << EOF
-lua require('claude-code').setup({
+require('claude-code').setup({
   -- Terminal window settings
   window = {
     split_ratio = 0.4,      -- Percentage of screen for the terminal window (height for horizontal, width for vertical splits)
