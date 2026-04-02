@@ -172,7 +172,7 @@ lua << EOF
 lua require('claude-code').setup({
   -- Terminal window settings
   window = {
-    split_ratio = 0.3,      -- Percentage of screen for the terminal window (height for horizontal, width for vertical splits)
+    split_ratio = 0.4,      -- Percentage of screen for the terminal window (height for horizontal, width for vertical splits)
     position = "botright",  -- Position of the window: "botright", "topleft", "vertical", "float", etc.
     enter_insert = true,    -- Whether to enter insert mode when opening Claude Code
     hide_numbers = true,    -- Hide line numbers in the terminal window
@@ -192,7 +192,7 @@ lua require('claude-code').setup({
   refresh = {
     enable = true,           -- Enable file change detection
     updatetime = 100,        -- updatetime when Claude Code is active (milliseconds)
-    timer_interval = 1000,   -- How often to check for file changes (milliseconds)
+    timer_interval = 500,    -- How often to check for file changes (milliseconds)
     show_notifications = true, -- Show notification when files are reloaded
   },
   -- Git project settings

@@ -66,3 +66,7 @@ so ~/dotfiles/vimide/.vim/rc-conf/plugs/vim-rest-console.vim
 " [ codeium ] {{{
 "so ~/dotfiles/vimide/.vim/rc-conf/plugs/codeium.vim
 " }}}
+
+" [ claude-code ] {{{
+so ~/dotfiles/vimide/.vim/rc-conf/plugs/claude-code.vim
+" }}}
