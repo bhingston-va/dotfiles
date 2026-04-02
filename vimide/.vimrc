@@ -74,7 +74,8 @@ Plug 'diepm/vim-rest-console'
 
 " Slideshows | Markdown
 Plug 'dhruvasagar/vim-marp'
-Plug 'OXY2DEV/markview.nvim'
+" treesitter is a peer dep of markview
+Plug 'OXY2DEV/markview.nvim' | Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 " }}}
