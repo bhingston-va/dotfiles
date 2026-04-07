@@ -14,6 +14,7 @@
 	co = checkout
 	newb = checkout -b
 	sco = sparse-checkout
+	wt = worktree
 	df = diff --name-status origin/master
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	mfuck = merge --abort
