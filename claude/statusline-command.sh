@@ -2,59 +2,126 @@
 
 input=$(cat)
 
-# --- State indicator: thinking vs waiting ---
-# current_usage is non-null when an API call has been made (active/post-active turn)
-# null means no messages exchanged yet (idle/waiting for first input)
-current_usage=$(echo "$input" | jq -r '.context_window.current_usage')
-if [ "$current_usage" = "null" ] || [ -z "$current_usage" ]; then
-    state_icon="💤"
-else
-    state_icon="🤔"
+# --- Model badge ---
+model=$(echo "$input" | jq -r '.model.display_name // empty')
+model_badge=""
+if [ -n "$model" ]; then
+    model_badge="[${model}] "
 fi
 
-# --- Token burn tracker ---
+# --- Session timer ---
+session_id=$(echo "$input" | jq -r '.session_id // empty')
+timer_str=""
+if [ -n "$session_id" ]; then
+    timer_file="/tmp/claude-session-${session_id}"
+    if [ ! -f "$timer_file" ]; then
+        date +%s > "$timer_file"
+    fi
+    start_time=$(cat "$timer_file")
+    now=$(date +%s)
+    elapsed=$(( now - start_time ))
+    if [ "$elapsed" -ge 3600 ]; then
+        timer_str=" · $(( elapsed / 3600 ))h$(( (elapsed % 3600) / 60 ))m"
+    else
+        timer_str=" · $(( elapsed / 60 ))m"
+    fi
+fi
+
+# --- Token formatting: 45321 -> 45k ---
+fmt_k() {
+    local n=$1
+    if [ "$n" -ge 1000 ]; then
+        printf "%dk" "$(( n / 1000 ))"
+    else
+        printf "%s" "$n"
+    fi
+}
+
+# --- Context window ---
 used_pct=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
-remaining_pct=$(echo "$input" | jq -r '.context_window.remaining_percentage // empty')
-input_tokens=$(echo "$input" | jq -r '.context_window.current_usage.input_tokens // empty')
+input_tokens=$(echo "$input" | jq -r '
+  .context_window.current_usage |
+  if . == null then empty
+  else ((.input_tokens // 0) + (.cache_read_input_tokens // 0) + (.cache_creation_input_tokens // 0))
+  end')
 context_size=$(echo "$input" | jq -r '.context_window.context_window_size // empty')
 
-# Build a 10-char progress bar from a percentage integer
-make_bar() {
-    local pct=$1
-    local filled=$(( pct * 10 / 100 ))
-    local empty=$(( 10 - filled ))
-    local bar=""
-    local i
+make_bar10() {
+    local pct=$1 bar="" i
+    local filled=$(( pct * 10 / 100 )) empty=$(( 10 - pct * 10 / 100 ))
     for (( i = 0; i < filled; i++ )); do bar="${bar}█"; done
     for (( i = 0; i < empty;  i++ )); do bar="${bar}░"; done
     echo "$bar"
 }
 
-if [ -n "$used_pct" ] && [ -n "$input_tokens" ] && [ -n "$context_size" ]; then
-    used_pct_int=$(printf '%.0f' "$used_pct")
-    # Colour: green < 50%, yellow 50-79%, red >= 80%
-    if [ "$used_pct_int" -ge 80 ]; then
-        color="\e[0;31m"   # red
-    elif [ "$used_pct_int" -ge 50 ]; then
-        color="\e[0;33m"   # yellow
-    else
-        color="\e[0;32m"   # green
+make_bar5() {
+    local pct=$1 bar="" i
+    local filled=$(( pct * 5 / 100 )) empty=$(( 5 - pct * 5 / 100 ))
+    for (( i = 0; i < filled; i++ )); do bar="${bar}█"; done
+    for (( i = 0; i < empty;  i++ )); do bar="${bar}░"; done
+    echo "$bar"
+}
+
+rate_color() {
+    local pct=$1
+    if [ "$pct" -ge 80 ]; then printf "\e[0;31m"
+    elif [ "$pct" -ge 50 ]; then printf "\e[0;33m"
+    else printf "\e[0;32m"
     fi
-    bar=$(make_bar "$used_pct_int")
-    token_str="${color}${input_tokens}/${context_size} ${bar} ${used_pct_int}%\e[m"
-elif [ -n "$used_pct" ]; then
-    used_pct_int=$(printf '%.0f' "$used_pct")
-    if [ "$used_pct_int" -ge 80 ]; then
-        color="\e[0;31m"
-    elif [ "$used_pct_int" -ge 50 ]; then
-        color="\e[0;33m"
+}
+
+fmt_reset() {
+    local resets_at=$1
+    local now; now=$(date +%s)
+    local diff=$(( resets_at - now ))
+    if [ "$diff" -le 0 ]; then
+        echo "now"
+    elif [ "$diff" -lt 3600 ]; then
+        echo "$(( diff / 60 ))m"
+    elif [ "$diff" -lt 86400 ]; then
+        printf "%dh%dm" "$(( diff / 3600 ))" "$(( (diff % 3600) / 60 ))"
     else
-        color="\e[0;32m"
+        local d=$(( diff / 86400 )) h=$(( (diff % 86400) / 3600 ))
+        [ "$h" -gt 0 ] && printf "%dd%dh" "$d" "$h" || printf "%dd" "$d"
     fi
-    bar=$(make_bar "$used_pct_int")
-    token_str="${color}${bar} ${used_pct_int}%\e[m"
+}
+
+if [ -n "$used_pct" ]; then
+    used_pct_int=$(printf '%.0f' "$used_pct")
+    color=$(rate_color "$used_pct_int")
+    bar=$(make_bar10 "$used_pct_int")
+    if [ -n "$input_tokens" ] && [ -n "$context_size" ]; then
+        used_fmt=$(fmt_k "$input_tokens")
+        total_fmt=$(fmt_k "$context_size")
+        token_str="${color}${bar} ${used_pct_int}% · ${used_fmt}/${total_fmt}\e[m${timer_str}"
+    else
+        token_str="${color}${bar} ${used_pct_int}%\e[m${timer_str}"
+    fi
 else
-    token_str="\e[2mno data\e[m"
+    token_str="\e[2mno data\e[m${timer_str}"
 fi
 
-printf "%s  \e[1mTokens:\e[m %b" "$state_icon" "$token_str"
+# --- Rate limits ---
+rate_str=""
+five_h_pct=$(echo "$input" | jq -r '.rate_limits.five_hour.used_percentage // empty')
+five_h_reset=$(echo "$input" | jq -r '.rate_limits.five_hour.resets_at // empty')
+seven_d_pct=$(echo "$input" | jq -r '.rate_limits.seven_day.used_percentage // empty')
+seven_d_reset=$(echo "$input" | jq -r '.rate_limits.seven_day.resets_at // empty')
+
+if [ -n "$five_h_pct" ] && [ -n "$five_h_reset" ]; then
+    pct_int=$(printf '%.0f' "$five_h_pct")
+    c=$(rate_color "$pct_int")
+    bar=$(make_bar5 "$pct_int")
+    reset=$(fmt_reset "$five_h_reset")
+    rate_str="${rate_str} \e[2m│\e[m ${c}${bar}\e[m \e[2m5h in\e[m ${reset}"
+fi
+
+if [ -n "$seven_d_pct" ] && [ -n "$seven_d_reset" ]; then
+    pct_int=$(printf '%.0f' "$seven_d_pct")
+    c=$(rate_color "$pct_int")
+    bar=$(make_bar5 "$pct_int")
+    reset=$(date -r "$seven_d_reset" +"%a")
+    rate_str="${rate_str} · ${c}${bar}\e[m \e[2m7d on\e[m ${reset}"
+fi
+
+printf "%b%b%b" "$model_badge" "$token_str" "$rate_str"

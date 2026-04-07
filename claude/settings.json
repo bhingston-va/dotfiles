@@ -1,6 +1,31 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(git merge:*)",
+      "Bash",
+      "Edit(~/Projects/*)",
+      "Edit(~/.claude/settings.json)"
+    ],
+    "additionalDirectories": [
+      "~/Projects/"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
-  }
+  },
+  "enabledPlugins": {
+    "vendasta-dev-agent-toolkit@vendasta-dev-agent-toolkit": true,
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "vendasta-dev-agent-toolkit": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/vendasta/dev-agent-toolkit.git"
+      },
+      "autoUpdate": true
+    }
+  },
+  "voiceEnabled": true
 }
