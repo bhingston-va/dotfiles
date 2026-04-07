@@ -3,8 +3,7 @@
 [[ $- == *i* ]] && echo "hello Benj, welcome to the Matrix"
 
 source $HOME/dotfiles/bin/session-sauce.plugin.zsh
-export SESS_PROJECT_ROOT=$HOME/Projects
-export SESS_PROJECT_ROOT=$SESS_PROJECT_ROOT":$HOME/go/src/github.com/vendasta"
+export SESS_PROJECT_ROOT="$HOME/Projects:$HOME/go/src/github.com/vendasta"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
