@@ -1,6 +1,6 @@
 #this is to set up a new bash rc file
 
-echo "hello Benj, welcome to the Matrix"
+[[ $- == *i* ]] && echo "hello Benj, welcome to the Matrix"
 
 source $HOME/dotfiles/bin/session-sauce.plugin.zsh
 export SESS_PROJECT_ROOT=$HOME/Projects
@@ -245,8 +245,8 @@ start_spinner() {
   printf "    \b\b\b\b"
 }
 
-# nvm setup with spinner
-if type nvm &> /dev/null; then
+# nvm setup with spinner (interactive shells only — skips Claude Code / non-interactive bash)
+if [[ $- == *i* ]] && type nvm &> /dev/null; then
   echo -n "Setting up Node.js with nvm..."
   (
     nvm alias default 20 &> /dev/null
@@ -256,8 +256,6 @@ if type nvm &> /dev/null; then
   start_spinner $spinner_pid
   wait $spinner_pid
   echo " Done!"
-else
-  echo "nvm not found, skipping default Node.js setup."
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
