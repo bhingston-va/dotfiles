@@ -1,13 +1,48 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git merge:*)",
-      "Bash",
+      "Bash(cd *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Bash(export *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git branch *)",
+      "Bash(git stash*)",
+      "Bash(git worktree *)",
+      "Bash(npx nx *)",
+      "Bash(npm run *)",
+      "Bash(npm install*)",
+      "Bash(go build *)",
+      "Bash(go test *)",
+      "Bash(go generate *)",
+      "Bash(go install *)",
       "Edit(~/Projects/*)",
+      "Edit(~/dotfiles/*)",
       "Edit(~/.claude/settings.json)"
     ],
     "additionalDirectories": [
       "~/Projects/"
+    ]
+  },
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/branch-check.sh"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
