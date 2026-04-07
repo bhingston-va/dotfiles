@@ -24,6 +24,7 @@
       "Bash(go test *)",
       "Bash(go generate *)",
       "Bash(go install *)",
+      "Bash(bq *)",
       "Edit(~/Projects/*)",
       "Edit(~/dotfiles/*)",
       "Edit(~/.claude/settings.json)"
