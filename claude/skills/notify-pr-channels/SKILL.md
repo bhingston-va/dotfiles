@@ -14,39 +14,27 @@ When a build passes or a PR is ready, post to **both** channels below.
 | Personal team PR | https://chat.google.com/room/AAAAIj8WMWc?cls=7 | AT Craig and Daniel |
 | Snapcats | https://chat.google.com/room/AAAAAHjNt6A?cls=7 | No specific mentions |
 
-## Sending messages via webhook
+## Sending messages
 
-Each room needs an incoming webhook URL. These are configured in Google Chat under **Room settings → Apps & integrations → Add webhooks**. Once you have them, post with:
+Use the bundled script — no webhook URLs needed, auth is handled via OAuth:
 
 ```bash
-curl -s -X POST "<WEBHOOK_URL>" \
-  -H 'Content-Type: application/json' \
-  -d '{"text": "<message>"}'
+python3 ~/.claude/skills/notify-pr-channels/scripts/chat_post.py "<PR_URL>" "<PR_TITLE>"
 ```
 
-### Webhook URLs (fill in once configured)
+The script:
+- Posts to the personal team PR channel with @Craig Kumick and @Daniel Ngo mentions
+- Posts to the snapcats channel without mentions
+- Auth: refreshes OAuth token via GCP secret `google-chat-oauth-client-secret` (repcore-prod), cached at `~/.config/google-chat-cli/credentials-rw.json`
 
-- **Personal team PR webhook**: *(ask user or check project secrets)*
-- **Snapcats webhook**: *(ask user or check project secrets)*
-
-## Message format
-
-### Personal team PR channel
-```
-PR ready / Build passing: <PR title> (<PR URL>)
-@Craig @Daniel — FYI
-```
-
-Mentioning users requires their Google Chat user IDs in the format `<users/USER_ID>`. Look up IDs by fetching a message they've sent in the room using the google-chat-fetcher skill, then extract from the `sender.name` field.
-
-### Snapcats channel
-```
-PR ready / Build passing: <PR title> (<PR URL>)
-```
+### Known user IDs (hardcoded in script)
+- Craig Kumick: `users/101609381686230694100`
+- Daniel Ngo: `users/107059066615888383168`
 
 ## Steps
 
 1. Get the PR URL and title: `gh pr view --json url,title,number`
-2. If you don't have webhook URLs, ask the user: "Do you have webhook URLs for the team PR channel and snapcats channel?"
-3. Look up Craig and Daniel's user IDs using the `vendasta-dev-agent-toolkit:google-chat-fetcher` skill on the personal team PR room if not already known
-4. Post to both channels via curl using the webhook URLs
+2. Run the script:
+   ```bash
+   python3 ~/.claude/skills/notify-pr-channels/scripts/chat_post.py "<PR_URL>" "<PR_TITLE>"
+   ```
