@@ -14,6 +14,10 @@
 - Use the `notify-pr-channels` skill for Google Chat notifications.
   - Meerkats team PR channel: `AAAAIj8WMWc` (always @Craig and @Daniel)
 
+## Bash Tool Rules
+- For commands that must run inside a specific directory, use the tool's built-in directory flag instead of `cd <dir> && <command>`:
+  - **git**: `git -C <path> <subcommand>` (e.g., `git -C /path/to/repo pull`)
+
 ## Dev Environment
 - Galaxy dev server: `PID=VUNI NODE_OPTIONS=--max_old_space_size=12000 npm run start business-center-client` (run from galaxy worktree)
 - Auth tokens: `mscli auth session --env {demo|prod} --skip-version-check`
