@@ -67,14 +67,8 @@ def main():
     pr_url, pr_title = sys.argv[1], sys.argv[2]
     access_token = get_access_token()
 
-    team_text = (
-        f'Build passing — PR ready for review:\n{pr_title}\n{pr_url}\n\n'
-        f'<{CRAIG_ID}> <{DANIEL_ID}>'
-    )
-    snapcats_text = f'Build passing — PR ready for review:\n{pr_title}\n{pr_url}'
-
-    post_message(access_token, SPACES['team'], team_text)
-    post_message(access_token, SPACES['snapcats'], snapcats_text)
+    post_message(access_token, SPACES['team'], f'{pr_title}\n{pr_url} <{CRAIG_ID}> <{DANIEL_ID}>')
+    post_message(access_token, SPACES['snapcats'], f'{pr_title}\n{pr_url}')
 
 
 if __name__ == '__main__':

@@ -36,5 +36,7 @@ The script:
 1. Get the PR URL and title: `gh pr view --json url,title,number`
 2. Run the script:
    ```bash
-   python3 ~/.claude/skills/notify-pr-channels/scripts/chat_post.py "<PR_URL>" "<PR_TITLE>"
+   PR_URL=$(gh pr view --json url --jq '.url')
+   PR_TITLE=$(gh pr view --json title --jq '.title')
+   python3 ~/.claude/skills/notify-pr-channels/scripts/chat_post.py "$PR_URL" "$PR_TITLE"
    ```
