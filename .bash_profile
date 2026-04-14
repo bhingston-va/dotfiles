@@ -264,3 +264,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # Added by `rbenv init` on Wed 24 Sep 2025 15:12:55 CST
 eval "$(rbenv init - --no-rehash bash)"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

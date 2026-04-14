@@ -4,14 +4,16 @@
 Usage:
     python3 chat_post.py <pr_url> <pr_title>
 
-Posts to:
+Always posts to:
   - Personal team PR channel (AAAAIj8WMWc) — @mentions Craig and Daniel
-  - Snapcats channel (AAAAAHjNt6A) — no mentions
+
+Also posts to any external team channels found by reading @vendasta/<team>
+mentions in the PR body via `gh pr view`. Add teams to TEAM_CHANNELS below.
 
 Auth: OAuth via GCP secret + cached refresh token at
       ~/.config/google-chat-cli/credentials-rw.json
 """
-import json, subprocess, sys, urllib.request, urllib.parse
+import json, re, subprocess, sys, urllib.request, urllib.parse
 from pathlib import Path
 
 CLIENT_ID = "642433220657-955eqfa32mlb0o3koe8g4qmuv1ue414s.apps.googleusercontent.com"
@@ -21,9 +23,17 @@ CREDS_FILE = Path('/Users/bhingston/.config/google-chat-cli/credentials-rw.json'
 CRAIG_ID = "users/101609381686230694100"   # Craig Kumick
 DANIEL_ID = "users/107059066615888383168"  # Daniel Ngo
 
+# Always-posted spaces
 SPACES = {
-    'team':     'AAAAIj8WMWc',  # Personal team PR channel
-    'snapcats': 'AAAAAHjNt6A',  # Snapcats channel
+    'team': 'AAAAIj8WMWc',  # Personal team PR channel (always posted)
+}
+
+# External team slug → Google Chat space ID
+# Posted when @vendasta/<team> appears in the PR body.
+# Add new teams here as they're encountered.
+TEAM_CHANNELS = {
+    'snapcats':  'AAAAAHjNt6A',  # Snapcats channel
+    'snack-ops': 'AAAAjno8gDs',  # SnackOps channel
 }
 
 
@@ -59,6 +69,24 @@ def post_message(access_token, space_id, text):
         print(f"Error posting to {space_id}: {e.code} {e.read().decode()[:300]}")
 
 
+def get_pr_team_spaces(pr_url):
+    """Read PR body via gh CLI and return any TEAM_CHANNELS spaces mentioned."""
+    result = subprocess.run(
+        ['gh', 'pr', 'view', pr_url, '--json', 'body', '--jq', '.body'],
+        capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        return []
+    body = result.stdout
+    mentioned = re.findall(r'@vendasta/([\w-]+)', body)
+    spaces = []
+    for team in mentioned:
+        space = TEAM_CHANNELS.get(team)
+        if space:
+            spaces.append((team, space))
+    return spaces
+
+
 def main():
     if len(sys.argv) < 3:
         print("Usage: chat_post.py <pr_url> <pr_title>")
@@ -67,8 +95,13 @@ def main():
     pr_url, pr_title = sys.argv[1], sys.argv[2]
     access_token = get_access_token()
 
+    # Always post to team channel
     post_message(access_token, SPACES['team'], f'{pr_title}\n{pr_url} <{CRAIG_ID}> <{DANIEL_ID}>')
-    post_message(access_token, SPACES['snapcats'], f'{pr_title}\n{pr_url}')
+
+    # Post to any external team channels mentioned in the PR body
+    for team, space_id in get_pr_team_spaces(pr_url):
+        print(f"Found @vendasta/{team} in PR body — posting to their channel")
+        post_message(access_token, space_id, f'{pr_title}\n{pr_url}')
 
 
 if __name__ == '__main__':
