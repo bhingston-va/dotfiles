@@ -45,25 +45,29 @@ done
 
 Set `persistent: true` so it survives long builds. The monitor will emit one line per poll tick.
 
-## Step 3: On SUCCESS — merge the PR
+## Step 3: On SUCCESS — report, then ask or act based on instructions
 
-Galaxy does **not** allow merge commits. Always use `--squash`:
+**Default: report green and stop.** Do NOT merge unless the user explicitly asked you to merge as part of this task.
+
+> "Build is green ✓ — PR #XXXXX is ready to merge."
+
+**Only merge if the user said something like** "merge when green", "auto-merge", or "merge it when CI passes." In that case, use squash (Galaxy does not allow merge commits):
 
 ```bash
 gh pr merge <PR_NUMBER> --squash --delete-branch --repo vendasta/galaxy
 ```
 
-> **Note:** `--delete-branch` can fail with `fatal: '<branch>' is already used by worktree` if you have a local worktree checked out to that branch. The `--repo` flag bypasses the local git context and avoids most of these errors. If it still fails, the branch can be deleted manually or left — the merge itself succeeds.
+> **Note:** `--delete-branch` can fail with `fatal: '<branch>' is already used by worktree` if you have a local worktree for that branch. The `--repo` flag bypasses local git context and avoids most of these errors. If it still fails, the branch can be deleted manually — the merge itself succeeds.
 
-## Step 4: On FAILURE — report and stop
+## Step 4: On FAILURE — report and optionally fix
 
-Fetch the build log to diagnose:
+Always fetch the build log first to understand the failure:
 
 ```bash
 gcloud builds log <BUILD_ID> --project=repcore-prod --region=us-central1 2>&1 | grep -B 5 -A 5 "ERROR\|Failed tasks"
 ```
 
-Report the failure to the user. Do not merge.
+Diagnose the log, fix the code, commit and push, then watch the new build. Repeat until green or you hit a failure you can't resolve — in that case report to the user with context. Do not wait to be asked to fix failures.
 
 ## Step 5: After merging
 
