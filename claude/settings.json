@@ -33,8 +33,6 @@
       "Bash(gh api:*)",
       "Bash(gh repo:*)",
       "Bash(gh search:*)",
-      "mcp__plugin_claude-mem_mcp-search__smart_outline",
-      "mcp__plugin_claude-mem_mcp-search__get_observations",
       "Bash(git:*)",
       "Bash(python3 -c ':*)",
       "Bash(mscli auth:*)",
@@ -64,8 +62,7 @@
   "enabledPlugins": {
     "vendasta-dev-agent-toolkit@vendasta-dev-agent-toolkit": true,
     "gopls-lsp@claude-plugins-official": true,
-    "compound-engineering@compound-engineering-plugin": true,
-    "claude-mem@thedotmack": true
+    "compound-engineering@compound-engineering-plugin": true
   },
   "extraKnownMarketplaces": {
     "vendasta-dev-agent-toolkit": {
@@ -79,12 +76,6 @@
       "source": {
         "source": "github",
         "repo": "EveryInc/compound-engineering-plugin"
-      }
-    },
-    "thedotmack": {
-      "source": {
-        "source": "github",
-        "repo": "thedotmack/claude-mem"
       }
     }
   },
