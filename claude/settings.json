@@ -79,5 +79,8 @@
       }
     }
   },
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "theme": "dark-daltonized",
+  "editorMode": "vim",
+  "agentPushNotifEnabled": true
 }

@@ -18,6 +18,10 @@ When a build passes or a PR is ready, the script always posts to the personal te
 
 To add a new external team: add their slug → space ID to `TEAM_CHANNELS` in `scripts/chat_post.py`.
 
+## When to notify
+
+Only run this skill after the PR is marked ready for review. Do not notify channels while the PR is still a draft — reviewers shouldn't be pinged until the work is ready for their attention. If the PR stays as a draft, remind the user to run this step when marking it ready.
+
 ## Sending messages
 
 Use the bundled script — no webhook URLs needed, auth is handled via OAuth:
