@@ -48,7 +48,7 @@ charged_slots=$(echo "(($current_charge/$total_charge)*100)" | bc -l | cut -d '.
 
 if [[ $charged_slots -ge 98 ]]; then
   charged_slots=20
-  echo -n '#[fg=green]'
+  echo -n '#[fg=#00BB00]'
 elif [[ $charged_slots -ge 95 ]]; then
   charged_slots=19
   echo -n '#[fg=red]'
@@ -109,7 +109,7 @@ fi
 
 #ratio=$(echo "$current_charge/$total_charge" | bc)
 #if [[ $ratio -ge 1]]; then
-#  echo -n '#[fg=green]'
+#  echo -n '#[fg=#00BB00]'
 #else
 #  echo -n '#[fg=red]'
 #fi
