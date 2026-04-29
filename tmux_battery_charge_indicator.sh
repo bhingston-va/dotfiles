@@ -51,31 +51,31 @@ if [[ $charged_slots -ge 98 ]]; then
   echo -n '#[fg=#00BB00]'
 elif [[ $charged_slots -ge 95 ]]; then
   charged_slots=19
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 90 ]]; then
   charged_slots=18
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 85 ]]; then
   charged_slots=17
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 80 ]]; then
   charged_slots=16
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 75 ]]; then
   charged_slots=15
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 70 ]]; then
   charged_slots=14
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 65 ]]; then
   charged_slots=13
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 60 ]]; then
   charged_slots=12
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 55 ]]; then
   charged_slots=11
-  echo -n '#[fg=red]'
+  echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 50 ]]; then
   charged_slots=10
   echo -n '#[fg=yellow]'
@@ -90,31 +90,31 @@ elif [[ $charged_slots -ge 35 ]]; then
   echo -n '#[fg=yellow]'
 elif [[ $charged_slots -ge 30 ]]; then
   charged_slots=6
-  echo -n '#[fg=blue]'
+  echo -n '#[fg=#0000BB]'
 elif [[ $charged_slots -ge 25 ]]; then
   charged_slots=5
-  echo -n '#[fg=blue]'
+  echo -n '#[fg=#0000BB]'
 elif [[ $charged_slots -ge 20 ]]; then
   charged_slots=4
-  echo -n '#[fg=blue,blink]'
+  echo -n '#[fg=#0000BB,blink]'
 elif [[ $charged_slots -ge 15 ]]; then
   charged_slots=3
-  echo -n '#[fg=blue,blink]'
+  echo -n '#[fg=#0000BB,blink]'
 elif [[ $charged_slots -ge 10 ]]; then
   charged_slots=2
 elif [[ $charged_slots -ge 05 ]]; then
   charged_slots=1
-  echo -n '#[fg=blue,blink]'
+  echo -n '#[fg=#0000BB,blink]'
 fi
 
 #ratio=$(echo "$current_charge/$total_charge" | bc)
 #if [[ $ratio -ge 1]]; then
 #  echo -n '#[fg=#00BB00]'
 #else
-#  echo -n '#[fg=red]'
+#  echo -n '#[fg=#BB0000]'
 #fi
 
-#echo -n '#[fg=red]'
+#echo -n '#[fg=#BB0000]'
 for i in `seq 1 $charged_slots`; do echo -n "$HEART"; done
 
 if [[ $charged_slots -lt 20 ]]; then
