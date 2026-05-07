@@ -15,6 +15,7 @@
 | **pr-ready** | When marking a PR ready for review: un-draft, add `vendasta/meerkats` reviewer, append `@vendasta/meerkats` to body, post in team GChat PR channel. |
 | **notify-pr-channels** | When a build passes or notifying the team: post to personal team PR channel (AT Craig & Daniel) and snapcats channel. Channel URLs and webhook setup documented here. |
 | **gcp-ci-watch** | When watching CI/CD for a branch: poll GCP Cloud Build directly (not GitHub checks). Report green/failure. Only merge if explicitly asked. On failure, always diagnose logs, fix, push, and re-watch — don't wait to be asked. |
+| **wsu** | When creating a new Weekly Status Update page: compute the correct title, gather data from GitHub/GChat/git, run the questionnaire, and create the Confluence page. |
 
 **Refactors:** Use at least 2–3 commits: (1) add new code + tests → commit & push, (2) switch callers to new code → commit & push, (3) remove old code → commit & push. See **green-commits/SKILL.md** and **plan-implementation-commits/SKILL.md** for details.
 

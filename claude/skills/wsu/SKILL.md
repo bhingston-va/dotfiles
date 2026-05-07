@@ -5,7 +5,7 @@ description: Create and fill a new Weekly Status Update (WSU) Confluence page. U
 
 # Weekly Status Update (WSU)
 
-Creates a new WSU page for the current week under the correct quarter parent, gathers data from multiple sources, asks a questionnaire for off-system contributions, and fills in the page.
+Creates or fills a WSU page for the current week. Gathers data from multiple sources, runs a questionnaire for off-system contributions, and writes the page.
 
 ## Confluence config
 
@@ -33,17 +33,17 @@ To find the parent for a future quarter, search Confluence for a page titled "WS
 
 ## Steps
 
-### 1. Determine the title
+### 1. Determine the title and target page
 
-1. Get today's date.
-2. Compute the Friday of the current ISO work week.
-3. Derive the quarter from the month.
-4. Use the Confluence MCP to list children of the quarter parent page (ordered by `created DESC`) and read the last K used — increment by 1.
-5. Construct: `Benj Hingston - YYYY-MM-DD QJWK`
+1. Get today's date and compute the Friday of the current ISO work week.
+2. Derive the quarter from the month.
+3. List children of the quarter parent page (ordered by `created DESC`) and read the last K used — increment by 1.
+4. Construct the title: `Benj Hingston - YYYY-MM-DD QJWK`
+5. **Check if the page already exists** (it may have been pre-created). If so, use `updateConfluencePage`. If not, use `createConfluencePage` at the end.
 
 ### 2. Read the previous week's WSU
 
-Fetch the most recent existing page from the quarter parent to see the **Plan** section. Progress this week should reflect it.
+Fetch the most recent existing page to see the **Plan** section. Progress this week should reflect it.
 
 ### 3. Gather data (run in parallel)
 
@@ -58,49 +58,52 @@ gh search prs --author=bhingston-va --merged="MON..FRI" --limit 20
 gh search prs --reviewed-by=bhingston-va --updated="MON..FRI" --limit 20
 ```
 
-**Git commits** — check repos and worktrees most likely to be active. Key repos under `/Users/bhingston/Projects`:
-- `crm-integrations`, `all-mail`, `MS`, `SM`
-- Any `galaxy*` directory
-- Any directory containing an active worktree (`git worktree list`)
-
+**Git commits** — lead with worktrees, which is where active work lives:
 ```bash
-git -C <repo> log --author="bhingston\|Benj" --after="YYYY-MM-DD" --before="YYYY-MM-DD" \
+# Find all active worktrees across key repos
+git -C /Users/bhingston/Projects/crm-integrations worktree list 2>/dev/null
+git -C /Users/bhingston/Projects/all-mail worktree list 2>/dev/null
+# Check any galaxy* directories found under /Users/bhingston/Projects
+```
+Then for each worktree path found, run:
+```bash
+git -C <worktree-path> log --author="bhingston\|Benj" --after="YYYY-MM-DD" --before="YYYY-MM-DD" \
   --format="%ad %s" --date=short 2>/dev/null
 ```
-
-Only report repos that have activity — skip empty ones.
+Also check base repos directly (commits on master). Skip anything with zero output.
 
 **GChat** — check for cached messages first:
 ```bash
 ls ~/.claude/fetcher/google-chat/
 ```
-If cached space directories exist, read their `messages.md` files for the week. To fetch fresh messages from a known space URL:
+GChat is often not cached. If the cache is empty, ask the user: *"Any GChat spaces worth checking? (team channel, specific threads?)"* and fetch with:
 ```bash
 python3 ~/.claude/plugins/cache/vendasta-dev-agent-toolkit/vendasta-dev-agent-toolkit/0.12.0/scripts/fetch_chat.py fetch <space-url>
 ```
-GChat often surfaces decisions, design discussions, and cross-team context not visible in code — prioritise it.
+GChat often surfaces decisions and cross-team context not visible in code — worth the effort to fetch.
 
 ### 4. Questionnaire
 
-Ask the user about contributions not captured in the above sources. Keep it conversational — these are prompts, not a rigid form:
+Ask these conversationally — not as a rigid form. The goal is to surface contributions that don't show up in GitHub or git.
 
-1. **Meetings / decisions** — Any meetings or discussions this week that led to a notable decision, changed direction, or unblocked something?
-2. **Cross-team or stakeholder work** — Any collaboration outside the immediate team (other squads, PMs, stakeholders)?
+1. **Meetings** — Any meetings this week that led to a notable decision, changed direction, or unblocked something? *If yes: did you initiate the meeting, or were you pulled in?*
+2. **Cross-team / stakeholder** — Any collaboration outside the immediate team (other squads, PMs, staff eng, other programs)?
 3. **Helping teammates** — Significant mentoring, pairing, or unblocking beyond formal PR reviews?
-4. **Problems / blockers** — Anything stuck that needs help from others (for the Problems section)?
-5. **Next week priorities** — Top 2–4 things you're planning for next week?
+4. **Blockers** — Anything stuck that needs help from others (for Problems section)?
+5. **Next week** — Top 2–4 priorities?
 
-### 5. Synthesise and write the page
+### 5. Synthesise and write
 
-Combine data from GitHub, GChat, git, and questionnaire answers into concise PPP content.
+Combine GitHub, GChat, git, and questionnaire answers into concise PPP content.
 
-Guidelines:
-- **Less is more.** Only notable achievements — not a ticket dump.
-- **Progress** should reflect what was in last week's Plan. Focus on things at or above senior-dev level: shipped features, architectural decisions, cross-team impact, unblocking others.
-- Don't just echo ticket titles — capture *what mattered and why*.
-- **Plan**: top 2–4 priorities derived from in-progress work and questionnaire answers.
-- **Problems**: only genuine blockers needing help from others. Leave blank if none.
-- **No boilerplate** — do not include the instructions/filler that lives in the page template.
+**Writing guidelines:**
+- **Less is more.** Notable achievements only — not a ticket dump.
+- **Progress** should reflect last week's Plan. Focus on senior-dev-level signals: shipped features, validated technical hypotheses before building, architectural decisions, cross-team impact, unblocking others.
+- **Proactivity matters.** If Benj initiated a meeting, reached out to another team, or flagged a problem unprompted — write it that way. "Reached out to…" and "Initiated a conversation with…" read very differently from "consulted by" or "met with." Don't flatten that signal.
+- Don't echo ticket titles — capture *what mattered and why*.
+- **Plan**: top 2–4 priorities from in-progress work and questionnaire.
+- **Problems**: only genuine blockers needing outside help. Leave blank if none.
+- **No boilerplate** — no instructions or filler text in the page body.
 
 Page structure:
 ```
@@ -121,23 +124,32 @@ Page structure:
 * <item or blank>
 ```
 
-### 6. Create the page
+### 6. Create or update the page
 
-Use the Confluence MCP `createConfluencePage`:
-
+**If the page already exists** (found in step 1):
 ```
-cloudId:       77fcf126-19b9-4276-9a8f-9d9fa1efe60f
-spaceId:       1518010429
-parentId:      <quarter parent page ID>
-title:         <derived title>
-contentFormat: markdown
-body:          <filled PPP content>
+updateConfluencePage:
+  cloudId:       77fcf126-19b9-4276-9a8f-9d9fa1efe60f
+  pageId:        <existing page ID>
+  contentFormat: markdown
+  body:          <filled PPP content>
 ```
 
-Return the page URL when done.
+**If the page does not exist:**
+```
+createConfluencePage:
+  cloudId:       77fcf126-19b9-4276-9a8f-9d9fa1efe60f
+  spaceId:       1518010429
+  parentId:      <quarter parent page ID>
+  title:         <derived title>
+  contentFormat: markdown
+  body:          <filled PPP content>
+```
+
+Return the page URL. If the page was newly created, remind the user to drag it to the top of the parent in the Confluence sidebar — the API cannot reorder pages.
 
 ## Notes
 
 - Always verify the Friday date arithmetic — don't guess.
-- Week numbers can skip (vacation); always derive K from the last existing page, not by counting weeks from quarter start.
-- After creating the page, remind the user to drag it to the top of the parent in the Confluence sidebar (newest first) — the API cannot reorder pages.
+- Week numbers can skip (vacation); always derive K from the last existing page, not by counting from quarter start.
+- The spaceId must be a numeric Long (`1518010429`), not the space key (`~106705950`) — the API rejects the key.
