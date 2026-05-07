@@ -118,6 +118,6 @@ fi
 for i in `seq 1 $charged_slots`; do echo -n "$HEART"; done
 
 if [[ $charged_slots -lt 20 ]]; then
-  echo -n '#[fg=cyan]'
+  echo -n '#[fg=#00BBBB]'
   for i in `seq 1 $(echo "20-$charged_slots" | bc)`; do echo -n "$HEART"; done
 fi
