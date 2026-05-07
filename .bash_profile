@@ -95,20 +95,20 @@ export EDITOR=nvim
 export SCPSSH="scp bvh895@tuxworld.usask.ca:/student/bvh895/"
 export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0;36m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n\[\e[31m\]♥\[\e[m\] "
 
-export NES_TOKEN=pat-nes-c23bddd4
+export NES_TOKEN= # can't recall where this comes from
 
 #==================
 # Yesware Env Vars
 #==================
 export YW_GIT_NAME="Benj Hingston"
 export YW_GIT_EMAIL="benjhingston@gmail.com"
-export GOOGLE_OAUTH2_ID=token-here
-export GOOGLE_OAUTH2_SECRET=token-here
+export GOOGLE_OAUTH2_ID=""
+export GOOGLE_OAUTH2_SECRET=""
 export YWSTART_REPO_DIR="$HOME/Projects"
-export FURY_TOKEN=token-here
-export RSPEC_S3_ACCESS_KEY=token-here
-export RSPEC_S3_PRIVATE_KEY=token-here
-export NEW_RELIC_API_KEY=token-here
+#export FURY_TOKEN=""  # set manually
+export RSPEC_S3_ACCESS_KEY=""
+export RSPEC_S3_PRIVATE_KEY=""
+export NEW_RELIC_API_KEY=""
 # As of Postgres 12, we've gotten crashes locally unless we set this flag:
 export PGGSSENCMODE="disable"
 export AWS_REGION="us-east-1"
@@ -146,6 +146,30 @@ alias vim='command nvim' vio='command vim'
 eval $(thefuck --alias)
 # You can use whatever you want as an alias, like for Mondays:
 eval $(thefuck --alias fuck)
+
+#===================
+# WSU Notes
+#===================
+function wsu-note() {
+  if [ -z "$*" ]; then
+    echo "Usage: wsu-note <note>"
+    return 1
+  fi
+  local dir="$HOME/.claude/wsu"
+  local file="$dir/$(date +%G-W%V).md"
+  mkdir -p "$dir"
+  echo "- $(date '+%Y-%m-%d %H:%M')  $*" >> "$file"
+  echo "Noted."
+}
+
+function wsu-log() {
+  local file="$HOME/.claude/wsu/$(date +%G-W%V).md"
+  if [ -f "$file" ]; then
+    cat "$file"
+  else
+    echo "No notes yet this week."
+  fi
+}
 
 #=+++++++++==================
 # Vendasta & Yesware Aliases
@@ -264,6 +288,11 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # Added by `rbenv init` on Wed 24 Sep 2025 15:12:55 CST
 eval "$(rbenv init - --no-rehash bash)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

@@ -45,7 +45,15 @@ To find the parent for a future quarter, search Confluence for a page titled "WS
 
 Fetch the most recent existing page to see the **Plan** section. Progress this week should reflect it.
 
-### 3. Gather data (run in parallel)
+### 3. Read weekly notes
+
+Check for in-the-moment notes captured throughout the week:
+```bash
+cat ~/.claude/wsu/$(date +%G-W%V).md 2>/dev/null
+```
+If the file exists, these notes are high-confidence inputs — Benj captured them deliberately. Treat them as primary source material, not hints.
+
+### 4. Gather data (run in parallel)
 
 **GitHub — PRs opened/merged:**
 ```bash
@@ -82,9 +90,9 @@ python3 ~/.claude/plugins/cache/vendasta-dev-agent-toolkit/vendasta-dev-agent-to
 ```
 GChat often surfaces decisions and cross-team context not visible in code — worth the effort to fetch.
 
-### 4. Questionnaire
+### 5. Questionnaire
 
-Ask these conversationally — not as a rigid form. The goal is to surface contributions that don't show up in GitHub or git.
+Ask these conversationally — not as a rigid form. The goal is to surface contributions that don't show up in GitHub, git, or the weekly notes file. If the notes file already covers a question, skip it or use it as a prompt: *"Your notes mention X — anything to add?"*
 
 1. **Meetings** — Any meetings this week that led to a notable decision, changed direction, or unblocked something? *If yes: did you initiate the meeting, or were you pulled in?*
 2. **Cross-team / stakeholder** — Any collaboration outside the immediate team (other squads, PMs, staff eng, other programs)?
@@ -92,7 +100,7 @@ Ask these conversationally — not as a rigid form. The goal is to surface contr
 4. **Blockers** — Anything stuck that needs help from others (for Problems section)?
 5. **Next week** — Top 2–4 priorities?
 
-### 5. Synthesise and write
+### 6. Synthesise and write
 
 Combine GitHub, GChat, git, and questionnaire answers into concise PPP content.
 
@@ -124,7 +132,7 @@ Page structure:
 * <item or blank>
 ```
 
-### 6. Create or update the page
+### 7. Create or update the page
 
 **If the page already exists** (found in step 1):
 ```
