@@ -62,7 +62,8 @@
   "enabledPlugins": {
     "vendasta-dev-agent-toolkit@vendasta-dev-agent-toolkit": true,
     "gopls-lsp@claude-plugins-official": true,
-    "compound-engineering@compound-engineering-plugin": true
+    "compound-engineering@compound-engineering-plugin": true,
+    "vendasta-pr-studio@vendasta-dev-agent-toolkit": true
   },
   "extraKnownMarketplaces": {
     "vendasta-dev-agent-toolkit": {
@@ -79,8 +80,9 @@
       }
     }
   },
-  "voiceEnabled": true,
   "theme": "dark-daltonized",
   "editorMode": "vim",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "voiceEnabled": true,
+  "skipAutoPermissionPrompt": true
 }
