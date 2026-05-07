@@ -78,16 +78,16 @@ elif [[ $charged_slots -ge 55 ]]; then
   echo -n '#[fg=#BB0000]'
 elif [[ $charged_slots -ge 50 ]]; then
   charged_slots=10
-  echo -n '#[fg=yellow]'
+  echo -n '#[fg=#BBBB00]'
 elif [[ $charged_slots -ge 45 ]]; then
   charged_slots=9
-  echo -n '#[fg=yellow]'
+  echo -n '#[fg=#BBBB00]'
 elif [[ $charged_slots -ge 40 ]]; then
   charged_slots=8
-  echo -n '#[fg=yellow]'
+  echo -n '#[fg=#BBBB00]'
 elif [[ $charged_slots -ge 35 ]]; then
   charged_slots=7
-  echo -n '#[fg=yellow]'
+  echo -n '#[fg=#BBBB00]'
 elif [[ $charged_slots -ge 30 ]]; then
   charged_slots=6
   echo -n '#[fg=#0000BB]'
