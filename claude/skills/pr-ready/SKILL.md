@@ -30,15 +30,13 @@ description: Mark a draft PR as ready for review, add the meerkats team as revie
 @vendasta/meerkats"
    ```
 
-4. **Post in the personal team PR channel** — use the `notify-pr-channels` skill for channel URLs, webhook setup, and message format. Summary:
+4. **Post in the personal team PR channel** — use the bundled script from `notify-pr-channels`:
    ```bash
-   curl -s -X POST "<PERSONAL_TEAM_WEBHOOK_URL>" \
-     -H 'Content-Type: application/json' \
-     -d "{\"text\": \"PR ready for review: <PR title> (<PR URL>)\n@Craig @Daniel\"}"
+   PR_URL=$(gh pr view --json url --jq '.url')
+   PR_TITLE=$(gh pr view --json title --jq '.title')
+   python3 ~/.claude/skills/notify-pr-channels/scripts/chat_post.py "$PR_URL" "$PR_TITLE"
    ```
-   - Channel: https://chat.google.com/room/AAAAIj8WMWc?cls=7
-   - Always AT Craig and Daniel in this channel
-   - For proper @mentions you need their Google Chat user IDs — use the `vendasta-dev-agent-toolkit:google-chat-fetcher` skill on the room to find them from past messages (`sender.name` field)
+   User IDs for Craig and Daniel are hardcoded in the script — no need to look them up.
 
 5. **Report back** with the PR URL and confirmation that reviewers were added.
 
@@ -46,4 +44,4 @@ description: Mark a draft PR as ready for review, add the meerkats team as revie
 
 - If the PR is already out of draft, skip step 2 — still add reviewer and post.
 - Do NOT post in the snapcats channel for `pr-ready` — that's only for build notifications via `notify-pr-channels`.
-- If no webhook URL is available, ask the user: "Do you have a webhook URL for the team PR Google Chat room?"
+- Chat posting uses OAuth (not a webhook) — see `notify-pr-channels` skill if auth needs refreshing.
