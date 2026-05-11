@@ -95,20 +95,17 @@ export EDITOR=nvim
 export SCPSSH="scp bvh895@tuxworld.usask.ca:/student/bvh895/"
 export PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]\[\e[0;32m\]\A\[\e[m\] \h:\[\e[0;36m\]\W\[\e[m\]\[\e[32m\]\`parse_git_branch\`\[\e[m\]\n\[\e[31m\]♥\[\e[m\] "
 
-export NES_TOKEN= # can't recall where this comes from
+# NES_TOKEN - can't recall where this comes from
+[ -f "$HOME/.bash_secrets" ] && source "$HOME/.bash_secrets"
 
 #==================
 # Yesware Env Vars
 #==================
+# Secrets: GOOGLE_OAUTH2_ID, GOOGLE_OAUTH2_SECRET, FURY_TOKEN,
+#          RSPEC_S3_ACCESS_KEY, RSPEC_S3_PRIVATE_KEY, NEW_RELIC_API_KEY
 export YW_GIT_NAME="Benj Hingston"
 export YW_GIT_EMAIL="benjhingston@gmail.com"
-export GOOGLE_OAUTH2_ID=""
-export GOOGLE_OAUTH2_SECRET=""
 export YWSTART_REPO_DIR="$HOME/Projects"
-#export FURY_TOKEN=""  # set manually
-export RSPEC_S3_ACCESS_KEY=""
-export RSPEC_S3_PRIVATE_KEY=""
-export NEW_RELIC_API_KEY=""
 # As of Postgres 12, we've gotten crashes locally unless we set this flag:
 export PGGSSENCMODE="disable"
 export AWS_REGION="us-east-1"
