@@ -2,12 +2,8 @@
 
 input=$(cat)
 
-# --- Model badge ---
+# --- Model (used on bottom line) ---
 model=$(echo "$input" | jq -r '.model.display_name // empty')
-model_badge=""
-if [ -n "$model" ]; then
-    model_badge="[${model}] "
-fi
 
 # --- Session timer ---
 session_id=$(echo "$input" | jq -r '.session_id // empty')
@@ -124,4 +120,31 @@ if [ -n "$seven_d_pct" ] && [ -n "$seven_d_reset" ]; then
     rate_str="${rate_str} · ${c}${bar}\e[m \e[2m7d on\e[m ${reset}"
 fi
 
-printf "%b%b%b" "$model_badge" "$token_str" "$rate_str"
+# --- Claude Code version (cached hourly) ---
+version_cache="/tmp/claude-version-cache"
+version_mtime=$(stat -f%m "$version_cache" 2>/dev/null || echo 0)
+cache_age=$(( $(date +%s) - version_mtime ))
+if [ ! -f "$version_cache" ] || [ "$cache_age" -gt 3600 ]; then
+    claude --version 2>/dev/null | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1 > "$version_cache"
+fi
+claude_version=$(cat "$version_cache" 2>/dev/null)
+
+# --- Working directory ---
+cwd=$(echo "$input" | jq -r '.cwd // empty')
+[ -z "$cwd" ] && cwd="$PWD"
+
+# --- Bottom line: Model (default color) | V X.X.XXX | /cwd (dimmed) ---
+
+if [ -n "$model" ] && [ -n "$claude_version" ] && [ -n "$cwd" ]; then
+    bottom_line="${model}\e[2m · v.${claude_version} | ${cwd}\e[m"
+elif [ -n "$model" ] && [ -n "$claude_version" ]; then
+    bottom_line="${model}\e[2m · v.${claude_version}\e[m"
+elif [ -n "$model" ] && [ -n "$cwd" ]; then
+    bottom_line="${model}\e[2m | ${cwd}\e[m"
+elif [ -n "$model" ]; then
+    bottom_line="${model}"
+else
+    bottom_line="\e[2m${suffix}\e[m"
+fi
+
+printf "%b%b\n%b" "$token_str" "$rate_str" "$bottom_line"
