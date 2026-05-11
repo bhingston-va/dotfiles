@@ -130,21 +130,24 @@ fi
 claude_version=$(cat "$version_cache" 2>/dev/null)
 
 # --- Working directory ---
-cwd=$(echo "$input" | jq -r '.cwd // empty')
-[ -z "$cwd" ] && cwd="$PWD"
+raw_cwd=$(echo "$input" | jq -r '.cwd // empty')
+[ -z "$raw_cwd" ] && raw_cwd="$PWD"
+cwd="${raw_cwd/#$HOME/~}"
 
-# --- Bottom line: Model (default color) | V X.X.XXX | /cwd (dimmed) ---
+# --- Git branch ---
+branch=$(git -C "$raw_cwd" rev-parse --abbrev-ref HEAD 2>/dev/null)
+branch_str=""
+[ -n "$branch" ] && branch_str=" │  ${branch}"
 
-if [ -n "$model" ] && [ -n "$claude_version" ] && [ -n "$cwd" ]; then
-    bottom_line="${model}\e[2m · v.${claude_version} | ${cwd}\e[m"
-elif [ -n "$model" ] && [ -n "$claude_version" ]; then
-    bottom_line="${model}\e[2m · v.${claude_version}\e[m"
-elif [ -n "$model" ] && [ -n "$cwd" ]; then
-    bottom_line="${model}\e[2m | ${cwd}\e[m"
+# --- Bottom line: Model (default color) · v.X.X.XXX │~/cwd  branch (dimmed) ---
+dir_branch="\e[2m${cwd}${branch_str}\e[m"
+
+if [ -n "$model" ] && [ -n "$claude_version" ]; then
+    bottom_line="${model}\e[2m · v.${claude_version} │ \e[m${dir_branch}"
 elif [ -n "$model" ]; then
-    bottom_line="${model}"
+    bottom_line="${model}\e[2m │ \e[m${dir_branch}"
 else
-    bottom_line="\e[2m${suffix}\e[m"
+    bottom_line="${dir_branch}"
 fi
 
 printf "%b%b\n%b" "$token_str" "$rate_str" "$bottom_line"
